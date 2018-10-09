@@ -1,0 +1,18 @@
+{
+  "channels": [
+    {
+      "id": "1",
+      "name": "First channel",
+      "customData": {
+        "type": "private"
+      }
+    },
+    {
+      "id": "2",
+      "name": "Second channel",
+      "customData": {
+        "type": "public"
+      }
+    }
+  ]
+}
