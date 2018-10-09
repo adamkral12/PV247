@@ -7,10 +7,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+          <div className="col-xs-3">
           <ChannelWrapper
               data={data.channels}
           />
-        <Screen/>
+          </div>
+          <div className="col-xs-9">
+            <Screen/>
+          </div>
       </div>
     );
   }

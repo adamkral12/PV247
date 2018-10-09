@@ -7,7 +7,6 @@ export default class Screen extends Component {
     render() {
         return (
             <div>
-                Screen
                 <HeaderWrapper/>
                 <BodyWrapper/>
             </div>

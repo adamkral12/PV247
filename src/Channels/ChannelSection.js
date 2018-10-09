@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Channel from "./Channel";
+import {ListGroup, ListGroupItem, Panel} from "react-bootstrap";
 
 export default class ChannelSection extends Component {
     render() {
         console.log(this.props.channels);
         return(
             <div>
-                <div className="channel-title">
-                    {this.props.title}
-                </div>
-                <div className="channels">
+                <Panel.Body>{this.props.title}</Panel.Body>
+                <ListGroup>
                     {this.props.channels.map((channel) => {
                         return (
-                            <Channel
-                                key={channel.id}
-                                id={ channel.id }
-                                name={ channel.name }
-                            />
+                            <ListGroupItem>
+                                <Channel
+                                    key={channel.id}
+                                    id={channel.id}
+                                    name={channel.name}
+                                />
+                            </ListGroupItem>
                         );
                     })}
-                </div>
+                </ListGroup>
             </div>
         );
     }
