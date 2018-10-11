@@ -1,32 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ChannelWrapper from './Channels/ChannelWrapper';
+import data from './tests/mockData.json';
+import Screen from "./Screen/Screen"; // mock data
 
 class App extends Component {
-  render() {
-    return (
+    onChannelClick = (channelId) => {
+      console.log("Event bubbled into top component, channel id = " + channelId);
+    };
+
+    render() {
+      return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-                          Edit
-              {' '}
-              <code>src/App.js</code>
-              {' '}
-              and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+          <div className="col-xs-3">
+          <ChannelWrapper
+            channels={data.channels}
+            onChannelClick={(channelId) => this.onChannelClick(channelId)}
+          />
+          </div>
+          <div className="col-xs-9">
+            <Screen/>
+          </div>
       </div>
-    );
-  }
+      );
+    }
 }
 
 export default App;
