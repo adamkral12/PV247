@@ -5,6 +5,8 @@ export default class Channel extends Component {
 
     // todo: this change will be propagated and change the main screen
     onclick = () => {
+        console.log("on click in channel, calling props onClick");
+        this.props.onClick(this.props.id);
     };
 
     render() {
@@ -22,7 +24,8 @@ export default class Channel extends Component {
 
 
 Channel.propTypes = {
-    name: PropTypes.string,
-    id: PropTypes.string
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
 };
 
