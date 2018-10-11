@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Col from "react-bootstrap/es/Col";
 import {Badge, Button, ButtonGroup, Image, Panel, Row} from "react-bootstrap";
-//import './Post.css'
-
-import * as styles from './Post.css'
+import './Post.css'
+import './../../index.css';
 
 /*
 name, message, karma?, avatar
@@ -17,12 +16,12 @@ export default class Post extends Component {
     render() {
         return (
             <div >
-                <Row id = "row">
-                    <Col xs={1} id={"vertAlCenter"}>
-                        <Image id={"image"} src="https://profile.actionsprout.com/default.jpeg" circle />
+                <Row className="row">
+                    <Col xs={1} className="vertAlCenter">
+                        <Image className="image" src="https://profile.actionsprout.com/default.jpeg" circle />
                     </Col>
-                    <Col xs={11} id ={"vertAlCenter"}>
-                        <Panel id = {"panel"}>
+                    <Col xs={11} className="vertAlCenter">
+                        <Panel className="panel">
                             <Panel.Heading>
                                 Name
                             </Panel.Heading>

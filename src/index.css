@@ -13,17 +13,17 @@ code {
     monospace;
 }
 
-#row {
+.row {
   margin-bottom: 20px;
 }
 
-#vertAlCenter {
+.vertAlCenter {
   float: none;
   display: table-cell;
   vertical-align: middle;
 }
 
-#image {
+.image {
   max-height: 100%;
   max-width: 100%;
   float: none;
@@ -31,7 +31,7 @@ code {
   vertical-align: middle;
 }
 
-#panel {
+.panel {
   float: none;
   vertical-align: middle;
   margin-bottom: 0;
