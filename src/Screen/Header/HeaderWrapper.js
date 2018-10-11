@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import {MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
 
 export default class HeaderWrapper extends Component {
