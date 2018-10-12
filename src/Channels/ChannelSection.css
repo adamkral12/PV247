@@ -1,0 +1,7 @@
+.channel-header {
+    cursor: pointer;
+}
+
+.channel-header:hover {
+    color:wheat;
+}

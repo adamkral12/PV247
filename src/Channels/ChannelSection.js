@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Channel from "./Channel";
 import {ListGroup, ListGroupItem, Panel} from "react-bootstrap";
+import './ChannelSection.css';
 
 export default class ChannelSection extends Component {
 
@@ -19,7 +20,7 @@ export default class ChannelSection extends Component {
                             return (
                                 <ListGroupItem
                                     key={channel.id}
-                                    className="dark-back"
+                                    className="dark-back channel-header"
                                 >
                                     <Channel
                                         id={channel.id}
