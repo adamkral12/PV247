@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import {Glyphicon, MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
+import {Glyphicon, MenuItem, Nav, Navbar, NavDropdown, NavItem, Col} from "react-bootstrap";
+import './HeaderWrapper.css';
 
 export default class HeaderWrapper extends Component {
     render() {
         return (
-            <Navbar fluid>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <a href="#home">React-Bootstrap</a>
-                    </Navbar.Brand>
-                    <Navbar.Toggle />
-                </Navbar.Header>
+            <Navbar fluid className="navbar-wrapper">
+                <Col xs={2} className="company-header">
+                    <Navbar.Header>
+                            <Navbar.Brand className="nav-brand">
+                                <a href="#home">PV247</a>
+                            </Navbar.Brand>
+                        <Navbar.Toggle />
+                    </Navbar.Header>
+                </Col>
                 <Navbar.Collapse>
                 <Nav>
                     <NavItem eventKey={1} href="#">

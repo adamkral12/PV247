@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import ChannelSection from "./ChannelSection";
 import PropTypes from 'prop-types';
-import {Panel} from "react-bootstrap";
+import {Panel, Col} from "react-bootstrap";
+import './ChannelWrapper.css';
 
 export default class ChannelWrapper extends Component {
 
     render() {
         return(
-            <div>
-            <Panel>
-                <Panel.Heading>Panel heading</Panel.Heading>
-                <ChannelSection
-                    title="Channels"
-                    channels={this.props.channels}
-                    onChannelClick={this.props.onChannelClick}
-                />
-                <Panel.Body>Some more panel content here.</Panel.Body>
-            </Panel>
-            </div>
+            <Col xs={2} className="channel-wrapper">
+                <Panel className="dark-back">
+                    <Panel.Body className="dark-back">
+                        <ChannelSection
+                            className="dark-back"
+                            title="Channels"
+                            channels={this.props.channels}
+                            onChannelClick={this.props.onChannelClick}
+                        />
+                    </Panel.Body>
+                </Panel>
+            </Col>
         );
     }
 }

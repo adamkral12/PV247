@@ -13,22 +13,24 @@ export default class ChannelSection extends Component {
     render() {
         return(
             <div>
-                <Panel.Body>{this.props.title}</Panel.Body>
-                <ListGroup>
-                    {this.props.channels.map((channel) => {
-                        return (
-                            <ListGroupItem
-                                key={channel.id}
-                            >
-                                <Channel
-                                    id={channel.id}
-                                    name={channel.name}
-                                    onClick={this.onClick}
-                                />
-                            </ListGroupItem>
-                        );
-                    })}
-                </ListGroup>
+                <Panel.Body>
+                    <ListGroup>
+                        {this.props.channels.map((channel) => {
+                            return (
+                                <ListGroupItem
+                                    key={channel.id}
+                                    className="dark-back"
+                                >
+                                    <Channel
+                                        id={channel.id}
+                                        name={channel.name}
+                                        onClick={this.onClick}
+                                    />
+                                </ListGroupItem>
+                            );
+                        })}
+                    </ListGroup>
+                </Panel.Body>
             </div>
         );
     }
