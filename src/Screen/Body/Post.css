@@ -1,0 +1,9 @@
+.row {
+    margin-bottom: 20px;
+}
+
+.verticalAlignment {
+    float: none;
+    display: table-cell;
+    vertical-align: middle
+}
