@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Col from "react-bootstrap/es/Col";
-import {Badge, Button, ButtonGroup, Glyphicon, Image, Panel, Row} from "react-bootstrap";
+import {Col, Badge, Button, ButtonGroup, Glyphicon, Image, Panel, Row} from "react-bootstrap";
 import './Post.css'
 import './../../index.css';
 
