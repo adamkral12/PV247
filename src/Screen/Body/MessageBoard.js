@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Post from "./Post";
 import MessageForm from "./MessageForm";
-import ChannelNavbar from "./ChannelNavbar";
 import PropTypes from 'prop-types';
 import './MessageBoard.css';
 
@@ -9,7 +8,6 @@ export default class MessageBoard extends Component {
     render() {
         return (
             <div>
-                <ChannelNavbar/>
                 <div className="postWrapper">
                     {this.props.messages.map((message) => {
                         return <Post
