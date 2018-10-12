@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {FormControl, FormGroup, HelpBlock} from "react-bootstrap";
+import {FormControl, FormGroup} from "react-bootstrap";
 
 export default class MessageForm extends Component {
     render() {
@@ -17,7 +17,6 @@ export default class MessageForm extends Component {
                             onChange={this.handleChange}
                         />
                         <FormControl.Feedback />
-                        <HelpBlock>Validation is based on string length.</HelpBlock>
                     </FormGroup>
                 </form>
             </div>

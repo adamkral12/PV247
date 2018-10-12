@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Col, Badge, Button, ButtonGroup, Glyphicon, Image, Panel, Row} from "react-bootstrap";
 import './Post.css'
 import './../../index.css';
+import PropTypes from 'prop-types';
 
 /*
 name, message, karma?, avatar
@@ -27,18 +28,18 @@ export default class Post extends Component {
                             <Panel.Body>
                                 <Row>
                                     <Col xs={8}>
-                                        <p>This is my message. I am an annoying piece of shit.</p>
+                                        <p>{this.props.messageValue}</p>
                                     </Col>
                                     <Col xs={1}>
-                                        <Badge>5</Badge>
+                                        <Badge>{this.props.customData.votes}</Badge>
                                     </Col>
                                     <Col xs={2}>
                                         <ButtonGroup>
                                             <Button>+</Button>
                                             <Button>-</Button>
-                                            {true && <Button>
+                                            <Button>
                                                 <Glyphicon glyph="glyphicon glyphicon-trash"/>
-                                            </Button>}
+                                            </Button>
                                         </ButtonGroup>
                                     </Col>
                                 </Row>
@@ -50,3 +51,11 @@ export default class Post extends Component {
         );
     }
 }
+
+Post.propTypes = {
+    messageValue: PropTypes.string.isRequired,
+    messageId: PropTypes.string.isRequired,
+    customData: PropTypes.shape({
+            votes: PropTypes.number.isRequired
+    })
+};

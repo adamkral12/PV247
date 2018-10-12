@@ -18,7 +18,9 @@ class App extends Component {
           />
           </div>
           <div className="col-xs-9">
-            <Screen/>
+            <Screen
+                messages={data.channelMessages}
+            />
           </div>
       </div>
       );
