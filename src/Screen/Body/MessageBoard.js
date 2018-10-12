@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Post from "./Post";
+import MessageForm from "./MessageForm";
 
 export default class MessageBoard extends Component {
     render() {
@@ -8,6 +9,7 @@ export default class MessageBoard extends Component {
                 <Post/>
                 <Post/>
                 <Post/>
+                <MessageForm/>
             </div>
         );
     }

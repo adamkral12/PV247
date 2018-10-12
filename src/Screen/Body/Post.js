@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Col from "react-bootstrap/es/Col";
-import {Badge, Button, ButtonGroup, Image, Panel, Row} from "react-bootstrap";
+import {Badge, Button, ButtonGroup, Glyphicon, Image, Panel, Row} from "react-bootstrap";
 import './Post.css'
 import './../../index.css';
 
@@ -37,6 +37,9 @@ export default class Post extends Component {
                                         <ButtonGroup>
                                             <Button>+</Button>
                                             <Button>-</Button>
+                                            {true && <Button>
+                                                <Glyphicon glyph="glyphicon glyphicon-trash"/>
+                                            </Button>}
                                         </ButtonGroup>
                                     </Col>
                                 </Row>
