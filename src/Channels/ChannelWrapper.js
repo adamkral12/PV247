@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ChannelSection from "./ChannelSection";
 import PropTypes from 'prop-types';
-import {Panel, Col} from "react-bootstrap";
+import {Panel, Col, Button} from "react-bootstrap";
 import './ChannelWrapper.css';
 
 export default class ChannelWrapper extends Component {
@@ -17,6 +17,7 @@ export default class ChannelWrapper extends Component {
                             channels={this.props.channels}
                             onChannelClick={this.props.onChannelClick}
                         />
+                        <Button>New Channel</Button>
                     </Panel.Body>
                 </Panel>
             </Col>

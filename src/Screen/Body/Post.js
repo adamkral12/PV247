@@ -26,7 +26,6 @@ export default class Post extends Component {
                                 Name
                             </Panel.Heading>
                             <Panel.Body>
-                                <Row>
                                     <Col xs={8}>
                                         <p>{this.props.messageValue}</p>
                                     </Col>
@@ -42,7 +41,6 @@ export default class Post extends Component {
                                             </Button>
                                         </ButtonGroup>
                                     </Col>
-                                </Row>
                             </Panel.Body>
                         </Panel>
                     </Col>
