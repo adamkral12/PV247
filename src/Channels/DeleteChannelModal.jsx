@@ -14,7 +14,7 @@ export default class DeleteChannelModal extends Component {
     render() {
         return (
             <div>
-                <Modal show={this.props.show} onHide={this.handleClose}>
+                <Modal show={this.props.show} onHide={this.props.onClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Delete channel {this.props.channelName}</Modal.Title>
                     </Modal.Header>
