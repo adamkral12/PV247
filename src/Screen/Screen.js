@@ -8,6 +8,7 @@ export default class Screen extends Component {
         return (
             <div>
                 <BodyWrapper
+                    user={this.props.user}
                     messages={this.props.messages}
                 />
             </div>
@@ -16,6 +17,13 @@ export default class Screen extends Component {
 }
 
 Screen.propTypes = {
+    user: PropTypes.shape({
+        email: PropTypes.string.isRequired,
+        customData: PropTypes.shape({
+            profilePicture: PropTypes.string.isRequired,
+            displayName: PropTypes.string.isRequired
+        }).isRequired,
+    }).isRequired,
     messages: PropTypes.arrayOf(
         PropTypes.shape({
             value: PropTypes.string.isRequired,

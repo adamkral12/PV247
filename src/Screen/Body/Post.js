@@ -18,12 +18,16 @@ export default class Post extends Component {
             <div >
                 <Row className="row">
                     <Col xs={1} className="vertAlCenter">
-                        <Image className="image" src="https://profile.actionsprout.com/default.jpeg" circle />
+                        <Image
+                            className="image"
+                            src={this.props.user.customData.profilePicture}
+                            circle
+                        />
                     </Col>
                     <Col xs={11} className="vertAlCenter">
                         <Panel className="panel">
                             <Panel.Heading>
-                                Name
+                                {this.props.user.customData.displayName}
                             </Panel.Heading>
                             <Panel.Body>
                                     <Col xs={8}>
@@ -55,5 +59,12 @@ Post.propTypes = {
     messageId: PropTypes.string.isRequired,
     customData: PropTypes.shape({
             votes: PropTypes.number.isRequired
-    })
+    }),
+    user: PropTypes.shape({
+        email: PropTypes.string.isRequired,
+        customData: PropTypes.shape({
+            profilePicture: PropTypes.string.isRequired,
+            displayName: PropTypes.string.isRequired
+        }).isRequired,
+    }).isRequired,
 };

@@ -11,6 +11,7 @@ export default class MessageBoard extends Component {
                 <div className="postWrapper">
                     {this.props.messages.map((message) => {
                         return <Post
+                            user={this.props.user}
                             key={message.id}
                             messageValue={message.value}
                             messageId={message.id}
@@ -25,6 +26,13 @@ export default class MessageBoard extends Component {
 }
 
 MessageBoard.propTypes = {
+    user: PropTypes.shape({
+        email: PropTypes.string.isRequired,
+        customData: PropTypes.shape({
+            profilePicture: PropTypes.string.isRequired,
+            displayName: PropTypes.string.isRequired
+        }).isRequired,
+    }).isRequired,
     messages: PropTypes.arrayOf(
         PropTypes.shape({
             value: PropTypes.string.isRequired,

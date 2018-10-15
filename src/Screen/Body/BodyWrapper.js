@@ -7,6 +7,7 @@ export default class BodyWrapper extends Component {
         return (
             <div>
                 <MessageBoard
+                    user={this.props.user}
                     messages={this.props.messages}
                 />
             </div>
@@ -15,6 +16,13 @@ export default class BodyWrapper extends Component {
 }
 
 BodyWrapper.propTypes = {
+    user: PropTypes.shape({
+        email: PropTypes.string.isRequired,
+        customData: PropTypes.shape({
+            profilePicture: PropTypes.string.isRequired,
+            displayName: PropTypes.string.isRequired
+        }).isRequired,
+    }).isRequired,
     messages: PropTypes.arrayOf(
         PropTypes.shape({
             value: PropTypes.string.isRequired,

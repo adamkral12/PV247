@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { Col } from 'react-bootstrap';
 import ChannelWrapper from './Channels/ChannelWrapper';
 import data from './tests/mockData.json';
 import Screen from "./Screen/Screen";
 import HeaderWrapper from "./Screen/Header/HeaderWrapper";
-import { Col } from 'react-bootstrap';
 
 class App extends Component {
     onChannelClick = (channelId) => {
@@ -14,7 +14,7 @@ class App extends Component {
       return (
       <div className="App">
           <HeaderWrapper
-              user={data.user}
+            user={data.user}
           />
           <ChannelWrapper
             channels={data.channels}
@@ -22,6 +22,7 @@ class App extends Component {
           />
           <Col xs={10}>
             <Screen
+              user={data.user}
               messages={data.channelMessages}
             />
           </Col>
