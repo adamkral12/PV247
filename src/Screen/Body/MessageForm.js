@@ -1,30 +1,48 @@
 import React, { Component } from 'react';
-import {FormControl, FormGroup, HelpBlock} from "react-bootstrap";
+import {FormControl, FormGroup, Button} from "react-bootstrap";
 
 export default class MessageForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: props.value || "",
+            isSubmitLoading: false
+        }
+    }
+
+    onChange = (event) => {
+        this.setState({value: event.target.value})
+    };
+
+    onSubmit = (event) => {
+        event.preventDefault();
+        // unset loading state when done
+        this.setState({ isSubmitLoading: true });
+        // this.props.onSubmit(this.state.value);
+    };
+
     render() {
         return (
             <div>
                 <form>
                     <FormGroup
                         controlId="formBasicText"
-                        validationState={this.getValidationState()}
                     >
                         <FormControl
-                            type="text"
-                            value={""}//this.state.value}
+                            componentClass="textarea"
+                            value={this.state.value}
                             placeholder="Message"
-                            onChange={this.handleChange}
+                            onChange={this.onChange}
                         />
-                        <FormControl.Feedback />
-                        <HelpBlock>Validation is based on string length.</HelpBlock>
                     </FormGroup>
+                    <Button type="submit"
+                            disabled={this.state.isSubmitLoading}
+                            onClick={this.state.isSubmitLoading ? null : this.onSubmit}
+                    >
+                        Send
+                    </Button>
                 </form>
             </div>
-    );
-    }
-
-    getValidationState() {
-        return undefined;
+        );
     }
 }

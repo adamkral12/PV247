@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Channel from "./Channel";
 import {ListGroup, ListGroupItem, Panel} from "react-bootstrap";
+import './ChannelSection.css';
 
 export default class ChannelSection extends Component {
 
@@ -13,22 +14,24 @@ export default class ChannelSection extends Component {
     render() {
         return(
             <div>
-                <Panel.Body>{this.props.title}</Panel.Body>
-                <ListGroup>
-                    {this.props.channels.map((channel) => {
-                        return (
-                            <ListGroupItem
-                                key={channel.id}
-                            >
-                                <Channel
-                                    id={channel.id}
-                                    name={channel.name}
-                                    onClick={this.onClick}
-                                />
-                            </ListGroupItem>
-                        );
-                    })}
-                </ListGroup>
+                <Panel.Body>
+                    <ListGroup>
+                        {this.props.channels.map((channel) => {
+                            return (
+                                <ListGroupItem
+                                    key={channel.id}
+                                    className="dark-back channel-header"
+                                >
+                                    <Channel
+                                        id={channel.id}
+                                        name={channel.name}
+                                        onClick={this.onClick}
+                                    />
+                                </ListGroupItem>
+                            );
+                        })}
+                    </ListGroup>
+                </Panel.Body>
             </div>
         );
     }

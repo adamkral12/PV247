@@ -1,4 +1,11 @@
 {
+  "user": {
+    "email": "433328@mail.muni.cz",
+    "customData": {
+      "displayName": "adam",
+      "profilePicture": "http://www.pngmart.com/files/2/Pikachu-PNG-Pic.png"
+    }
+  },
   "channels": [
     {
       "id": "1",
@@ -12,6 +19,64 @@
       "name": "Second channel",
       "customData": {
         "type": "public"
+      }
+    }
+  ],
+
+  "channelMessages": [
+    {
+      "id": "1",
+      "value": "this is message 1 ",
+      "createdAt": "2018-10-12T13:05:10.315Z",
+      "createdBy": "adam",
+      "updatedAt": "2018-10-12T13:05:10.315Z",
+      "updatedBy": "adam",
+      "customData": {
+        "votes": 2
+      }
+    },
+    {
+      "id": "2",
+      "value": "second message",
+      "createdAt": "2018-10-12T13:05:10.315Z",
+      "createdBy": "adam",
+      "updatedAt": "2018-10-12T13:05:10.315Z",
+      "updatedBy": "adam",
+      "customData": {
+        "votes": 3
+      }
+    },
+    {
+      "id": "3",
+      "value": "thrid message",
+      "createdAt": "2018-10-12T13:05:10.315Z",
+      "createdBy": "jozko",
+      "updatedAt": "2018-10-12T13:05:10.315Z",
+      "updatedBy": "adam",
+      "customData": {
+        "votes": 4
+      }
+    },
+    {
+      "id": "4",
+      "value": "fourth message",
+      "createdAt": "2018-10-12T13:05:10.315Z",
+      "createdBy": "adam",
+      "updatedAt": "2018-10-12T13:05:10.315Z",
+      "updatedBy": "adam",
+      "customData": {
+        "votes": 1
+      }
+    },
+    {
+      "id": "5",
+      "value": "fifth 4",
+      "createdAt": "2018-10-12T13:05:10.315Z",
+      "createdBy": "adam",
+      "updatedAt": "2018-10-12T13:05:10.315Z",
+      "updatedBy": "adam",
+      "customData": {
+        "votes": 5
       }
     }
   ]
