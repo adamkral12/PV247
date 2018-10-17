@@ -1,5 +1,4 @@
-{
-  "parser": "babel-eslint",
+{"parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 8,
     "ecmaFeatures": {
@@ -34,6 +33,7 @@
       "error",
       "stroustrup"
     ],
+    "react/destructuring-assignment": "off",
     "camelcase": "off",
     "class-methods-use-this": "off",
     "comma-dangle": "off",
