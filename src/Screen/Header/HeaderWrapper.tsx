@@ -1,31 +1,33 @@
-import React, { Component } from 'react';
-import {Glyphicon, MenuItem, Nav, Navbar, NavDropdown, NavItem, Col} from "react-bootstrap";
+import * as React from 'react';
+import {
+  Glyphicon, MenuItem, Nav, Navbar, NavDropdown, NavItem, Col
+} from "react-bootstrap";
 import './HeaderWrapper.css';
 import EditUserModal from "../../Users/EditUserModal";
-import PropTypes from 'prop-types';
+import {PureComponent} from "react";
 
-export default class HeaderWrapper extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showEditUserModal: false
-        };
-    }
+export class HeaderWrapper extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showEditUserModal: false
+    };
+  }
 
     showEditUserModal = () => {
-        this.setState({
-            showEditUserModal: true
-        });
+      this.setState({
+        showEditUserModal: true
+      });
     };
 
     hideEditUserModal = () => {
-        this.setState({
-            showEditUserModal: false
-        });
+      this.setState({
+        showEditUserModal: false
+      });
     };
 
     render() {
-        return (
+      return (
             <Navbar fluid className="navbar-wrapper">
                 <Col xs={2} className="company-header">
                     <Navbar.Header>
@@ -51,24 +53,19 @@ export default class HeaderWrapper extends Component {
                     </NavDropdown>
                 </Nav>
                 <Nav pullRight>
-                    <NavItem eventKey={1}
-                             onClick={this.showEditUserModal}
+                    <NavItem
+                      eventKey={1}
+                      onClick={this.showEditUserModal}
                     >
                             <Glyphicon glyph="user"/>
                     </NavItem>
                 </Nav>
                 </Navbar.Collapse>
                 <EditUserModal
-                    user={this.props.user}
-                    show={this.state.showEditUserModal}
-                    onEdit={this.hideEditUserModal} //TODO: handle edit
-                    onClose={this.hideEditUserModal}
+                  onEdit={this.hideEditUserModal} // TODO: handle edit
+                  onClose={this.hideEditUserModal}
                 />
             </Navbar>
-        );
+      );
     }
 }
-
-HeaderWrapper.propTypes = {
-  user: PropTypes.object.isRequired
-};

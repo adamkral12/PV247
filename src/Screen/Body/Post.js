@@ -1,27 +1,21 @@
 import React, { Component } from 'react';
-import {Col, Badge, Button, ButtonGroup, Glyphicon, Image, Panel, Row} from "react-bootstrap";
-import './Post.css'
-import './../../index.css';
+import {
+  Col, Badge, Button, ButtonGroup, Glyphicon, Image, Panel, Row
+} from "react-bootstrap";
+import './Post.css';
+import "../../index.css";
 import PropTypes from 'prop-types';
 
-/*
-name, message, karma?, avatar
-* */
-/*
-karma + buttons ako vlastna komponenta?
-farba Panel.Heading podla ratingu?
- */
-
 export default class Post extends Component {
-    render() {
-        return (
+  render() {
+    return (
             <div >
                 <Row className="row">
                     <Col xs={1} className="vertAlCenter">
                         <Image
-                            className="image"
-                            src={this.props.user.customData.profilePicture}
-                            circle
+                          className="image"
+                          src={this.props.user.customData.profilePicture}
+                          circle
                         />
                     </Col>
                     <Col xs={11} className="vertAlCenter">
@@ -50,21 +44,21 @@ export default class Post extends Component {
                     </Col>
                 </Row>
             </div>
-        );
-    }
+    );
+  }
 }
 
 Post.propTypes = {
-    messageValue: PropTypes.string.isRequired,
-    messageId: PropTypes.string.isRequired,
+  messageValue: PropTypes.string.isRequired,
+  messageId: PropTypes.string.isRequired,
+  customData: PropTypes.shape({
+    votes: PropTypes.number.isRequired
+  }),
+  user: PropTypes.shape({
+    email: PropTypes.string.isRequired,
     customData: PropTypes.shape({
-            votes: PropTypes.number.isRequired
-    }),
-    user: PropTypes.shape({
-        email: PropTypes.string.isRequired,
-        customData: PropTypes.shape({
-            profilePicture: PropTypes.string.isRequired,
-            displayName: PropTypes.string.isRequired
-        }).isRequired,
+      profilePicture: PropTypes.string.isRequired,
+      displayName: PropTypes.string.isRequired
     }).isRequired,
+  }).isRequired,
 };

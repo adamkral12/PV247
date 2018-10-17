@@ -1,11 +1,18 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import * as Immutable from 'immutable';
 import ChannelSection from "./ChannelSection";
-import PropTypes from 'prop-types';
 import {Panel, Col, Button} from "react-bootstrap";
 import './ChannelWrapper.css';
+import {IChannelCustomData} from "../models/IChannelCustomData";
 
-export default class ChannelWrapper extends Component {
+export interface IChannelAppStateProps {
+    readonly channels: Immutable.List<string>
+}
 
+export interface IChannelAppDispatchProps {
+    readonly onAddChannel: (name: string, customData: IChannelCustomData) => void
+}
+export class ChannelApp extends React.PureComponent<IChannelAppStateProps & IChannelAppDispatchProps> {
     render() {
         return(
             <Col xs={2} className="channel-wrapper">
@@ -15,7 +22,6 @@ export default class ChannelWrapper extends Component {
                             className="dark-back"
                             title="Channels"
                             channels={this.props.channels}
-                            onChannelClick={this.props.onChannelClick}
                         />
                         <Button>New Channel</Button>
                     </Panel.Body>
@@ -24,14 +30,3 @@ export default class ChannelWrapper extends Component {
         );
     }
 }
-
-ChannelWrapper.propTypes = {
-    onChannelClick: PropTypes.func.isRequired,
-    channels: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            id: PropTypes.string.isRequired,
-            customData: PropTypes.object.isRequired
-        }).isRequired
-    ).isRequired
-};
