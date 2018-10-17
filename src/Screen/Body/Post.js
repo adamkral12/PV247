@@ -17,14 +17,14 @@ export default class Post extends Component {
         return (
             <div >
                 <Row className="row">
-                    <Col xs={1} className="vertAlCenter">
+                    <Col xs={2} sm={1} className="vertAlCenter">
                         <Image
                             className="image"
                             src={this.props.user.customData.profilePicture}
                             circle
                         />
                     </Col>
-                    <Col xs={11} className="vertAlCenter">
+                    <Col xs={10} sm={11} className="vertAlCenter">
                         <Panel className="panel">
                             <Panel.Heading>
                                 {this.props.user.customData.displayName}
