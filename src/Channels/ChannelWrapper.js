@@ -3,8 +3,30 @@ import ChannelSection from "./ChannelSection";
 import PropTypes from 'prop-types';
 import {Panel, Col, Button} from "react-bootstrap";
 import './ChannelWrapper.css';
+import NewChannelModal from "./NewChannelModal";
 
 export default class ChannelWrapper extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            showNewChannelModal: false
+        };
+    }
+
+    showNewChannelModal = () => {
+        this.setState({ showNewChannelModal: true })
+    };
+
+    hideNewChannelModal = () => {
+        this.setState({ showNewChannelModal: false })
+    };
+
+    createChannel = (value) => {
+        this.setState({ showNewChannelModal: false })
+        //TODO create channel
+        console.log("Channel created." + value)
+    }
 
     render() {
         return(
@@ -17,7 +39,12 @@ export default class ChannelWrapper extends Component {
                             channels={this.props.channels}
                             onChannelClick={this.props.onChannelClick}
                         />
-                        <Button>New Channel</Button>
+                        <Button onClick={this.showNewChannelModal}
+                        >New Channel</Button>
+                        <NewChannelModal show={this.state.showNewChannelModal}
+                                         onClose={this.hideNewChannelModal}
+                                         onCreateChannel={this.createChannel}//TODO handle Creation
+                        />
                     </Panel.Body>
                 </Panel>
             </Col>
