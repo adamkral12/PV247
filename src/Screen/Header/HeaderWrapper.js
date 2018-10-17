@@ -27,7 +27,7 @@ export default class HeaderWrapper extends Component {
     render() {
         return (
             <Navbar fluid className="navbar-wrapper">
-                <Col xs={2} className="company-header">
+                <Col xs={4} sm={2} className="company-header">
                     <Navbar.Header>
                             <Navbar.Brand className="nav-brand">
                                 <a href="#home">PV247</a>

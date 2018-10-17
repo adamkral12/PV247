@@ -20,7 +20,7 @@ class App extends Component {
             channels={data.channels}
             onChannelClick={(channelId) => this.onChannelClick(channelId)}
           />
-          <Col xs={10}>
+          <Col xs={8} sm={10}>
             <Screen
               user={data.user}
               messages={data.channelMessages}

@@ -30,7 +30,7 @@ export default class ChannelWrapper extends Component {
 
     render() {
         return(
-            <Col xs={2} className="channel-wrapper">
+            <Col xs={4} sm={2} className="channel-wrapper">
                 <Panel className="dark-back">
                     <Panel.Body className="dark-back">
                         <ChannelSection
