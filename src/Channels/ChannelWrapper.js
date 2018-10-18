@@ -39,8 +39,10 @@ export default class ChannelWrapper extends Component {
                             channels={this.props.channels}
                             onChannelClick={this.props.onChannelClick}
                         />
+                        <div className="text-center">
                         <Button onClick={this.showNewChannelModal}
                         >New Channel</Button>
+                        </div>
                         <NewChannelModal show={this.state.showNewChannelModal}
                                          onClose={this.hideNewChannelModal}
                                          onCreateChannel={this.createChannel}//TODO handle Creation

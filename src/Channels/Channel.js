@@ -33,8 +33,8 @@ export default class Channel extends Component {
 
     render() {
         return (
-            <div>
-                <div className="channel-name"
+            <div className="text-center">
+            <div className="channel-name"
                      onClick={this.onclick}
                 >
                     {this.props.name}
