@@ -3,12 +3,14 @@ import {Glyphicon, MenuItem, Nav, Navbar, NavDropdown, NavItem, Col} from "react
 import './HeaderWrapper.css';
 import EditUserModal from "../../Users/EditUserModal";
 import PropTypes from 'prop-types';
+import EditChannelModal from "../../Channels/EditChannelModal";
 
 export default class HeaderWrapper extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showEditUserModal: false
+            showEditUserModal: false,
+            showNewChannelModal: false
         };
     }
 
@@ -21,6 +23,18 @@ export default class HeaderWrapper extends Component {
     hideEditUserModal = () => {
         this.setState({
             showEditUserModal: false
+        });
+    };
+
+    showEditChannelModal = () => {
+        this.setState({
+            showEditChannelModal: true
+        });
+    };
+
+    hideEditChannelModal = () => {
+        this.setState({
+            showEditChannelModal: false
         });
     };
 
@@ -44,10 +58,12 @@ export default class HeaderWrapper extends Component {
                         Members
                     </NavItem>
                     <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                        <MenuItem eventKey={1.1}>Change name</MenuItem>
-                        <MenuItem eventKey={1.2}>Invite member</MenuItem>
-                        <MenuItem divider/>
-                        <MenuItem eventKey={1.3}>Delete</MenuItem>
+                        <MenuItem eventKey={1.1}
+                                  onClick={this.showEditChannelModal}
+                        >Change name</MenuItem>
+                        <MenuItem eventKey={1.2}
+                        >Invite member</MenuItem>
+
                     </NavDropdown>
                 </Nav>
                 <Nav pullRight>
@@ -63,6 +79,12 @@ export default class HeaderWrapper extends Component {
                     show={this.state.showEditUserModal}
                     onEdit={this.hideEditUserModal} //TODO: handle edit
                     onClose={this.hideEditUserModal}
+                />
+                <EditChannelModal
+                    channel = {this.props.channel}
+                    show={this.state.showEditChannelModal}
+                    onEdit={this.hideEditChannelModal} //TODO: handle edit
+                    onClose={this.hideEditChannelModal}
                 />
             </Navbar>
         );
