@@ -6,17 +6,23 @@ export default class EditChannelModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            displayName: "",
+            value: props.value || "",
+            isSubmitLoading: false
+
         };
     }
 
-    onSubmit = () => {
-        this.props.onEdit(this.state);
+    onSubmit = (event) => {
+        event.preventDefault();
+        // unset loading state when done
+        this.setState({ isSubmitLoading: true });
+
+        //this.props.onEdit(this.state.displayName);
     };
 
     handleNameChange = (event) => {
         console.log(event);
-        this.setState({ displayName: event})
+        this.setState({ value: event})
     };
 
     render() {
@@ -29,8 +35,8 @@ export default class EditChannelModal extends Component {
                     <Modal.Body>
                         <FormControl
                             type="text"
-                            value={this.state.displayName}
-                            placeholder="Enter displayed name"
+                            value={this.state.value}
+                            placeholder=""
                             onChange={this.handleNameChange}
                         />
                     </Modal.Body>

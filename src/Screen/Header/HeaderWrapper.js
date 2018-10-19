@@ -4,13 +4,15 @@ import './HeaderWrapper.css';
 import EditUserModal from "../../Users/EditUserModal";
 import PropTypes from 'prop-types';
 import EditChannelModal from "../../Channels/EditChannelModal";
+import InviteMemberModal from "../../Channels/InviteMemberModal";
 
 export default class HeaderWrapper extends Component {
     constructor(props) {
         super(props);
         this.state = {
             showEditUserModal: false,
-            showNewChannelModal: false
+            showNewChannelModal: false,
+            showInviteMemberModal: false
         };
     }
 
@@ -23,18 +25,6 @@ export default class HeaderWrapper extends Component {
     hideEditUserModal = () => {
         this.setState({
             showEditUserModal: false
-        });
-    };
-
-    showEditChannelModal = () => {
-        this.setState({
-            showEditChannelModal: true
-        });
-    };
-
-    hideEditChannelModal = () => {
-        this.setState({
-            showEditChannelModal: false
         });
     };
 
@@ -62,6 +52,7 @@ export default class HeaderWrapper extends Component {
                                   onClick={this.showEditChannelModal}
                         >Change name</MenuItem>
                         <MenuItem eventKey={1.2}
+                                  onClick={this.showInviteMemberModal}
                         >Invite member</MenuItem>
 
                     </NavDropdown>
@@ -80,17 +71,10 @@ export default class HeaderWrapper extends Component {
                     onEdit={this.hideEditUserModal} //TODO: handle edit
                     onClose={this.hideEditUserModal}
                 />
-                <EditChannelModal
-                    channel = {this.props.channel}
-                    show={this.state.showEditChannelModal}
-                    onEdit={this.hideEditChannelModal} //TODO: handle edit
-                    onClose={this.hideEditChannelModal}
-                />
             </Navbar>
         );
     }
 }
-
 HeaderWrapper.propTypes = {
   user: PropTypes.object.isRequired
 };

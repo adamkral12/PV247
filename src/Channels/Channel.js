@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Button, Glyphicon } from 'react-bootstrap';
+import {Button, ButtonGroup, Glyphicon, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import DeleteChannelModal from "./DeleteChannelModal";
+import EditChannelModal from "./EditChannelModal";
+import InviteMemberModal from "./InviteMemberModal";
 
 export default class Channel extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            showDeleteChannelModal: false
+            showDeleteChannelModal: false,
+            showEditChannelModal: false,
+            showInviteMemberModal: false
         };
     }
 
@@ -19,31 +23,93 @@ export default class Channel extends Component {
     };
 
     showDeleteChannelModal = () => {
-        this.setState({ showDeleteChannelModal: true })
+        this.setState({showDeleteChannelModal: true})
     };
 
     hideDeleteChannelModal = () => {
-        this.setState({ showDeleteChannelModal: false })
+        this.setState({showDeleteChannelModal: false})
     };
 
     deleteChannel = () => {
-        this.setState({ showDeleteChannelModal: false })
+        this.setState({showDeleteChannelModal: false})
         // TODO:  delete channel (this.props.id)
     };
 
+    showEditChannelModal = () => {
+        this.setState({
+            showEditChannelModal: true
+        });
+    };
+
+    hideEditChannelModal = () => {
+        this.setState({
+            showEditChannelModal: false
+        });
+    };
+
+    showInviteMemberModal = () => {
+        this.setState({
+            showInviteMemberModal: true
+        });
+    };
+
+    hideInviteMemberModal = () => {
+        this.setState({
+            showInviteMemberModal: false
+        });
+    };
+
+
     render() {
+        const deleteChannelTooltip = (
+            <Tooltip>
+                Delete channel
+            </Tooltip>
+        );
+        const editNameTooltip = (
+            <Tooltip>
+                Edit channel name
+            </Tooltip>
+        );
+        const inviteMembersTooltip = (
+            <Tooltip>
+                Invite members
+            </Tooltip>
+        );
         return (
             <div className="text-center">
-            <div className="channel-name"
+
+                <div className="channel-name"
                      onClick={this.onclick}
                 >
                     {this.props.name}
                 </div>
-                <Button bsStyle="danger"
-                        onClick={this.showDeleteChannelModal}
-                >
-                    <Glyphicon glyph="remove"/>
-                </Button>
+                <ButtonGroup>
+                    <OverlayTrigger placement="bottom" overlay={deleteChannelTooltip}>
+                        <Button bsStyle="danger"
+                                onClick={this.showDeleteChannelModal}
+                        >
+
+                            <Glyphicon glyph="remove"/>
+                        </Button>
+                    </OverlayTrigger>
+                    <OverlayTrigger placement="bottom" overlay={editNameTooltip}>
+
+                        <Button bsStyle="danger"
+                                onClick={this.showEditChannelModal}
+                        >
+                            <Glyphicon glyph="edit"/>
+                        </Button>
+                    </OverlayTrigger>
+                    <OverlayTrigger placement="bottom" overlay={inviteMembersTooltip}>
+
+                        <Button bsStyle="danger"
+                                onClick={this.showInviteMemberModal}
+                        >
+                            <Glyphicon glyph="user"/>
+                        </Button>
+                    </OverlayTrigger>
+                </ButtonGroup>
                 <DeleteChannelModal
                     channelName={this.props.name}
                     channelId={this.props.id}
@@ -51,11 +117,27 @@ export default class Channel extends Component {
                     onClose={this.hideDeleteChannelModal}
                     onDelete={this.deleteChannel}
                 />
+                <EditChannelModal
+                    value={this.props.name}
+                    channelId={this.props.id}
+                    show={this.state.showEditChannelModal}
+                    onEdit={this.hideEditChannelModal} //TODO: handle edit
+                    onClose={this.hideEditChannelModal}
+                />
+                <InviteMemberModal
+                    users={this.props.users}
+                    show={this.state.showInviteMemberModal}
+                    onClose={this.hideInviteMemberModal}
+                />
+
             </div>
         );
     }
 }
 
+/*
+<div className="text-center">
+ */
 
 Channel.propTypes = {
     name: PropTypes.string.isRequired,

@@ -25,6 +25,7 @@ export default class ChannelSection extends Component {
                                     <Channel
                                         id={channel.id}
                                         name={channel.name}
+                                        users={this.props.users}
                                         onClick={this.onClick}
                                     />
                                 </ListGroupItem>

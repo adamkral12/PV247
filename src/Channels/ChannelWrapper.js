@@ -36,6 +36,7 @@ export default class ChannelWrapper extends Component {
                         <ChannelSection
                             className="dark-back"
                             title="Channels"
+                            users = {this.props.users}
                             channels={this.props.channels}
                             onChannelClick={this.props.onChannelClick}
                         />

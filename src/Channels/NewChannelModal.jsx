@@ -6,17 +6,21 @@ export default class NewChannelModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            displayName: "",
+            channelName: "",
+            isSubmitLoading: false
         };
     }
     
-    onSubmit = () => {
+    onSubmit = (event) => {
+        event.preventDefault();
+        // unset loading state when done
+        this.setState({ isSubmitLoading: true });
         this.props.onCreateChannel(this.state);
     };
 
     handleNameChange = (event) => {
         console.log(event);
-        this.setState({ displayName: event})
+        this.setState({ channelName: event})
     };
 
     render() {
@@ -29,8 +33,8 @@ export default class NewChannelModal extends Component {
                     <Modal.Body>
                         <FormControl
                             type="text"
-                            value={this.state.displayName}
-                            placeholder="Enter displayed name"
+                            value={this.state.channelName}
+                            placeholder="Enter channel name"
                             onChange={this.handleNameChange}
                         />
                     </Modal.Body>
