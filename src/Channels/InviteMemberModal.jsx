@@ -4,7 +4,6 @@ import {
     Button
 } from 'react-bootstrap';
 
-import './InviteMemberModal.css'
 import PropTypes from 'prop-types';
 import Member from "./Member";
 export default class InviteMemberModal extends Component {
