@@ -1,6 +1,6 @@
 import * as Immutable from 'immutable';
-import { IChannel } from "./IChannel";
+import { IChannel } from './IChannel';
 
 export interface IChannelList {
-    channels: Immutable.List<IChannel>
+    channels: Immutable.List<IChannel>;
 }

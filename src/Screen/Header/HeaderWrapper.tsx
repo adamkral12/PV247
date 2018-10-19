@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {
   Glyphicon, MenuItem, Nav, Navbar, NavDropdown, NavItem, Col
-} from "react-bootstrap";
+} from 'react-bootstrap';
 import './HeaderWrapper.css';
-import EditUserModal from "../../Users/EditUserModal";
-import {PureComponent} from "react";
+import {EditUserModal} from '../../Users/EditUserModal';
+import {PureComponent} from 'react';
 
 export class HeaderWrapper extends PureComponent {
   constructor(props) {
@@ -61,10 +61,7 @@ export class HeaderWrapper extends PureComponent {
                     </NavItem>
                 </Nav>
                 </Navbar.Collapse>
-                <EditUserModal
-                  onEdit={this.hideEditUserModal} // TODO: handle edit
-                  onClose={this.hideEditUserModal}
-                />
+                <EditUserModal/>
             </Navbar>
       );
     }

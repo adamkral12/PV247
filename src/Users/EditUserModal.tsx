@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import {
-  Modal, Button, FormControl, Col, Image
+  Modal, Button, FormControl, Col
 } from 'react-bootstrap';
 
-export default class EditUserModal extends Component {
+export class EditUserModal extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,10 +11,6 @@ export default class EditUserModal extends Component {
       profilePicture: "profile"
     };
   }
-
-    onEdit = () => {
-      this.props.onEdit(this.state);
-    };
 
     handleNameChange = (event) => {
       console.log(event);
@@ -38,15 +34,9 @@ export default class EditUserModal extends Component {
     };
 
     render() {
-      const { profilePicture } = this.state;
-      let $imagePreview = null;
-      if (profilePicture) {
-        $imagePreview = (<Image src={profilePicture} circle responsive/>);
-      }
-
       return (
             <div>
-                <Modal show={this.props.show} onHide={this.props.onClose}>
+                <Modal>
                     <Modal.Header closeButton>
                         <Modal.Title>
                           Edit user
@@ -61,18 +51,18 @@ export default class EditUserModal extends Component {
                             />
                         </Col>
                         <Col xs={6}>
-                            {$imagePreview}
+                            {/*{$imagePreview}*/}
                         </Col>
                         <FormControl
                           type="text"
-                          value={this.state.displayName}
+                          // value={this.state.displayName}
                           placeholder="Enter displayed name"
                           onChange={this.handleNameChange}
                         />
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button bsStyle="success" onClick={this.onEdit}>Edit</Button>
-                        <Button onClick={this.props.onClose}>Close</Button>
+                        <Button>Edit</Button>
+                        <Button>Close</Button>
                     </Modal.Footer>
                 </Modal>
             </div>

@@ -1,11 +1,10 @@
-import { CHANNEL_LIST_CHANNEL_UPDATE, CHANNEL_LIST_CHANNEL_CREATE, CHANNEL_LIST_CHANNEL_REMOVE } from "../constants/actionTypes";
-import { IChannelCustomData } from "../models/IChannelCustomData";
+import { CHANNEL_LIST_CHANNEL_UPDATE, CHANNEL_LIST_CHANNEL_CREATE, CHANNEL_LIST_CHANNEL_REMOVE } from '../constants/actionTypes';
+import { IChannelCustomData } from '../models/IChannelCustomData';
 
-export const createChannel = (name: string, customData: IChannelCustomData): Action => ({
+export const createChannel = (name: string): Action => ({
   type: CHANNEL_LIST_CHANNEL_CREATE,
   payload: {
     name,
-    customData,
   }
 });
 

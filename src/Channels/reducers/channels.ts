@@ -1,10 +1,10 @@
 import * as Immutable from 'immutable';
-import { IChannel } from "../models/IChannel";
+import { IChannel } from '../models/IChannel';
 import {
   CHANNEL_LIST_CHANNEL_CREATE,
   CHANNEL_LIST_CHANNEL_REMOVE,
   CHANNEL_LIST_CHANNEL_UPDATE
-} from "../constants/actionTypes";
+} from '../constants/actionTypes';
 
 export const channels = (prevState = Immutable.List<IChannel>(), action: Action): Immutable.List<IChannel> => {
   switch (action.type) {

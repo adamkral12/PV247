@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as Immutable from 'immutable';
 // import Post from "./Post";
 // import MessageForm from "./MessageForm";
 import './MessageBoard.css';
@@ -12,7 +11,7 @@ import './MessageBoard.css';
 // export interface IMessageBoardDispatchProps {
 //
 // }
-export default class MessageBoard extends React.Component {
+export class MessageBoard extends React.PureComponent {
   render() {
     return (
             <div>

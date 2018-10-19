@@ -1,16 +1,17 @@
 import * as React from 'react';
 import * as Immutable from 'immutable';
-import ChannelSection from "./ChannelSection";
-import {Panel, Col, Button} from "react-bootstrap";
+import {ChannelSection} from './ChannelSection';
+import {Panel, Col} from 'react-bootstrap';
 import './ChannelWrapper.css';
-import {IChannelCustomData} from "../models/IChannelCustomData";
+import {NewChannel} from "./NewChannel";
+import {IChannel} from "../models/IChannel";
 
 export interface IChannelAppStateProps {
-    readonly channels: Immutable.List<string>
+    readonly channels: Immutable.List<IChannel>;
 }
 
 export interface IChannelAppDispatchProps {
-    readonly onAddChannel: (name: string, customData: IChannelCustomData) => void
+    readonly onAddChannel: (name: string) => void;
 }
 export class ChannelApp extends React.PureComponent<IChannelAppStateProps & IChannelAppDispatchProps> {
     render() {
@@ -19,11 +20,9 @@ export class ChannelApp extends React.PureComponent<IChannelAppStateProps & ICha
                 <Panel className="dark-back">
                     <Panel.Body className="dark-back">
                         <ChannelSection
-                            className="dark-back"
-                            title="Channels"
                             channels={this.props.channels}
                         />
-                        <Button>New Channel</Button>
+                        <NewChannel onAddChannel={this.props.onAddChannel}/>
                     </Panel.Body>
                 </Panel>
             </Col>

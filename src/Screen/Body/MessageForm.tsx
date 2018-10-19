@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { FormControl, FormGroup, Button } from "react-bootstrap";
 
-export default class MessageForm extends Component {
+export class MessageForm extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,16 +30,11 @@ export default class MessageForm extends Component {
                     >
                         <FormControl
                           componentClass="textarea"
-                          value={this.state.value}
                           placeholder="Message"
                           onChange={this.onChange}
                         />
                     </FormGroup>
-                    <Button
-                      type="submit"
-                      disabled={this.state.isSubmitLoading}
-                      onClick={this.state.isSubmitLoading ? null : this.onSubmit}
-                    >
+                    <Button type="submit">
                         Send
                     </Button>
                 </form>
