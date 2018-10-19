@@ -38,8 +38,11 @@ export default class Post extends Component {
                                     </Col>
                                     <Col xs={2}>
                                         <ButtonGroup>
-                                            <Button>+</Button>
-                                            <Button>-</Button>
+                                            <Button>
+                                                <Glyphicon glyph="thumbs-up"/>
+                                            </Button>
+                                            <Button>
+                                                <Glyphicon glyph="thumbs-down"/></Button>
                                             <Button>
                                                 <Glyphicon glyph="glyphicon glyphicon-trash"/>
                                             </Button>
