@@ -1,5 +1,5 @@
-import { IChannelList } from "../Channels/models/IChannelList";
+import { IChannelApp } from "../Channels/models/IChannelApp";
 
 export interface IState {
-    channelList: IChannelList
+    channelApp: IChannelApp
 }

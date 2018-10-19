@@ -5,6 +5,23 @@ import {
   CHANNEL_LIST_CHANNEL_REMOVE,
   CHANNEL_LIST_CHANNEL_UPDATE
 } from "../constants/actionTypes";
+// import {combineReducers} from "redux";
+// import {IChannels} from "../models/IChannelApp";
+
+// const byId = (prevState = Immutable.Map<string, IChannel>(), action: Action): Immutable.Map<string, IChannel> => {
+//   switch (action.type) {
+//       default:
+//         return prevState;
+//   }
+// };
+
+// const allIds = (prevState: Immutable.List<string> = Immutable.List(), action: Action): Immutable.List<string> => {
+//   switch (action.type) {
+//       default:
+//         return prevState;
+//   }
+// };
+
 
 export const channels = (prevState = Immutable.List<IChannel>(), action: Action): Immutable.List<IChannel> => {
   switch (action.type) {
@@ -29,3 +46,8 @@ export const channels = (prevState = Immutable.List<IChannel>(), action: Action)
       return prevState;
   }
 };
+
+// export const channels = combineReducers<IChannels>({
+//     allIds,
+//     byId
+// });
