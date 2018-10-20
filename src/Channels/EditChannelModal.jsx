@@ -55,12 +55,8 @@ export default class EditChannelModal extends Component {
 }
 
 EditChannelModal.propTypes = {
-    channel:PropTypes.shape({
-      name:PropTypes.string.isRequired,
-      customData:PropTypes.shape({
-
-      }).isRequired,
-    }).isRequired,
+    channelId: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
     show: PropTypes.bool.isRequired,
     onEdit: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired

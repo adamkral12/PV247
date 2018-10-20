@@ -62,17 +62,17 @@ export default class Channel extends Component {
 
     render() {
         const deleteChannelTooltip = (
-            <Tooltip>
+            <Tooltip id="Delete channel">
                 Delete channel
             </Tooltip>
         );
         const editNameTooltip = (
-            <Tooltip>
+            <Tooltip id="Edit channel name">
                 Edit channel name
             </Tooltip>
         );
         const inviteMembersTooltip = (
-            <Tooltip>
+            <Tooltip id="Invite members">
                 Invite members
             </Tooltip>
         );
@@ -126,6 +126,7 @@ export default class Channel extends Component {
                 />
                 <InviteMemberModal
                     users={this.props.users}
+                    channelId={this.props.id}
                     show={this.state.showInviteMemberModal}
                     onClose={this.hideInviteMemberModal}
                 />
