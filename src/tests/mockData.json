@@ -13,6 +13,34 @@
         "displayName": "jozef",
         "profilePicture": "http://www.pngmart.com/files/2/Pokemon-PNG-Picture.png"
       }
+    },
+    {
+      "email": "xxxxxx@mail.muni.cz",
+      "customData": {
+        "displayName": "juraj",
+        "profilePicture": "http://www.pngmart.com/files/2/Legendary-Pokemon-PNG-Pic.png"
+      }
+    },
+    {
+      "email": "yyyyyy@mail.muni.cz",
+      "customData": {
+        "displayName": "ondrej",
+        "profilePicture": "http://www.pngmart.com/files/2/Legendary-Pokemon-PNG-Picture.png"
+      }
+    },
+    {
+      "email": "zzzzzz8@mail.muni.cz",
+      "customData": {
+        "displayName": "michal",
+        "profilePicture": "http://www.pngmart.com/files/5/Anime-Pokemon-PNG-Photos.png"
+      }
+    },
+    {
+      "email": "wwwwww@mail.muni.cz",
+      "customData": {
+        "displayName": "filip",
+        "profilePicture": "http://www.pngmart.com/files/2/Pokemon-PNG-Photos.png"
+      }
     }
   ],
   "channels": [
