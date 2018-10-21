@@ -14,15 +14,16 @@ class App extends Component {
       return (
       <div className="App">
           <HeaderWrapper
-            user={data.user}
+            user={data.users[0]}
           />
           <ChannelWrapper
+            users={data.users}
             channels={data.channels}
             onChannelClick={(channelId) => this.onChannelClick(channelId)}
           />
-          <Col xs={10}>
+          <Col xs={8} sm={10}>
             <Screen
-              user={data.user}
+              user={data.users[0]}
               messages={data.channelMessages}
             />
           </Col>

@@ -3,12 +3,16 @@ import {Glyphicon, MenuItem, Nav, Navbar, NavDropdown, NavItem, Col} from "react
 import './HeaderWrapper.css';
 import EditUserModal from "../../Users/EditUserModal";
 import PropTypes from 'prop-types';
+import EditChannelModal from "../../Channels/EditChannelModal";
+import InviteMemberModal from "../../Channels/InviteMemberModal";
 
 export default class HeaderWrapper extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showEditUserModal: false
+            showEditUserModal: false,
+            showNewChannelModal: false,
+            showInviteMemberModal: false
         };
     }
 
@@ -27,7 +31,7 @@ export default class HeaderWrapper extends Component {
     render() {
         return (
             <Navbar fluid className="navbar-wrapper">
-                <Col xs={2} className="company-header">
+                <Col xs={4} sm={2} className="company-header">
                     <Navbar.Header>
                             <Navbar.Brand className="nav-brand">
                                 <a href="#home">PV247</a>
@@ -44,10 +48,13 @@ export default class HeaderWrapper extends Component {
                         Members
                     </NavItem>
                     <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                        <MenuItem eventKey={1.1}>Change name</MenuItem>
-                        <MenuItem eventKey={1.2}>Invite member</MenuItem>
-                        <MenuItem divider/>
-                        <MenuItem eventKey={1.3}>Delete</MenuItem>
+                        <MenuItem eventKey={1.1}
+                                  onClick={this.showEditChannelModal}
+                        >Change name</MenuItem>
+                        <MenuItem eventKey={1.2}
+                                  onClick={this.showInviteMemberModal}
+                        >Invite member</MenuItem>
+
                     </NavDropdown>
                 </Nav>
                 <Nav pullRight>
@@ -68,7 +75,6 @@ export default class HeaderWrapper extends Component {
         );
     }
 }
-
 HeaderWrapper.propTypes = {
   user: PropTypes.object.isRequired
 };
