@@ -4,7 +4,6 @@ import {IChannel} from "../models/IChannel";
 
 export interface IChannelOwnProps {
     readonly id: string;
-    readonly name: string;
     index: number;
 }
 

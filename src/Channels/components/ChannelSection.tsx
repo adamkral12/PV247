@@ -18,7 +18,6 @@ export class ChannelSection extends React.PureComponent<IProps> {
                           return (
                               <ChannelContainer
                                   id={channel.id}
-                                  name={channel.name}
                                   index={index}
                                   key={channel.id}
                                   channel={channel}
