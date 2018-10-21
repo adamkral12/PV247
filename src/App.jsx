@@ -7,7 +7,7 @@ import HeaderWrapper from "./Screen/Header/HeaderWrapper";
 
 class App extends Component {
     onChannelClick = (channelId) => {
-      console.log("Event bubbled into top component, channel id = " + channelId);
+
     };
 
     render() {

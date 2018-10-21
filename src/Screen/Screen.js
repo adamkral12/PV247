@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import HeaderWrapper from "./Header/HeaderWrapper";
 import BodyWrapper from "./Body/BodyWrapper";
 import PropTypes from 'prop-types';
 

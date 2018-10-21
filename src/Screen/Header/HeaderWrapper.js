@@ -3,8 +3,6 @@ import {Glyphicon, MenuItem, Nav, Navbar, NavDropdown, NavItem, Col} from "react
 import './HeaderWrapper.css';
 import EditUserModal from "../../Users/EditUserModal";
 import PropTypes from 'prop-types';
-import EditChannelModal from "../../Channels/EditChannelModal";
-import InviteMemberModal from "../../Channels/InviteMemberModal";
 
 export default class HeaderWrapper extends Component {
     constructor(props) {
