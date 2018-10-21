@@ -49,9 +49,12 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
     };
 
     inviteUser = (user) => {
-        console.log(user);
         const invitedUsers = user.value;
         this.setState( _ => ({ invitedUsers }));
+    };
+
+    deleteChannel = (event: React.FormEvent<HTMLInputElement>) => {
+        console.log(event);
     };
 
     render() {
@@ -98,8 +101,9 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
                         <Button bsStyle="success"
                                 type="edit"
                                 onClick={this.onSubmit}
-                        >Edit</Button>
+                        >{this.props.channel ? "Edit" : "Create"}</Button>
                         <Button onClick={this.props.hideEditChannel}>Close</Button>
+                        {this.props.channel && <Button bsStyle="danger" onClick={this.deleteChannel}>Delete</Button>}
                     </Modal.Footer>
                 </Modal>
             </div>
