@@ -11,7 +11,9 @@ import {IChannel} from './Channels/models/IChannel';
 import * as Immutable from 'immutable';
 
 const initialState = {
-  channelList: { channels: Immutable.List<IChannel>(CHANNELS_DATA)}
+  channelList: {
+      channels: Immutable.List<IChannel>(CHANNELS_DATA),
+  }
 };
 
 console.log(initialState);

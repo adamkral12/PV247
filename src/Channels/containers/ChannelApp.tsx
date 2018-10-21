@@ -7,7 +7,8 @@ import { createChannel } from '../actions/actionCreators';
 const mapStateToProps = (state: IState): IChannelAppStateProps => {
   console.log(state);
   return {
-    channels: state.channelList.channels.toList()
+    channels: state.channelList.channels.toList(),
+    editedChannels: state.channelList.showEditModal,
   };
 };
 

@@ -1,18 +1,23 @@
 import * as React from 'react';
 import {Modal, Button, FormControl} from 'react-bootstrap';
 import {IChannel} from "../models/IChannel";
+import {EditedChannels} from "../models/EditedChannels";
 
 export interface IEditChannelModalOwnProps {
-    id: string;
+    id: string | null;
 }
 
 // if channel is null, we are creating a new one
 export interface IEditChannelModalStateProps {
     readonly channel: IChannel | null;
-    readonly show: boolean;
+    readonly show: EditedChannels;
 }
 
-export class EditChannelModal extends React.PureComponent<IEditChannelModalStateProps & IEditChannelModalOwnProps> {
+export interface IEditChannelModalDispatchProps {
+    readonly hideEditChannel: () => void;
+}
+
+export class EditChannelModal extends React.PureComponent<IEditChannelModalStateProps & IEditChannelModalOwnProps & IEditChannelModalDispatchProps> {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,11 +41,13 @@ export class EditChannelModal extends React.PureComponent<IEditChannelModalState
     };
 
     render() {
+        const { showEditChannelModal, editedChannelId } = this.props.show;
+        console.log(this.props.channel);
         return (
             <div>
-                <Modal show={this.props.show}>
+                <Modal show={showEditChannelModal} onHide={this.props.hideEditChannel}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Edit channel name</Modal.Title>
+                        <Modal.Title>Edit channel name {editedChannelId}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <FormControl
@@ -56,7 +63,7 @@ export class EditChannelModal extends React.PureComponent<IEditChannelModalState
                                 // disabled={this.state.isSubmitLoading}
                                 // onClick={this.state.isSubmitLoading ? null : this.onSubmit}
                         >Edit</Button>
-                        {/*<Button onClick={this.props.onClose}>Close</Button>*/}
+                        <Button onClick={this.props.hideEditChannel}>Close</Button>
                     </Modal.Footer>
                 </Modal>
             </div>

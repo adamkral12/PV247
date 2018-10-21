@@ -2,7 +2,7 @@ import {
     CHANNEL_LIST_CHANNEL_UPDATE,
     CHANNEL_LIST_CHANNEL_CREATE,
     CHANNEL_LIST_CHANNEL_REMOVE,
-    CHANNEL_APP_SHOW_EDIT_CHANNEL
+    CHANNEL_APP_SHOW_EDIT_CHANNEL, CHANNEL_APP_HIDE_EDIT_CHANNEL
 } from '../constants/actionTypes';
 import { IChannelCustomData } from '../models/IChannelCustomData';
 import * as uuid from 'uuid';
@@ -31,6 +31,10 @@ export const removeChannel = (id: string): Action => ({
   }
 });
 
+export const hideEditChannel = (): Action => ({
+    type: CHANNEL_APP_HIDE_EDIT_CHANNEL,
+    payload: {}
+});
 
 export const showEditChannel = (id: string): Action => ({
     type: CHANNEL_APP_SHOW_EDIT_CHANNEL,

@@ -11,9 +11,11 @@ const mapStateToProps = (state: IState, ownProps: IChannelOwnProps) => {
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: IChannelOwnProps) => {
+    console.log("own props");
+    console.log(ownProps);
     return {
-        showEditChannel: (id: string) => dispatch(showEditChannel(id))
+        showEditChannel: () => dispatch(showEditChannel(ownProps.id))
     };
 };
 
