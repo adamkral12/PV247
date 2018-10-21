@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Button, Glyphicon } from 'react-bootstrap';
+import { Glyphicon } from 'react-bootstrap';
 import {IChannel} from '../models/IChannel';
+import '../css/Channel.less';
 
 export interface IChannelOwnProps {
     readonly id: string;
@@ -26,18 +27,14 @@ export class Channel extends React.PureComponent<IChannelOwnProps & IChannelStat
     render() {
       const { index, channel } = this.props;
       return (
-            <div key={index}>
                 <div
+                    key={index}
                   className="channel-name"
                 >{channel.name}
+                    <Glyphicon glyph="edit" className="edit-channel-icon"
+                               onClick={this.props.showEditChannel}
+                    />
                 </div>
-                <Button
-                  bsStyle="info"
-                  onClick={this.props.showEditChannel}
-                >
-                    <Glyphicon glyph="edit"/>
-                </Button>
-            </div>
       );
     }
 }
