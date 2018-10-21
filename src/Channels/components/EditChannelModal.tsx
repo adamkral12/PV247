@@ -34,7 +34,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
         super(props);
         this.state = {
             invitedUsers: [],
-            channelName: props.channel.name
+            channelName: props.channel ? props.channel.name : null
         };
     }
 

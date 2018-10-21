@@ -16,8 +16,9 @@ export interface IChannelAppStateProps {
 }
 
 export interface IChannelAppDispatchProps {
-    readonly onAddChannel: (name: string) => void;
+    readonly onAddChannel: () => void;
 }
+
 export class ChannelApp extends React.PureComponent<IChannelAppStateProps & IChannelAppDispatchProps> {
     render() {
         console.log('edited');
