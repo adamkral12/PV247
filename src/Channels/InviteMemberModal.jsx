@@ -12,10 +12,6 @@ import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 import BootstrapTable from 'react-bootstrap-table-next';
 
 export default class InviteMemberModal extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     nameFormatter(cell, row) {
         return (<div className="text-center" align="middle">{cell}</div>)
     }/*
