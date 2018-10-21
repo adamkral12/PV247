@@ -10,7 +10,8 @@ export const channels = (prevState = Immutable.List<IChannel>(), action: Action)
   switch (action.type) {
     case CHANNEL_LIST_CHANNEL_CREATE: {
       const { id, name, customData } = action.payload;
-      return prevState.push({ id, name, customData });
+        console.log(prevState);
+        return prevState.push({ id, name, customData });
     }
 
     case CHANNEL_LIST_CHANNEL_REMOVE: {

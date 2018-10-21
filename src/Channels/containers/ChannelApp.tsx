@@ -5,6 +5,7 @@ import { ChannelApp, IChannelAppDispatchProps, IChannelAppStateProps } from '../
 import { createChannel } from '../actions/actionCreators';
 
 const mapStateToProps = (state: IState): IChannelAppStateProps => {
+  console.log(state);
   return {
     channels: state.channelList.channels.toList()
   };

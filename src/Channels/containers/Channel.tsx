@@ -3,15 +3,18 @@ import {Channel, IChannelDispatchProps, IChannelOwnProps, IChannelStateProps} fr
 import {IChannel} from "../models/IChannel";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
+import {showEditChannel} from "../actions/actionCreators";
 
 const mapStateToProps = (state: IState, ownProps: IChannelOwnProps) => {
     return {
-        channel: state.channelList.channels.find((i: IChannel) => i.id === ownProps.id),
+        channel: state.channelList.channels.find((i: IChannel) => i.name === ownProps.name),
     }
 };
 
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: IChannelOwnProps) => {
-    return {};
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        showEditChannel: (id: string) => dispatch(showEditChannel(id))
+    };
 };
 
 export const ChannelContainer = connect<IChannelStateProps , IChannelDispatchProps, IChannelOwnProps>(mapStateToProps, mapDispatchToProps)(Channel);

@@ -7,11 +7,14 @@ import { Screen } from './Screen/Screen';
 import { HeaderWrapper } from './Screen/Header/HeaderWrapper';
 import { RootReducer } from './common/RootReducer';
 import { ChannelAppContainer } from './Channels/containers/ChannelApp';
+import {IChannel} from "./Channels/models/IChannel";
+import * as Immutable from 'immutable';
 
 const initialState = {
-  channelList: CHANNELS_DATA
+  channelList: { channels: Immutable.List<IChannel>(CHANNELS_DATA)}
 };
 
+console.log(initialState);
 const store = createStore(RootReducer, initialState);
 
 export class App extends React.PureComponent {

@@ -4,6 +4,8 @@ import {IChannel} from "../models/IChannel";
 
 export interface IChannelOwnProps {
     readonly id: string;
+    readonly name: string;
+    index: number;
 }
 
 export interface IChannelStateProps {
@@ -11,7 +13,7 @@ export interface IChannelStateProps {
 }
 
 export interface IChannelDispatchProps {
-
+    showEditChannel: (id: string) => void
 }
 
 export class Channel extends React.PureComponent<IChannelOwnProps & IChannelStateProps & IChannelDispatchProps> {
@@ -22,22 +24,19 @@ export class Channel extends React.PureComponent<IChannelOwnProps & IChannelStat
     };
   }
 
-    showDeleteChannelModal = () => {
-      this.setState({ showDeleteChannelModal: true });
-    };
-
     render() {
+      const { index, channel } = this.props;
       return (
-            <div>
+            <div key={index}>
                 <div
                   className="channel-name"
-                >
+                >{channel.name}
                 </div>
                 <Button
-                  bsStyle="danger"
-                  onClick={this.showDeleteChannelModal}
+                  bsStyle="info"
+                  onClick={this.props.showEditChannel}
                 >
-                    <Glyphicon glyph="remove"/>
+                    <Glyphicon glyph="edit"/>
                 </Button>
             </div>
       );

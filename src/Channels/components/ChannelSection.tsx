@@ -14,10 +14,13 @@ export class ChannelSection extends React.PureComponent<IProps> {
             <div>
                 <Panel.Body>
                     <ListGroup>
-                        {this.props.channels.map((channel) => {
+                        {this.props.channels.map((channel: IChannel, index: number) => {
                           return (
                               <ChannelContainer
                                   id={channel.id}
+                                  name={channel.name}
+                                  index={index}
+                                  key={channel.id}
                                   channel={channel}
                               />
                           );
