@@ -11,12 +11,12 @@ import {Dispatch} from "redux";
 import {hideEditChannel} from "../actions/actionCreators";
 
 const mapStateToProps = (state: IState, ownProps: IEditChannelModalOwnProps): IEditChannelModalStateProps => {
-    console.log('channels');
-    console.log(state.channelList.channels);
-    console.log(ownProps);
+    console.log("stae");
+    console.log(state);
     return {
         channel: state.channelList.channels.find((i: IChannel) => i.id === ownProps.id),
-        show: state.channelList.showEditModal
+        show: state.channelList.showEditModal,
+        users: state.channelList.users,
     }
 };
 

@@ -7,10 +7,12 @@ import {NewChannel} from './NewChannel';
 import {IChannel} from '../models/IChannel';
 import {EditChannelModalContainer} from "../containers/EditChannelModal";
 import {EditedChannels} from "../models/EditedChannels";
+import {IUser} from "../models/IUser";
 
 export interface IChannelAppStateProps {
     readonly channels: Immutable.List<IChannel>;
     readonly editedChannels: EditedChannels;
+    readonly users: Immutable.List<IUser>;
 }
 
 export interface IChannelAppDispatchProps {
@@ -28,9 +30,11 @@ export class ChannelApp extends React.PureComponent<IChannelAppStateProps & ICha
                             channels={this.props.channels}
                         />
                         <NewChannel onAddChannel={this.props.onAddChannel}/>
-                        <EditChannelModalContainer
-                            id={this.props.editedChannels.editedChannelId}
-                        />
+                        {this.props.editedChannels.showEditChannelModal &&
+                            <EditChannelModalContainer
+                                id={this.props.editedChannels.editedChannelId}
+                            />
+                        }
                     </Panel.Body>
                 </Panel>
             </Col>

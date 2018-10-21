@@ -2,6 +2,10 @@ import * as React from 'react';
 import {Modal, Button, FormControl} from 'react-bootstrap';
 import {IChannel} from "../models/IChannel";
 import {EditedChannels} from "../models/EditedChannels";
+import {IUser} from "../models/IUser";
+import * as Immutable from 'immutable';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 export interface IEditChannelModalOwnProps {
     id: string | null;
@@ -11,57 +15,89 @@ export interface IEditChannelModalOwnProps {
 export interface IEditChannelModalStateProps {
     readonly channel: IChannel | null;
     readonly show: EditedChannels;
+    readonly users: Immutable.List<IUser>;
 }
 
 export interface IEditChannelModalDispatchProps {
     readonly hideEditChannel: () => void;
 }
 
-export class EditChannelModal extends React.PureComponent<IEditChannelModalStateProps & IEditChannelModalOwnProps & IEditChannelModalDispatchProps> {
+interface IState {
+    readonly invitedUsers: Array<string>;
+    readonly channelName: string;
+}
+
+type IProps = IEditChannelModalStateProps & IEditChannelModalOwnProps & IEditChannelModalDispatchProps;
+
+export class EditChannelModal extends React.PureComponent<IProps, IState> {
     constructor(props) {
         super(props);
         this.state = {
-            value: props.value || "",
-            isSubmitLoading: false
-
+            invitedUsers: [],
+            channelName: props.channel.name
         };
     }
 
     onSubmit = (event) => {
         event.preventDefault();
-        // unset loading state when done
-        this.setState({ isSubmitLoading: true });
 
-        //this.props.onEdit(this.state.displayName);
     };
 
-    handleNameChange = (event) => {
-        console.log(event);
-        this.setState({ value: event})
+    handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {
+        const channelName = event.currentTarget.value;
+        this.setState(_ => ({channelName}))
+    };
+
+    inviteUser = (user) => {
+        console.log(user);
+        const invitedUsers = user.value;
+        this.setState( _ => ({ invitedUsers }));
     };
 
     render() {
-        const { showEditChannelModal, editedChannelId } = this.props.show;
-        console.log(this.props.channel);
+        const { showEditChannelModal } = this.props.show;
+
+        const userOptions = this.props.users.map((user: IUser) => {
+            return {
+                value: user.email,
+                label: user.customData.displayName,
+            }
+        }).toArray();
+
         return (
             <div>
                 <Modal show={showEditChannelModal} onHide={this.props.hideEditChannel}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Edit channel name {editedChannelId}</Modal.Title>
+                        {/*TODO: check for channel -> if null, new channel is being created */}
+                        <Modal.Title>Edit {this.props.channel.name}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <FormControl
                             type="text"
-                            // value={this.state.value}
+                            value={this.state.channelName}
                             placeholder=""
                             onChange={this.handleNameChange}
                         />
                     </Modal.Body>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Invite members</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Select
+                            isMulti={ true }
+                            options={userOptions}
+                            simpleValue={ true }
+                            placeholder="Invite users"
+                            ignoreCase={true}
+                            onChange={this.inviteUser}
+                            value={this.state.invitedUsers}
+                        />
+
+                    </Modal.Body>
                     <Modal.Footer>
                         <Button bsStyle="success"
-                                type="submit"
-                                // disabled={this.state.isSubmitLoading}
-                                // onClick={this.state.isSubmitLoading ? null : this.onSubmit}
+                                type="edit"
+                                onClick={this.onSubmit}
                         >Edit</Button>
                         <Button onClick={this.props.hideEditChannel}>Close</Button>
                     </Modal.Footer>

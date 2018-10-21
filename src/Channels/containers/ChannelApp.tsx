@@ -5,11 +5,12 @@ import { ChannelApp, IChannelAppDispatchProps, IChannelAppStateProps } from '../
 import { createChannel } from '../actions/actionCreators';
 
 const mapStateToProps = (state: IState): IChannelAppStateProps => {
-  console.log(state);
-  return {
-    channels: state.channelList.channels.toList(),
-    editedChannels: state.channelList.showEditModal,
-  };
+    console.log(state);
+    return {
+        channels: state.channelList.channels.toList(),
+        editedChannels: state.channelList.showEditModal,
+        users: state.channelList.users,
+    };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): IChannelAppDispatchProps => {

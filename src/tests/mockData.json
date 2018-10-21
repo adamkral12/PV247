@@ -1,4 +1,11 @@
 {
+  "user": {
+    "email": "433328@mail.muni.cz",
+    "customData": {
+      "displayName": "adam",
+      "profilePicture": "http://www.pngmart.com/files/2/Pikachu-PNG-Pic.png"
+    }
+  },
   "users": [
     {
       "email": "433328@mail.muni.cz",
