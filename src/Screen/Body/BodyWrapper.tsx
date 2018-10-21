@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {MessageBoard} from './Messages/components/MessageBoard';
+import {MessageBoardContainer} from '../../Messages/containers/MessageBoard';
 
 export class BodyWrapper extends React.PureComponent {
   render() {
     return (
             <div>
-                <MessageBoard/>
+                <MessageBoardContainer/>
             </div>
     );
   }

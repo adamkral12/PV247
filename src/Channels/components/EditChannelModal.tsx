@@ -78,7 +78,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
                         <FormControl
                             type="text"
                             value={this.state.channelName}
-                            placeholder=""
+                            placeholder="Channel name"
                             onChange={this.handleNameChange}
                         />
                     </Modal.Body>
@@ -101,7 +101,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
                         <Button bsStyle="success"
                                 type="edit"
                                 onClick={this.onSubmit}
-                        >{this.props.channel ? "Edit" : "Create"}</Button>
+                        >{this.props.channel ? 'Edit' : 'Create'}</Button>
                         <Button onClick={this.props.hideEditChannel}>Close</Button>
                         {this.props.channel && <Button bsStyle="danger" onClick={this.deleteChannel}>Delete</Button>}
                     </Modal.Footer>
