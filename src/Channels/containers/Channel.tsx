@@ -7,7 +7,7 @@ import {showEditChannel} from "../actions/actionCreators";
 
 const mapStateToProps = (state: IState, ownProps: IChannelOwnProps) => {
     return {
-        channel: state.channelList.channels.find((i: IChannel) => i.name === ownProps.name),
+        channel: state.channelList.channels.find((i: IChannel) => i.id === ownProps.id),
     }
 };
 

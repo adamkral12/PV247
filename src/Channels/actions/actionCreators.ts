@@ -5,11 +5,13 @@ import {
     CHANNEL_APP_SHOW_EDIT_CHANNEL
 } from '../constants/actionTypes';
 import { IChannelCustomData } from '../models/IChannelCustomData';
+import * as uuid from 'uuid';
 
 export const createChannel = (name: string): Action => ({
   type: CHANNEL_LIST_CHANNEL_CREATE,
   payload: {
     name,
+    id: uuid()
   }
 });
 
