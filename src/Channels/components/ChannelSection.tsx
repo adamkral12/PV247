@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as Immutable from 'immutable';
-import { ListGroup, Panel } from "react-bootstrap";
+import { ListGroup, Panel } from 'react-bootstrap';
 import './ChannelSection.css';
-import {IChannel} from "../models/IChannel";
-import {ChannelContainer} from "../containers/Channel";
+import {IChannel} from '../models/IChannel';
+import {ChannelContainer} from '../containers/Channel';
 
 export interface IProps {
-    readonly channels: Immutable.List<IChannel>
+    readonly channels: Immutable.List<IChannel>;
 }
 export class ChannelSection extends React.PureComponent<IProps> {
     render() {

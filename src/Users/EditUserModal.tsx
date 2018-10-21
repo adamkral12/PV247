@@ -7,8 +7,8 @@ export class EditUserModal extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      displayName: "dispaly",
-      profilePicture: "profile"
+      displayName: 'dispaly',
+      profilePicture: 'profile'
     };
   }
 

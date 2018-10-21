@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface IState {
-    readonly value: string
+    readonly value: string;
 }
 
 export interface IProps {
@@ -14,7 +14,7 @@ export class NewChannel extends React.PureComponent<IProps, IState> {
 
         this.state = {
             value: ''
-        }
+        };
     }
 
     private onSubmit = (event: React.FormEvent) => {

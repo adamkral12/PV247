@@ -3,8 +3,8 @@ import * as Immutable from 'immutable';
 import {ChannelSection} from './ChannelSection';
 import {Panel, Col} from 'react-bootstrap';
 import './ChannelWrapper.css';
-import {NewChannel} from "./NewChannel";
-import {IChannel} from "../models/IChannel";
+import {NewChannel} from './NewChannel';
+import {IChannel} from '../models/IChannel';
 
 export interface IChannelAppStateProps {
     readonly channels: Immutable.List<IChannel>;

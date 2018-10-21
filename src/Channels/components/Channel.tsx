@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, Glyphicon } from 'react-bootstrap';
-import {IChannel} from "../models/IChannel";
+import {IChannel} from '../models/IChannel';
 
 export interface IChannelOwnProps {
     readonly id: string;
@@ -12,7 +12,7 @@ export interface IChannelStateProps {
 }
 
 export interface IChannelDispatchProps {
-    showEditChannel: (id: string) => void
+    showEditChannel: (id: string) => void;
 }
 
 export class Channel extends React.PureComponent<IChannelOwnProps & IChannelStateProps & IChannelDispatchProps> {

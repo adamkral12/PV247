@@ -3,4 +3,5 @@ import { IChannel } from './IChannel';
 
 export interface IChannelList {
     channels: Immutable.List<IChannel>;
+    showEditChannelModal: boolean
 }
