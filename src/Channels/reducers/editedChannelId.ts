@@ -1,5 +1,5 @@
-import {EditedChannels} from "../models/EditedChannels";
-import {CHANNEL_APP_HIDE_EDIT_CHANNEL, CHANNEL_APP_SHOW_EDIT_CHANNEL} from "../constants/actionTypes";
+import {EditedChannels} from '../models/EditedChannels';
+import {CHANNEL_APP_HIDE_EDIT_CHANNEL, CHANNEL_APP_SHOW_EDIT_CHANNEL} from '../constants/actionTypes';
 
 const defaultPrevState: EditedChannels = {
     showEditChannelModal: false,

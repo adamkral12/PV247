@@ -1,6 +1,6 @@
 import {IChannelList} from '../models/IChannelList';
 import {channels} from './channels';
-import {editedChannelId} from "./editedChannelId";
+import {editedChannelId} from './editedChannelId';
 
 export const channelApp = (prevState = {} as IChannelList, action: Action): IChannelList => ({
     channels: channels(prevState.channels, action),

@@ -9,7 +9,7 @@ import { RootReducer } from './common/RootReducer';
 import { ChannelAppContainer } from './Channels/containers/ChannelApp';
 import {IChannel} from './Channels/models/IChannel';
 import * as Immutable from 'immutable';
-import {IUser} from "./Channels/models/IUser";
+import {IUser} from './Channels/models/IUser';
 
 const initialState = {
   channelList: {

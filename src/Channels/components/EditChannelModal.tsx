@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {Modal, Button, FormControl} from 'react-bootstrap';
-import {IChannel} from "../models/IChannel";
-import {EditedChannels} from "../models/EditedChannels";
-import {IUser} from "../models/IUser";
+import {IChannel} from '../models/IChannel';
+import {EditedChannels} from '../models/EditedChannels';
+import {IUser} from '../models/IUser';
 import * as Immutable from 'immutable';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
@@ -45,7 +45,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
 
     handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {
         const channelName = event.currentTarget.value;
-        this.setState(_ => ({channelName}))
+        this.setState(_ => ({channelName}));
     };
 
     inviteUser = (user) => {
@@ -61,15 +61,15 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
             return {
                 value: user.email,
                 label: user.customData.displayName,
-            }
+            };
         }).toArray();
 
         return (
             <div>
                 <Modal show={showEditChannelModal} onHide={this.props.hideEditChannel}>
                     <Modal.Header closeButton>
-                        {/*TODO: check for channel -> if null, new channel is being created */}
-                        <Modal.Title>Edit {this.props.channel.name}</Modal.Title>
+                        {this.props.channel ? <Modal.Title>Edit {this.props.channel.name}</Modal.Title> :
+                            <Modal.Title>Create new channel</Modal.Title>}
                     </Modal.Header>
                     <Modal.Body>
                         <FormControl
@@ -84,11 +84,11 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
                     </Modal.Header>
                     <Modal.Body>
                         <Select
-                            isMulti={ true }
+                            isMulti
                             options={userOptions}
-                            simpleValue={ true }
+                            simpleValue
                             placeholder="Invite users"
-                            ignoreCase={true}
+                            ignoreCase
                             onChange={this.inviteUser}
                             value={this.state.invitedUsers}
                         />

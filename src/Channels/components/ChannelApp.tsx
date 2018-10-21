@@ -5,9 +5,9 @@ import {Panel, Col} from 'react-bootstrap';
 import './ChannelWrapper.css';
 import {NewChannel} from './NewChannel';
 import {IChannel} from '../models/IChannel';
-import {EditChannelModalContainer} from "../containers/EditChannelModal";
-import {EditedChannels} from "../models/EditedChannels";
-import {IUser} from "../models/IUser";
+import {EditChannelModalContainer} from '../containers/EditChannelModal';
+import {EditedChannels} from '../models/EditedChannels';
+import {IUser} from '../models/IUser';
 
 export interface IChannelAppStateProps {
     readonly channels: Immutable.List<IChannel>;
