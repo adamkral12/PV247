@@ -4,7 +4,6 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import {CHANNEL_MESSAGES_DATA, CHANNELS_DATA, USER_DATA, USERS_DATA} from './utils/exportData';
 import { Screen } from './Screen/Screen';
-import { HeaderWrapper } from './Screen/Header/HeaderWrapper';
 import { RootReducer } from './common/RootReducer';
 import { ChannelAppContainer } from './Channels/containers/ChannelApp';
 import {IChannel} from './Channels/models/IChannel';
@@ -12,6 +11,7 @@ import * as Immutable from 'immutable';
 import {IUser} from './Channels/models/IUser';
 import {IState} from './common/IState';
 import {IMessage} from './Messages/model/IMessage';
+import {HeaderContainer} from "./Header/containers/ChannelName";
 
 const initialState: IState = {
   channelList: {
@@ -37,7 +37,7 @@ export class App extends React.PureComponent {
       return (
           <Provider store={store}>
               <div className="App">
-                  <HeaderWrapper/>
+                  <HeaderContainer/>
                   <ChannelAppContainer/>
                   <Col xs={10}>
                       <Screen

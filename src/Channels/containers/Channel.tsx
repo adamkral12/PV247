@@ -6,10 +6,6 @@ import {Dispatch} from 'redux';
 import {selectChannel, showEditChannel} from '../actions/actionCreators';
 
 const mapStateToProps = (state: IState, ownProps: IChannelOwnProps): IChannelStateProps => {
-    console.log('selected');
-    console.log(state.channelList.showEditModal.editedChannelId);
-    console.log(ownProps);
-    console.log(state.channelList.selectedChannelId === ownProps.id);
     return {
         channel: state.channelList.channels.find((i: IChannel) => i.id === ownProps.id),
         isSelected: state.channelList.selectedChannelId === ownProps.id,

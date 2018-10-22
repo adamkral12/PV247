@@ -5,8 +5,9 @@ import {
 import './HeaderWrapper.css';
 import {EditUserModal} from '../../Users/EditUserModal';
 import {PureComponent} from 'react';
+import {ChannelNameContainer} from "../containers/Header";
 
-export class HeaderWrapper extends PureComponent {
+export class Header extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,9 +40,7 @@ export class HeaderWrapper extends PureComponent {
                 </Col>
                 <Navbar.Collapse>
                 <Nav>
-                    <NavItem eventKey={1} href="#">
-                        Channel name
-                    </NavItem>
+                    <ChannelNameContainer/>
                     <NavItem eventKey={2} href="#">
                         Members
                     </NavItem>
