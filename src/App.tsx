@@ -26,6 +26,10 @@ const initialState: IState = {
     messageApp: {
       messages: Immutable.List<IMessage>(CHANNEL_MESSAGES_DATA),
         user: USER_DATA,
+    },
+    userApp: {
+      user: USER_DATA,
+        showEditModal: false,
     }
 };
 

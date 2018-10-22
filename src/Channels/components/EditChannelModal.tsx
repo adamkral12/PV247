@@ -59,6 +59,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
 
     render() {
         const { showEditChannelModal } = this.props.show;
+        const { hideEditChannel } = this.props;
 
         const userOptions = this.props.users.map((user: IUser) => {
             return {
@@ -69,7 +70,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
 
         return (
             <div>
-                <Modal show={showEditChannelModal} onHide={this.props.hideEditChannel}>
+                <Modal show={showEditChannelModal} onHide={hideEditChannel}>
                     <Modal.Header closeButton>
                         {this.props.channel ? <Modal.Title>Edit {this.props.channel.name}</Modal.Title> :
                             <Modal.Title>Create new channel</Modal.Title>}
@@ -82,7 +83,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
                             onChange={this.handleNameChange}
                         />
                     </Modal.Body>
-                    <Modal.Header closeButton>
+                    <Modal.Header closeButton={false}>
                         <Modal.Title>Invite members</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>

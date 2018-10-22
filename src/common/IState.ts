@@ -1,7 +1,9 @@
 import { IChannelList } from '../Channels/models/IChannelList';
-import {IMessageBoardStateProps} from "../Messages/components/MessageBoard";
+import {IUserApp} from '../Users/model/IUserApp';
+import {IMessageApp} from '../Messages/model/IMessageApp';
 
 export interface IState {
-    channelList: IChannelList;
-    messageApp: IMessageBoardStateProps;
+    readonly channelList: IChannelList;
+    readonly messageApp: IMessageApp;
+    readonly userApp: IUserApp;
 }

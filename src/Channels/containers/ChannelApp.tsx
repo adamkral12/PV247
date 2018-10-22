@@ -18,4 +18,4 @@ const mapDispatchToProps = (dispatch: Dispatch): IChannelAppDispatchProps => {
   };
 };
 
-export const ChannelAppContainer = connect(mapStateToProps, mapDispatchToProps)(ChannelApp);
+export const ChannelAppContainer = connect<IChannelAppStateProps, IChannelAppDispatchProps>(mapStateToProps, mapDispatchToProps)(ChannelApp);

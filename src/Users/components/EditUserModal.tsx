@@ -1,9 +1,19 @@
 import * as React from 'react';
 import {
-  Modal, Button, FormControl, Col
+  Modal, Button, FormControl, Col, Image
 } from 'react-bootstrap';
+import {IUser} from '../../Channels/models/IUser';
 
-export class EditUserModal extends React.PureComponent {
+export interface EditUserModalStateProps {
+    readonly user: IUser;
+    readonly show: boolean;
+}
+
+export interface EditUserModalDispatchProps {
+    readonly hideEditUserModal: () => void;
+}
+
+export class EditUserModal extends React.PureComponent<EditUserModalStateProps & EditUserModalDispatchProps> {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,13 +44,14 @@ export class EditUserModal extends React.PureComponent {
     };
 
     render() {
-      return (
+        const {show, user, hideEditUserModal} = this.props;
+        return (
             <div>
-                <Modal>
-                    <Modal.Header closeButton>
+                <Modal show={show}>
+                    <Modal.Header onHide={hideEditUserModal}>
                         <Modal.Title>
                           Edit user
-                          mail
+                            {user.email}
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
@@ -51,18 +62,18 @@ export class EditUserModal extends React.PureComponent {
                             />
                         </Col>
                         <Col xs={6}>
-                            {/*{$imagePreview}*/}
+                            {user.customData.profilePicture && <Image src={user.customData.profilePicture} circle responsive/>}
                         </Col>
                         <FormControl
                           type="text"
-                          // value={this.state.displayName}
+                          value={user.customData.displayName}
                           placeholder="Enter displayed name"
                           onChange={this.handleNameChange}
                         />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button>Edit</Button>
-                        <Button>Close</Button>
+                        <Button onClick={hideEditUserModal}>Close</Button>
                     </Modal.Footer>
                 </Modal>
             </div>
