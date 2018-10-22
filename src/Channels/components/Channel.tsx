@@ -10,29 +10,36 @@ export interface IChannelOwnProps {
 
 export interface IChannelStateProps {
     readonly channel: IChannel;
+    readonly isSelected: boolean;
 }
 
 export interface IChannelDispatchProps {
     showEditChannel: (id: string) => void;
+    selectChannel: (id: string) => void;
 }
 
 export class Channel extends React.PureComponent<IChannelOwnProps & IChannelStateProps & IChannelDispatchProps> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showDeleteChannelModal: false
+    private onSelect = () => {
+        this.props.selectChannel(this.props.id);
     };
-  }
+
+    private showEditChannel = (event: React.ChangeEvent<HTMLBaseElement>) => {
+        event.stopPropagation();
+        this.props.showEditChannel(this.props.id);
+    };
 
     render() {
-      const { index, channel } = this.props;
-      return (
+        const { index, channel, isSelected } = this.props;
+        const channelClass = 'channel-name ' + (isSelected ? 'selected-channel' : '');
+
+        return (
                 <div
                     key={index}
-                  className="channel-name"
+                    className={channelClass}
+                    onClick={this.onSelect}
                 >{channel.name}
                     <Glyphicon glyph="edit" className="edit-channel-icon"
-                               onClick={this.props.showEditChannel}
+                               onClick={this.showEditChannel}
                     />
                 </div>
       );

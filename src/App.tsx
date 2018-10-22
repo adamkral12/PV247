@@ -20,7 +20,8 @@ const initialState: IState = {
       showEditModal: {
           editedChannelId: null,
           showEditChannelModal: false
-      }
+      },
+      selectedChannelId: null,
   },
     messageApp: {
       messages: Immutable.List<IMessage>(CHANNEL_MESSAGES_DATA),

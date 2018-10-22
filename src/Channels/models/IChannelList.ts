@@ -7,4 +7,5 @@ export interface IChannelList {
     channels: Immutable.List<IChannel>;
     showEditModal: EditedChannels;
     users: Immutable.List<IUser>;
+    selectedChannelId: string | null;
 }
