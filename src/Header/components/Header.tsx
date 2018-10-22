@@ -3,9 +3,9 @@ import {
   Glyphicon, MenuItem, Nav, Navbar, NavDropdown, NavItem, Col
 } from 'react-bootstrap';
 import './HeaderWrapper.css';
-import {EditUserModal} from '../../Users/EditUserModal';
+import {EditUserModal} from '../../Users/components/EditUserModal';
 import {PureComponent} from 'react';
-import {ChannelNameContainer} from "../containers/Header";
+import {ChannelNameContainer} from '../containers/ChannelName';
 
 export class Header extends PureComponent {
   constructor(props) {

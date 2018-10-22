@@ -11,7 +11,7 @@ import * as Immutable from 'immutable';
 import {IUser} from './Channels/models/IUser';
 import {IState} from './common/IState';
 import {IMessage} from './Messages/model/IMessage';
-import {HeaderContainer} from "./Header/containers/ChannelName";
+import {HeaderContainer} from './Header/containers/Header';
 
 const initialState: IState = {
   channelList: {

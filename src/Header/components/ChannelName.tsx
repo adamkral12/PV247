@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import { NavItem } from 'react-bootstrap';
 
 export interface ICHannelNameStateProps {
