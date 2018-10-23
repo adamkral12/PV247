@@ -8,6 +8,7 @@ import {IChannel} from '../models/IChannel';
 import {EditChannelModalContainer} from '../containers/EditChannelModal';
 import {EditedChannels} from '../models/EditedChannels';
 import {IUser} from '../models/IUser';
+import '../css/ChannelApp.less';
 
 export interface IChannelAppStateProps {
     readonly channels: Immutable.List<IChannel>;
@@ -21,10 +22,8 @@ export interface IChannelAppDispatchProps {
 
 export class ChannelApp extends React.PureComponent<IChannelAppStateProps & IChannelAppDispatchProps> {
     render() {
-        console.log('edited');
-        console.log(this.props.editedChannels);
         return(
-            <Col xs={2} className="channel-wrapper">
+            <Col xs={3} className="channel-wrapper">
                 <Panel className="dark-back">
                     <Panel.Body className="dark-back">
                         <ChannelSection

@@ -41,9 +41,9 @@ export class App extends React.PureComponent {
       return (
           <Provider store={store}>
               <div className="App">
-                  <HeaderContainer/>
                   <ChannelAppContainer/>
-                  <Col xs={10}>
+                  <HeaderContainer/>
+                  <Col md={9} sm={9} xs={12}>
                       <Screen
                         // user={data.user}
                         // messages={data.channelMessages}
