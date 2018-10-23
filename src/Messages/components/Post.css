@@ -1,0 +1,34 @@
+.row {
+    margin-bottom: 20px;
+}
+
+.verticalAlignment {
+    float: none;
+    display: table-cell;
+    vertical-align: middle
+}
+
+
+.row {
+    margin-bottom: 20px;
+}
+
+.vertAlCenter {
+    float: none;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.image {
+    max-height: 100%;
+    max-width: 100%;
+    float: none;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.panel {
+    float: none;
+    vertical-align: middle;
+    margin-bottom: 0;
+}
