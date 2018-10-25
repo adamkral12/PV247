@@ -8,8 +8,6 @@ import * as Immutable from 'immutable';
 export interface EditUserModalStateProps {
     readonly user: IUser;
     readonly show: boolean;
-    //displayName : string;
-    //profilePicture: string;
 }
 
 export interface EditUserModalDispatchProps {
@@ -17,30 +15,25 @@ export interface EditUserModalDispatchProps {
     readonly editUser: (profilePicture, displayName) => void;
 }
 
-export class EditUserModal extends React.Component<EditUserModalStateProps & EditUserModalDispatchProps> {
+export interface IState {
+    readonly displayName : string;
+    readonly profilePicture: string;
+}
+
+export class EditUserModal extends React.Component<EditUserModalStateProps & EditUserModalDispatchProps, IState> {
   constructor(props) {
     super(props);
+    const { displayName, profilePicture } = this.props.user.customData;
     this.state = {
-      user: this.props.user,
-      show: false
+        displayName: displayName,
+        profilePicture: profilePicture,
     };
   }
 
-    handleNameChange = (event) => {
-      console.log(event);
-        alert("handle");
-        //this.setState(_ => ({ displayName: event }));
-        let newUser = Immutable.fromJS(this.props.user)
-        alert("Im");
-
-        //ERROR
-        newUser.customData.displayName = event.target.value;
-        alert("newUser");
-        this.setState(_ => ({ user: newUser}));
-        //his.props.user.customData.displayName = event.target.value;
-        alert("changedState");
-
-
+    handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {
+      const displayName = event.currentTarget.value;
+      console.log(displayName);
+      this.setState(_ => ({ displayName }));
     };
 
     handleProfilePictureChange = (e) => {
@@ -49,12 +42,12 @@ export class EditUserModal extends React.Component<EditUserModalStateProps & Edi
       const reader = new FileReader();
       const file = e.target.files[0];
 
-      reader.onloadend = () => {
-        this.setState({
-          file,
-          profilePicture: reader.result
-        });
-      };
+      // reader.onloadend = () => {
+      //   this.setState({
+      //     file,
+      //     profilePicture: reader.result
+      //   });
+      // };
 
       reader.readAsDataURL(file);
     };
@@ -82,7 +75,7 @@ export class EditUserModal extends React.Component<EditUserModalStateProps & Edi
                         </Col>
                         <FormControl
                           type="text"
-                          value={this.props.user.customData.displayName}
+                          value={this.state.displayName}
                           placeholder="Enter displayed name"
                           onChange={this.handleNameChange}
                         />
