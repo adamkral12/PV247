@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import {EditUserModal, EditUserModalDispatchProps, EditUserModalStateProps} from '../components/EditUserModal';
 import {IState} from '../../common/IState';
 import {Dispatch} from 'redux';
-import {hideEditUser} from '../actions/actionCreators';
+import {hideEditUser, editUser} from '../actions/actionCreators';
 
 const mapStateToProps = (state: IState): EditUserModalStateProps => {
     return {
@@ -13,7 +13,10 @@ const mapStateToProps = (state: IState): EditUserModalStateProps => {
 
 const mapDispatchToProps = (dispatch: Dispatch): EditUserModalDispatchProps => {
     return {
-        hideEditUserModal: () => dispatch(hideEditUser())
+        hideEditUserModal: () => dispatch(hideEditUser()),
+        //editUser: (user) => { dispatch(editUser(user)); dispatch(hideEditUser())}
+        editUser: (user) => { dispatch(editUser(user)); alert("editUserDispatched");}
+
     };
 };
 export const EditUserModalContainer = connect<EditUserModalStateProps, EditUserModalDispatchProps>(mapStateToProps, mapDispatchToProps)(EditUserModal);

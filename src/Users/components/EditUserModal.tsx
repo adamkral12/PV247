@@ -3,28 +3,44 @@ import {
   Modal, Button, FormControl, Col, Image
 } from 'react-bootstrap';
 import {IUser} from '../../Channels/models/IUser';
+import * as Immutable from 'immutable';
 
 export interface EditUserModalStateProps {
     readonly user: IUser;
     readonly show: boolean;
+    //displayName : string;
+    //profilePicture: string;
 }
 
 export interface EditUserModalDispatchProps {
     readonly hideEditUserModal: () => void;
+    readonly editUser: (profilePicture, displayName) => void;
 }
 
-export class EditUserModal extends React.PureComponent<EditUserModalStateProps & EditUserModalDispatchProps> {
+export class EditUserModal extends React.Component<EditUserModalStateProps & EditUserModalDispatchProps> {
   constructor(props) {
     super(props);
     this.state = {
-      displayName: 'dispaly',
-      profilePicture: 'profile'
+      user: this.props.user,
+      show: false
     };
   }
 
     handleNameChange = (event) => {
       console.log(event);
-      this.setState({ displayName: event });
+        alert("handle");
+        //this.setState(_ => ({ displayName: event }));
+        let newUser = Immutable.fromJS(this.props.user)
+        alert("Im");
+
+        //ERROR
+        newUser.customData.displayName = event.target.value;
+        alert("newUser");
+        this.setState(_ => ({ user: newUser}));
+        //his.props.user.customData.displayName = event.target.value;
+        alert("changedState");
+
+
     };
 
     handleProfilePictureChange = (e) => {
@@ -44,7 +60,7 @@ export class EditUserModal extends React.PureComponent<EditUserModalStateProps &
     };
 
     render() {
-        const {show, user, hideEditUserModal} = this.props;
+        const {show, user, hideEditUserModal, editUser} = this.props;
         return (
             <div>
                 <Modal show={show}>
@@ -62,17 +78,17 @@ export class EditUserModal extends React.PureComponent<EditUserModalStateProps &
                             />
                         </Col>
                         <Col xs={6}>
-                            {user.customData.profilePicture && <Image src={user.customData.profilePicture} circle responsive/>}
+                            {this.props.user.customData.profilePicture && <Image src={this.props.user.customData.profilePicture} circle responsive/>}
                         </Col>
                         <FormControl
                           type="text"
-                          value={user.customData.displayName}
+                          value={this.props.user.customData.displayName}
                           placeholder="Enter displayed name"
                           onChange={this.handleNameChange}
                         />
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button>Edit</Button>
+                        <Button onClick={editUser}>Edit</Button>
                         <Button onClick={hideEditUserModal}>Close</Button>
                     </Modal.Footer>
                 </Modal>
