@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch: Dispatch): EditUserModalDispatchProps => {
     return {
         hideEditUserModal: () => dispatch(hideEditUser()),
         //editUser: (user) => { dispatch(editUser(user)); dispatch(hideEditUser())}
-        editUser: (user) => { dispatch(editUser(user)); alert("editUserDispatched");}
+        editUser: (profilePicture, displayName) =>  dispatch(editUser(profilePicture, displayName))
 
     };
 };

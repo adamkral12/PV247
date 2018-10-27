@@ -1,5 +1,5 @@
 import {USER_APP_HIDE_EDIT_USER_MODAL, USER_APP_SHOW_EDIT_USER_MODAL, USER_APP_EDIT_USER} from '../constants/actionTypes';
-import {IUser} from "../../Channels/models/IUser";
+//import {IUser} from "../../Channels/models/IUser";
 
 export const showEditUser = (): Action => ({
     type: USER_APP_SHOW_EDIT_USER_MODAL,
@@ -15,10 +15,11 @@ export const hideEditUser = (): Action => ({
     }
 });
 
-export const editUser = (user: IUser): Action => ({
+export const editUser = (profilePicture: string, displayName: string): Action => ({
     type: USER_APP_EDIT_USER,
     payload: {
-        user: user,
+        profilePicture: profilePicture,
+        displayName: displayName,
         show: false
     }
 });

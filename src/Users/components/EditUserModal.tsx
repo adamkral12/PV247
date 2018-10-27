@@ -3,7 +3,6 @@ import {
   Modal, Button, FormControl, Col, Image
 } from 'react-bootstrap';
 import {IUser} from '../../Channels/models/IUser';
-import * as Immutable from 'immutable';
 
 export interface EditUserModalStateProps {
     readonly user: IUser;
@@ -81,7 +80,7 @@ export class EditUserModal extends React.Component<EditUserModalStateProps & Edi
                         />
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button onClick={editUser}>Edit</Button>
+                        <Button onClick={editUser("la", "bla")}>Edit</Button>
                         <Button onClick={hideEditUserModal}>Close</Button>
                     </Modal.Footer>
                 </Modal>
