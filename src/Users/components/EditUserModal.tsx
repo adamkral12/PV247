@@ -3,6 +3,7 @@ import {
   Modal, Button, FormControl, Col, Image
 } from 'react-bootstrap';
 import {IUser} from '../../Channels/models/IUser';
+//import {editUser} from "../actions/actionCreators";
 
 export interface EditUserModalStateProps {
     readonly user: IUser;
@@ -16,7 +17,7 @@ export interface EditUserModalDispatchProps {
 
 export interface IState {
     readonly displayName : string;
-    readonly profilePicture: string;
+    readonly profilePicture: any;
 }
 
 export class EditUserModal extends React.Component<EditUserModalStateProps & EditUserModalDispatchProps, IState> {
@@ -35,24 +36,28 @@ export class EditUserModal extends React.Component<EditUserModalStateProps & Edi
       this.setState(_ => ({ displayName }));
     };
 
+    edit = () => {
+        this.props.editUser(this.state.profilePicture, this.state.displayName);
+    };
+
     handleProfilePictureChange = (e) => {
       e.preventDefault();
 
       const reader = new FileReader();
       const file = e.target.files[0];
+        console.log(file);
 
-      // reader.onloadend = () => {
-      //   this.setState({
-      //     file,
-      //     profilePicture: reader.result
-      //   });
-      // };
+       reader.onloadend = () => {
+         this.setState({
+           profilePicture: reader.result
+         });
+       };
 
       reader.readAsDataURL(file);
     };
 
     render() {
-        const {show, user, hideEditUserModal, editUser} = this.props;
+        const {show, user, hideEditUserModal} = this.props;
         return (
             <div>
                 <Modal show={show}>
@@ -70,7 +75,7 @@ export class EditUserModal extends React.Component<EditUserModalStateProps & Edi
                             />
                         </Col>
                         <Col xs={6}>
-                            {this.props.user.customData.profilePicture && <Image src={this.props.user.customData.profilePicture} circle responsive/>}
+                            {this.state.profilePicture&& <Image src={this.state.profilePicture} circle responsive/>}
                         </Col>
                         <FormControl
                           type="text"
@@ -80,7 +85,7 @@ export class EditUserModal extends React.Component<EditUserModalStateProps & Edi
                         />
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button onClick={editUser("la", "bla")}>Edit</Button>
+                        <Button onClick={this.edit}>Edit</Button>
                         <Button onClick={hideEditUserModal}>Close</Button>
                     </Modal.Footer>
                 </Modal>
