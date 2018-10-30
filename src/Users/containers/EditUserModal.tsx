@@ -14,7 +14,6 @@ const mapStateToProps = (state: IState): EditUserModalStateProps => {
 const mapDispatchToProps = (dispatch: Dispatch): EditUserModalDispatchProps => {
     return {
         hideEditUserModal: () => dispatch(hideEditUser()),
-        //editUser: (user) => { dispatch(editUser(user)); dispatch(hideEditUser())}
         editUser: (profilePicture, displayName) =>  dispatch(editUser(profilePicture, displayName))
 
     };
