@@ -3,7 +3,6 @@ import {
   Modal, Button, FormControl, Col, Image
 } from 'react-bootstrap';
 import {IUser} from '../../Channels/models/IUser';
-//import {editUser} from "../actions/actionCreators";
 
 export interface EditUserModalStateProps {
     readonly user: IUser;
@@ -17,7 +16,7 @@ export interface EditUserModalDispatchProps {
 
 export interface IState {
     readonly displayName : string;
-    readonly profilePicture: any;
+    readonly profilePicture: string | null| ArrayBuffer;
 }
 
 export class EditUserModal extends React.Component<EditUserModalStateProps & EditUserModalDispatchProps, IState> {
@@ -30,13 +29,13 @@ export class EditUserModal extends React.Component<EditUserModalStateProps & Edi
     };
   }
 
-    handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {
+    private handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {
       const displayName = event.currentTarget.value;
       console.log(displayName);
       this.setState(_ => ({ displayName }));
     };
 
-    edit = () => {
+    private edit = () => {
         this.props.editUser(this.state.profilePicture, this.state.displayName);
     };
 
@@ -48,6 +47,7 @@ export class EditUserModal extends React.Component<EditUserModalStateProps & Edi
         console.log(file);
 
        reader.onloadend = () => {
+           console.log(reader.result);
          this.setState({
            profilePicture: reader.result
          });
