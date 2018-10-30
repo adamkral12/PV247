@@ -31,7 +31,6 @@ export class EditUserModal extends React.Component<EditUserModalStateProps & Edi
 
     private handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {
       const displayName = event.currentTarget.value;
-      console.log(displayName);
       this.setState(_ => ({ displayName }));
     };
 
@@ -44,10 +43,8 @@ export class EditUserModal extends React.Component<EditUserModalStateProps & Edi
 
       const reader = new FileReader();
       const file = e.target.files[0];
-        console.log(file);
 
        reader.onloadend = () => {
-           console.log(reader.result);
          this.setState({
            profilePicture: reader.result
          });

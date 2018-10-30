@@ -11,7 +11,6 @@ export const userApp = (prevState: IUserApp, action: Action): IUserApp => {
         case USER_APP_HIDE_EDIT_USER_MODAL:
            return { user: prevState.user, showEditModal: action.payload.show};
         case USER_APP_EDIT_USER:
-            console.log(action.payload.profilePicture);
             return  {user: {...prevState.user, customData: {profilePicture: action.payload.profilePicture,
                         displayName: action.payload.displayName }}, showEditModal: action.payload.show};
 
