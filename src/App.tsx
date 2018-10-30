@@ -12,6 +12,7 @@ import {IUser} from './Channels/models/IUser';
 import {IState} from './common/IState';
 import {IMessage} from './Messages/model/IMessage';
 import {HeaderContainer} from './Header/containers/Header';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const initialState: IState = {
   channelList: {
@@ -34,7 +35,11 @@ const initialState: IState = {
 };
 
 console.log(initialState);
-const store = createStore(RootReducer, initialState);
+const store = createStore(
+    RootReducer,
+    initialState,
+    composeWithDevTools()
+);
 
 export class App extends React.PureComponent {
     render() {
