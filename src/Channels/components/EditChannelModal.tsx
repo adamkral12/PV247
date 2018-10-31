@@ -19,6 +19,7 @@ export interface IEditChannelModalStateProps {
 
 export interface IEditChannelModalDispatchProps {
     readonly hideEditChannel: () => void;
+    readonly editChannel: () => void;
 }
 
 interface IState {
@@ -33,26 +34,25 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
         super(props);
         this.state = {
             invitedUsers: [],
-            channelName: props.channel ? props.channel.name : null
+            channelName: props.channel ? props.channel.name : ""
         };
     }
 
-    onSubmit = (event) => {
+    private onSubmit = (event) => {
         event.preventDefault();
-
+        console.log(this.state);
     };
 
-    handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {
+    private handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {
         const channelName = event.currentTarget.value;
         this.setState(_ => ({channelName}));
     };
 
-    inviteUser = (user) => {
-        const invitedUsers = user.value;
+    private inviteUser = (invitedUsers) => {
         this.setState( _ => ({ invitedUsers }));
     };
 
-    deleteChannel = (event: React.FormEvent<HTMLInputElement>) => {
+    private deleteChannel = (event: React.FormEvent<HTMLInputElement>) => {
         console.log(event);
     };
 
@@ -99,10 +99,10 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button bsStyle="success"
-                                type="edit"
+                                type="submit"
                                 onClick={this.onSubmit}
                         >{this.props.channel ? 'Edit' : 'Create'}</Button>
-                        <Button onClick={this.props.hideEditChannel}>Close</Button>
+                        <Button type="submit" onClick={this.props.hideEditChannel}>Close</Button>
                         {this.props.channel && <Button bsStyle="danger" onClick={this.deleteChannel}>Delete</Button>}
                     </Modal.Footer>
                 </Modal>
