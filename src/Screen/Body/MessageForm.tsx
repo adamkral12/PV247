@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { FormControl, FormGroup, Button } from "react-bootstrap";
+import { FormControl, FormGroup, Button } from 'react-bootstrap';
 
 export class MessageForm extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      value: props.value || "",
+      value: props.value || '',
       isSubmitLoading: false
     };
   }
