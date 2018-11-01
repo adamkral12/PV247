@@ -12,7 +12,7 @@ export const channels = (prevState = Immutable.List<IChannel>(), action: Action)
     case CHANNEL_LIST_CHANNEL_CREATE: {
       const { name, customData } = action.payload;
       console.log(prevState);
-      //TODO: id will be get from API
+      // TODO: id will be get from API
       return prevState.push({ id: uuid(), name, customData });
     }
 

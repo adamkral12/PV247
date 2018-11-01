@@ -30,7 +30,7 @@ export const addChannel = (name: string, customData: IChannelCustomData): Action
     }
 });
 
-export const removeChannel = (id: string): Action => ({
+export const deleteChannel = (id: string | null): Action => ({
   type: CHANNEL_LIST_CHANNEL_REMOVE,
   payload: {
     id,

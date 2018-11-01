@@ -22,6 +22,7 @@ export interface IEditChannelModalDispatchProps {
     readonly hideEditChannel: () => void;
     readonly editChannel: (name: string, customData: IEditedChannelCustomData) => void;
     readonly addChannel: (name: string, customData: IEditedChannelCustomData) => void;
+    readonly deleteChannel: () => void;
 }
 
 interface IState {
@@ -30,6 +31,7 @@ interface IState {
         label: string,
     }>;
     readonly channelName: string;
+    readonly show: boolean;
 }
 
 type IProps = IEditChannelModalStateProps & IEditChannelModalOwnProps & IEditChannelModalDispatchProps;
@@ -39,7 +41,8 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
         super(props);
         this.state = {
             invitedUsers: [],
-            channelName: props.channel ? props.channel.name : ''
+            channelName: props.channel ? props.channel.name : '',
+            show: props.show,
         };
     }
 
@@ -50,6 +53,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
                 return user.value;
             })
         });
+        this.props.hideEditChannel();
     };
 
     private addChannel = (event: React.FormEvent) => {
@@ -59,6 +63,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
                 return user.value;
             })
         });
+        this.props.hideEditChannel();
     };
 
     private handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -71,7 +76,9 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
     };
 
     private deleteChannel = (event: React.FormEvent<HTMLInputElement>) => {
-        console.log(event);
+        event.preventDefault();
+        this.props.deleteChannel();
+        this.props.hideEditChannel();
     };
 
     render() {
@@ -123,7 +130,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
                             {this.props.channel ? 'Edit' : 'Create'}
                         </Button>
                         <Button type="submit" onClick={this.props.hideEditChannel}>Close</Button>
-                        {this.props.channel && <Button bsStyle="danger" onClick={this.deleteChannel}>Delete</Button>}
+                        {this.props.channel && <Button bsStyle="danger"  type="submit" onClick={this.deleteChannel}>Delete</Button>}
                     </Modal.Footer>
                 </Modal>
             </div>

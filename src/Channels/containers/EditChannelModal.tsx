@@ -8,7 +8,7 @@ import {
 import {IChannel} from '../models/IChannel';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import {addChannel, hideEditChannel, updateChannel} from '../actions/actionCreators';
+import {addChannel, deleteChannel, hideEditChannel, updateChannel} from '../actions/actionCreators';
 
 const mapStateToProps = (state: IState, ownProps: IEditChannelModalOwnProps): IEditChannelModalStateProps => {
     return {
@@ -23,6 +23,7 @@ const mapDispatchToProps = (dispatch: Dispatch, ownProps: IEditChannelModalOwnPr
         hideEditChannel: () => dispatch(hideEditChannel()),
         editChannel: (name: string, customData) => dispatch(updateChannel(ownProps.id, name, customData)),
         addChannel: (name: string, customData) => dispatch(addChannel(name, customData)),
+        deleteChannel: () => dispatch(deleteChannel(ownProps.id)),
     };
 };
 
