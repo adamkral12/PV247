@@ -23,10 +23,9 @@
     "start": "webpack-dev-server --mode=development",
     "build": "webpack --mode=development",
     "production": "webpack -p",
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --no-ignore src/**.js src/**.jsx",
-    "fix-lint": "eslint --fix --no-ignore src/**.js src/**.jsx"
+    "lint": "tslint --config tslint.json --project tsconfig.json",
+    "fix-lint": "tslint --config tslint.json --project tsconfig.json --fix"
   },
   "browserslist": [
     ">0.2%",

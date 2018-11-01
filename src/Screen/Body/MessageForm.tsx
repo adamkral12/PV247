@@ -1,23 +1,23 @@
 import * as React from 'react';
-import { FormControl, FormGroup, Button } from "react-bootstrap";
+import { FormControl, FormGroup, Button } from 'react-bootstrap';
 
 export class MessageForm extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      value: props.value || "",
+      value: props.value || '',
       isSubmitLoading: false
     };
   }
 
     onChange = (event) => {
-      this.setState({ value: event.target.value });
+      this.setState(_ => ({ value: event.target.value }));
     };
 
     onSubmit = (event) => {
       event.preventDefault();
       // unset loading state when done
-      this.setState({ isSubmitLoading: true });
+      this.setState(_ => ({ isSubmitLoading: true }));
       // this.props.onSubmit(this.state.value);
     };
 

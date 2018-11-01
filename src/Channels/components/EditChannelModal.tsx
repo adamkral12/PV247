@@ -5,7 +5,6 @@ import {EditedChannels} from '../models/EditedChannels';
 import {IUser} from '../models/IUser';
 import * as Immutable from 'immutable';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
 
 export interface IEditChannelModalOwnProps {
     id: string | null;

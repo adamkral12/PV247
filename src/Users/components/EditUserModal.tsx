@@ -24,7 +24,7 @@ export class EditUserModal extends React.PureComponent<EditUserModalStateProps &
 
     handleNameChange = (event) => {
       console.log(event);
-      this.setState({ displayName: event });
+      this.setState(_ => ({ displayName: event }));
     };
 
     handleProfilePictureChange = (e) => {
@@ -34,10 +34,10 @@ export class EditUserModal extends React.PureComponent<EditUserModalStateProps &
       const file = e.target.files[0];
 
       reader.onloadend = () => {
-        this.setState({
+        this.setState(_ => ({
           file,
           profilePicture: reader.result
-        });
+        }));
       };
 
       reader.readAsDataURL(file);
