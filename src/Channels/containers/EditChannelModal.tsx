@@ -8,7 +8,7 @@ import {
 import {IChannel} from '../models/IChannel';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import {hideEditChannel} from '../actions/actionCreators';
+import {addChannel, hideEditChannel, updateChannel} from '../actions/actionCreators';
 
 const mapStateToProps = (state: IState, ownProps: IEditChannelModalOwnProps): IEditChannelModalStateProps => {
     return {
@@ -18,10 +18,11 @@ const mapStateToProps = (state: IState, ownProps: IEditChannelModalOwnProps): IE
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): IEditChannelModalDispatchProps => {
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: IEditChannelModalOwnProps): IEditChannelModalDispatchProps => {
     return {
         hideEditChannel: () => dispatch(hideEditChannel()),
-        editChannel: () => dispatch(editChannel())
+        editChannel: (name: string, customData) => dispatch(updateChannel(ownProps.id, name, customData)),
+        addChannel: (name: string, customData) => dispatch(addChannel(name, customData)),
     };
 };
 

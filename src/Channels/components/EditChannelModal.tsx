@@ -5,6 +5,7 @@ import {EditedChannels} from '../models/EditedChannels';
 import {IUser} from '../models/IUser';
 import * as Immutable from 'immutable';
 import Select from 'react-select';
+import {IEditedChannelCustomData} from '../models/IEditedChannelCustomData';
 
 export interface IEditChannelModalOwnProps {
     id: string | null;
@@ -19,11 +20,15 @@ export interface IEditChannelModalStateProps {
 
 export interface IEditChannelModalDispatchProps {
     readonly hideEditChannel: () => void;
-    readonly editChannel: () => void;
+    readonly editChannel: (name: string, customData: IEditedChannelCustomData) => void;
+    readonly addChannel: (name: string, customData: IEditedChannelCustomData) => void;
 }
 
 interface IState {
-    readonly invitedUsers: Array<string>;
+    readonly invitedUsers: Array<{
+        value: string,
+        label: string,
+    }>;
     readonly channelName: string;
 }
 
@@ -34,13 +39,26 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
         super(props);
         this.state = {
             invitedUsers: [],
-            channelName: props.channel ? props.channel.name : ""
+            channelName: props.channel ? props.channel.name : ''
         };
     }
 
-    private onSubmit = (event) => {
+    private editChannel = (event: React.FormEvent) => {
         event.preventDefault();
-        console.log(this.state);
+        this.props.editChannel(this.state.channelName, {
+            invitedUsers: this.state.invitedUsers.map((user) => {
+                return user.value;
+            })
+        });
+    };
+
+    private addChannel = (event: React.FormEvent) => {
+        event.preventDefault();
+        this.props.addChannel(this.state.channelName, {
+            invitedUsers: this.state.invitedUsers.map((user) => {
+                return user.value;
+            })
+        });
     };
 
     private handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -100,8 +118,10 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
                     <Modal.Footer>
                         <Button bsStyle="success"
                                 type="submit"
-                                onClick={this.onSubmit}
-                        >{this.props.channel ? 'Edit' : 'Create'}</Button>
+                                onClick={this.props.channel ? this.editChannel : this.addChannel}
+                        >
+                            {this.props.channel ? 'Edit' : 'Create'}
+                        </Button>
                         <Button type="submit" onClick={this.props.hideEditChannel}>Close</Button>
                         {this.props.channel && <Button bsStyle="danger" onClick={this.deleteChannel}>Delete</Button>}
                     </Modal.Footer>
