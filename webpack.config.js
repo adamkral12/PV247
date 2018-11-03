@@ -26,7 +26,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           'ts-loader',
-          { loader: 'tslint-loader', options: { configFile: 'tslint.json' } }
+          { loader: 'tslint-loader', options: { configFile: 'tslint.json', typeCheck: true } }
         ]
       },
       {

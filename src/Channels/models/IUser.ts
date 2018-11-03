@@ -1,4 +1,4 @@
-import {IUserCustomData} from "./IUserCustomData";
+import {IUserCustomData} from './IUserCustomData';
 
 export interface IUser {
     readonly email: string;
