@@ -22,10 +22,14 @@ const initialState: IState = {
           editedChannelId: null,
           showEditChannelModal: false
       },
-      selectedChannelId: null,
+      selectedChannelId: '1',
   },
     messageApp: {
-      messages: Immutable.List<IMessage>(CHANNEL_MESSAGES_DATA),
+        messages: {
+            allIds: Immutable.List<Uuid>(CHANNEL_MESSAGES_DATA.map((item: IMessage) => item.id)),
+            // @ts-ignore
+            byId: Immutable.Map(CHANNEL_MESSAGES_DATA.map((item: IMessage) => [item.id, item])),
+        },
         user: USER_DATA,
     },
     userApp: {

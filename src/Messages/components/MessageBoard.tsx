@@ -1,14 +1,11 @@
 import * as React from 'react';
-import { Post } from './Post';
-// import MessageForm from "./MessageForm";
 import './MessageBoard.css';
-import {IMessage} from '../model/IMessage';
 import {IUser} from '../../Channels/models/IUser';
 import * as Immutable from 'immutable';
-// import {MessageForm} from '../../Screen/Body/MessageForm';
+import {PostContainer} from '../containers/Post';
 
 export interface IMessageBoardStateProps {
-    readonly messages: Immutable.List<IMessage>;
+    readonly messageIds: Immutable.List<Uuid>;
     readonly user: IUser;
 }
 //
@@ -16,21 +13,19 @@ export interface IMessageBoardStateProps {
 //
 // }
 export class MessageBoard extends React.PureComponent<IMessageBoardStateProps> {
-  render() {
-    return (
+    render() {
+        return (
             <div>
                 <div className="postWrapper">
-                    {this.props.messages.map((message: IMessage) => {
-                      return (
-                            <Post
-                              user={this.props.user}
-                              key={message.id}
-                              message={message}
-                            />
-                      );
-                    })}
+                    {this.props.messageIds.map((id: Uuid, index: number) => (
+                        <PostContainer
+                            key={id}
+                            id={id}
+                            index={index + 1}
+                        />
+                    ))
+                    }
                 </div>
-                {/*<MessageForm/>*/}
             </div>
     );
   }

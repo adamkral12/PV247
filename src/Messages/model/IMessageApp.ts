@@ -1,8 +1,14 @@
-import * as Immutable from 'immutable';
-import {IMessage} from './IMessage';
-import {IUser} from '../../Channels/models/IUser';
+import * as Immutable from "immutable";
+import {IMessage} from "./IMessage";
+import {IUser} from "../../Channels/models/IUser";
 
 export interface IMessageApp {
-    readonly messages: Immutable.List<IMessage>;
+    messages: IMessages;
     readonly user: IUser;
 }
+
+export interface IMessages {
+    allIds: Immutable.List<Uuid>;
+    byId: Immutable.Map<Uuid, IMessage>;
+}
+
