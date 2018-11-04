@@ -1,4 +1,6 @@
 import * as React from 'react';
+import {FormControl} from 'react-bootstrap';
+import './ChannelFilter.less';
 
 export interface IChannelFilterDispatchProps {
     readonly onFilterTextChange: (value: string) => void;
@@ -13,25 +15,25 @@ export class ChannelFilter extends React.PureComponent<IChannelFilterDispatchPro
         super(props);
         this.state = {
             filterText: '',
-        }
+        };
     }
+
     private onFilterTextChange = (event: React.FormEvent<HTMLInputElement>) => {
-        console.log("co do pice");
-        console.log(event.currentTarget.value);
-        this.setState(_ => ({ filterText: event.currentTarget.value} ));
-        this.props.onFilterTextChange(event.currentTarget.value);
+        const filterText = event.currentTarget.value;
+        this.setState(_ => ({ filterText } ));
+        this.props.onFilterTextChange(filterText);
     };
 
     render() {
-        return(
-            <form className="form-inline">
-                <input
+        return (
+            <div className="channel-filter">
+                <FormControl
                     type="text"
-                    style={{"color": "black"}}
-                    onChange={this.onFilterTextChange}
                     value={this.state.filterText}
+                    placeholder="Search for channel"
+                    onChange={this.onFilterTextChange}
                 />
-            </form>
+            </div>
         );
     }
 }

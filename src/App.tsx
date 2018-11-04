@@ -20,7 +20,7 @@ const initialState: IState = {
   channelList: {
       visibilityFilter: {
           filter: ChannelFilterEnum.All,
-          text: "",
+          text: '',
       },
       channels: {
           allIds: Immutable.List(),

@@ -12,16 +12,12 @@ import {IChannels} from '../models/IChannelList';
 const allIds = (prevState: Immutable.List<string> = Immutable.List(), action: Action): Immutable.List<string> => {
   switch (action.type) {
       case CHANNEL_APP_LOADING_SUCCESS:
-          console.log("loading success");
-          console.log(Immutable.List(action.payload.channels.map((channel: IChannel) => channel.id)));
           return Immutable.List(action.payload.channels.map((channel: IChannel) => channel.id));
 
       case CHANNEL_LIST_CHANNEL_CREATE:
-          console.log("channel create");
-          console.log(action.payload);
           return prevState.push(action.payload.channel.id);
       default:
-        return prevState
+        return prevState;
   }
 };
 
