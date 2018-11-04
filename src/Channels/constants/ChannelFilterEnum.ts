@@ -1,4 +1,4 @@
-export enum ChannelFilter {
+export enum ChannelFilterEnum {
     All = 'all',
     ByName = 'byName',
     ById = 'ById',

@@ -13,12 +13,15 @@ import {IMessage} from './Messages/model/IMessage';
 import {HeaderContainer} from './Header/containers/Header';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import {ChannelFilter} from './Channels/constants/ChannelFilter';
+import {ChannelFilterEnum} from './Channels/constants/ChannelFilterEnum';
 
 
 const initialState: IState = {
   channelList: {
-      visibilityFilter: ChannelFilter.All,
+      visibilityFilter: {
+          filter: ChannelFilterEnum.All,
+          text: "",
+      },
       channels: {
           allIds: Immutable.List(),
           byId: Immutable.Map(),

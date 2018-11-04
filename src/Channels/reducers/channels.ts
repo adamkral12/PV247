@@ -45,32 +45,6 @@ const byId = (prevState = Immutable.Map<string, IChannel>(), action: Action): Im
     }
 };
 
-// const channelsOld = (prevState = Immutable.List<IChannel>(), action: Action): Immutable.List<IChannel> => {
-//   switch (action.type) {
-//     case CHANNEL_LIST_CHANNEL_CREATE: {
-//       const { name, customData } = action.payload;
-//       console.log(prevState);
-//       // TODO: id will be get from API
-//       return prevState.push({ id: uuid(), name, customData });
-//     }
-//
-//     case CHANNEL_LIST_CHANNEL_REMOVE: {
-//       const { id } = action.payload;
-//       const index = prevState.findIndex((channel: IChannel) => channel.id === id);
-//       return prevState.remove(index);
-//     }
-//
-//     case CHANNEL_LIST_CHANNEL_UPDATE: {
-//       const { id, name, customData } = action.payload;
-//       const index = prevState.findIndex((channel: IChannel) => channel.id === id);
-//       const oldList = prevState.get(index);
-//       return prevState.set(index, { ...oldList, name, customData });
-//     }
-//     default:
-//       return prevState;
-//   }
-// };
-
 export const channels = combineReducers<IChannels>({
         allIds,
         byId,

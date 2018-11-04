@@ -3,25 +3,23 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { IState } from '../../common/IState';
 import {ChannelSection, IChannelSectionStateProps} from '../components/ChannelSection';
-import {ChannelFilter} from '../constants/ChannelFilter';
+import {ChannelFilterEnum} from '../constants/ChannelFilterEnum';
 import {IChannel} from '../models/IChannel';
 
-const getVisibleChannelIds = createSelector<IState, ChannelFilter, Immutable.List<string>, Immutable.Map<string, IChannel>, Immutable.List<string>>(
+const getVisibleChannelIds = createSelector<IState, {filter: ChannelFilterEnum, text: string}, Immutable.List<string>, Immutable.Map<string, IChannel>, Immutable.List<string>>(
     [
         state => state.channelList.visibilityFilter,
         state => state.channelList.channels.allIds,
         state => state.channelList.channels.byId,
     ],
     (visibilityFilter, allIds, byId) => {
-        switch (visibilityFilter) {
-            case ChannelFilter.All:
+        console.log("toto se vola");
+        switch (visibilityFilter.filter) {
+            case ChannelFilterEnum.All:
                 return allIds;
-
-            // case ChannelFilter.ByName:
-            //     return allIds.filter((id: string) => byName.get(id)).toList();
-            //
-            // case ChannelFilter.ById:
-            //     return allIds.filter((id: string) => byId.get(id)).toList();
+            case ChannelFilterEnum.ByName:
+                console.log("name");
+                return allIds.filter((id: string) => byId.get(id).name.includes(visibilityFilter.text)).toList();
 
             default:
                 throw new Error(`Unknown value of visibility filter '${visibilityFilter}'`);

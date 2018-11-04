@@ -1,10 +1,14 @@
 import { CHANNEL_APP_SET_VISIBILITY_FILTER } from '../constants/actionTypes';
-import {ChannelFilter} from '../constants/ChannelFilter';
+import {ChannelFilterEnum} from '../constants/ChannelFilterEnum';
 
-export const visibilityFilter = (prevState: ChannelFilter = ChannelFilter.All, action: Action): ChannelFilter => {
+// todo add type for filter
+export const visibilityFilter = (prevState = {filter: ChannelFilterEnum.All, text: ''}, action: Action) => {
     switch (action.type) {
         case CHANNEL_APP_SET_VISIBILITY_FILTER:
-            return action.payload.filter;
+            return {
+                filter: action.payload.filter,
+                text: action.payload.text,
+            };
 
         default:
             return prevState;
