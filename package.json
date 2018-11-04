@@ -17,7 +17,9 @@
     "react-redux": "^5.0.7",
     "react-select": "^2.1.0",
     "redux": "^4.0.1",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "reselect": "latest",
+    "redux-thunk": "latest"
   },
   "scripts": {
     "start": "webpack-dev-server --mode=development",

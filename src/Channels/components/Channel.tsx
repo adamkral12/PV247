@@ -29,7 +29,9 @@ export class Channel extends React.PureComponent<IChannelOwnProps & IChannelStat
     };
 
     render() {
+        console.log("channel");
         const { index, channel, isSelected } = this.props;
+        console.log(channel);
         const channelClass = 'channel-name ' + (isSelected ? 'selected-channel' : '');
 
         return (

@@ -1,22 +1,28 @@
 import * as React from 'react';
 import { Col } from 'react-bootstrap';
-import { createStore } from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import { Provider } from 'react-redux';
-import {CHANNEL_MESSAGES_DATA, CHANNELS_DATA, USER_DATA, USERS_DATA} from './utils/exportData';
+import {CHANNEL_MESSAGES_DATA, USER_DATA, USERS_DATA} from './utils/exportData';
 import { Screen } from './Screen/Screen';
 import { RootReducer } from './common/RootReducer';
 import { ChannelAppContainer } from './Channels/containers/ChannelApp';
-import {IChannel} from './Channels/models/IChannel';
 import * as Immutable from 'immutable';
 import {IUser} from './Channels/models/IUser';
 import {IState} from './common/IState';
 import {IMessage} from './Messages/model/IMessage';
 import {HeaderContainer} from './Header/containers/Header';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import {ChannelFilter} from './Channels/constants/ChannelFilter';
+
 
 const initialState: IState = {
   channelList: {
-      channels: Immutable.List<IChannel>(CHANNELS_DATA),
+      visibilityFilter: ChannelFilter.All,
+      channels: {
+          allIds: Immutable.List(),
+          byId: Immutable.Map(),
+      },
       users: Immutable.List<IUser>(USERS_DATA),
       showEditModal: {
           editedChannelId: null,
@@ -34,11 +40,14 @@ const initialState: IState = {
     }
 };
 
-console.log(initialState);
+const middleware = [thunk];
+
 const store = createStore(
     RootReducer,
     initialState,
-    composeWithDevTools()
+    composeWithDevTools(
+        applyMiddleware(...middleware)
+    )
 );
 
 export class App extends React.PureComponent {

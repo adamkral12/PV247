@@ -1,13 +1,16 @@
 import {IState} from '../../common/IState';
 import {Channel, IChannelDispatchProps, IChannelOwnProps, IChannelStateProps} from '../components/Channel';
-import {IChannel} from '../models/IChannel';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import {selectChannel, showEditChannel} from '../actions/actionCreators';
 
 const mapStateToProps = (state: IState, ownProps: IChannelOwnProps): IChannelStateProps => {
+    console.log("by id");
+    console.log(state.channelList.channels.byId);
+    console.log("props id");
+    console.log(ownProps.id);
     return {
-        channel: state.channelList.channels.find((i: IChannel) => i.id === ownProps.id),
+        channel: state.channelList.channels.byId.get(ownProps.id),
         isSelected: state.channelList.selectedChannelId === ownProps.id,
     };
 };

@@ -1,3 +1,5 @@
+import * as uuid from 'uuid';
+
 import {
     CHANNEL_LIST_CHANNEL_UPDATE,
     CHANNEL_LIST_CHANNEL_REMOVE,
@@ -25,8 +27,11 @@ export const updateChannel = (id: string | null, name: string, customData: IChan
 export const addChannel = (name: string, customData: IChannelCustomData): Action => ({
     type: CHANNEL_LIST_CHANNEL_CREATE,
     payload: {
-        name,
-        customData,
+        channel: {
+            name,
+            customData,
+            id: uuid(), // TODO: id will be probably generated from API
+        }
     }
 });
 
