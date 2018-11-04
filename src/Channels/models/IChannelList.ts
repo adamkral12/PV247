@@ -2,14 +2,11 @@ import * as Immutable from 'immutable';
 import { IChannel } from './IChannel';
 import {EditedChannels} from './EditedChannels';
 import {IUser} from './IUser';
-import {ChannelFilterEnum} from '../constants/ChannelFilterEnum';
+import {IVisibilityFilter} from './IVisibilityFilter';
 
 export interface IChannelList {
     readonly channels: IChannels;
-    readonly visibilityFilter: {
-        readonly filter: ChannelFilterEnum;
-        readonly text: string;
-    }
+    readonly visibilityFilter: IVisibilityFilter;
     readonly showEditModal: EditedChannels;
     readonly users: Immutable.List<IUser>;
     readonly selectedChannelId: string | null;

@@ -1,8 +1,8 @@
 import { CHANNEL_APP_SET_VISIBILITY_FILTER } from '../constants/actionTypes';
 import {ChannelFilterEnum} from '../constants/ChannelFilterEnum';
+import {IVisibilityFilter} from '../models/IVisibilityFilter';
 
-// todo add type for filter
-export const visibilityFilter = (prevState = {filter: ChannelFilterEnum.All, text: ''}, action: Action) => {
+export const visibilityFilter = (prevState: IVisibilityFilter = {filter: ChannelFilterEnum.All, text: ''}, action: Action) => {
     switch (action.type) {
         case CHANNEL_APP_SET_VISIBILITY_FILTER:
             return {
