@@ -24,7 +24,8 @@
     "production": "webpack -p",
     "eject": "react-scripts eject",
     "lint": "tslint --config tslint.json --project tsconfig.json",
-    "fix-lint": "tslint --config tslint.json --project tsconfig.json --fix"
+    "fix-lint": "tslint --config tslint.json --project tsconfig.json --fix",
+    "all": "npm run build && npm run lint"
   },
   "browserslist": [
     ">0.2%",

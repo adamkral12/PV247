@@ -31,7 +31,7 @@ const byId = (prevState = Immutable.Map<string, IChannel>(), action: Action): Im
             return prevState.set(action.payload.channel.id, action.payload.channel);
 
         case CHANNEL_LIST_CHANNEL_UPDATE: {
-            const { channel: channel } = action.payload;
+            const { channel } = action.payload;
 
             return prevState.set(channel.id, { ...channel });
         }
