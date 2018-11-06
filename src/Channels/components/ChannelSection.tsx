@@ -2,24 +2,25 @@ import * as React from 'react';
 import * as Immutable from 'immutable';
 import { ListGroup, Panel } from 'react-bootstrap';
 import './ChannelSection.css';
-import {IChannel} from '../models/IChannel';
 import {ChannelContainer} from '../containers/Channel';
+import {ChannelFilterContainer} from '../containers/ChannelFilter';
 
-export interface IProps {
-    readonly channels: Immutable.List<IChannel>;
+export interface IChannelSectionStateProps {
+    readonly channelIds: Immutable.List<string>;
 }
-export class ChannelSection extends React.PureComponent<IProps> {
+export class ChannelSection extends React.PureComponent<IChannelSectionStateProps> {
     render() {
       return (
             <div>
                 <Panel.Body>
+                    <ChannelFilterContainer/>
                     <ListGroup>
-                        {this.props.channels.map((channel: IChannel, index: number) => {
+                        {this.props.channelIds.map((id: string, index: number) => {
                           return (
                               <ChannelContainer
-                                  id={channel.id}
+                                  id={id}
+                                  key={id}
                                   index={index + 1}
-                                  key={index}
                               />
                           );
                         })}
