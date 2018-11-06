@@ -10,7 +10,7 @@ export default class NewChannelModal extends Component {
             isSubmitLoading: false
         };
     }
-    
+
     onSubmit = (event) => {
         event.preventDefault();
         // unset loading state when done
@@ -19,7 +19,6 @@ export default class NewChannelModal extends Component {
     };
 
     handleNameChange = (event) => {
-        console.log(event);
         this.setState({ channelName: event})
     };
 

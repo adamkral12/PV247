@@ -5,6 +5,7 @@ import {EditedChannels} from '../models/EditedChannels';
 import {IUser} from '../models/IUser';
 import * as Immutable from 'immutable';
 import Select from 'react-select';
+import {IEditedChannelCustomData} from '../models/IEditedChannelCustomData';
 
 export interface IEditChannelModalOwnProps {
     id: string | null;
@@ -19,11 +20,18 @@ export interface IEditChannelModalStateProps {
 
 export interface IEditChannelModalDispatchProps {
     readonly hideEditChannel: () => void;
+    readonly editChannel: (name: string, customData: IEditedChannelCustomData) => void;
+    readonly addChannel: (name: string, customData: IEditedChannelCustomData) => void;
+    readonly deleteChannel: () => void;
 }
 
 interface IState {
-    readonly invitedUsers: Array<string>;
+    readonly invitedUsers: Array<{
+        value: string,
+        label: string,
+    }>;
     readonly channelName: string;
+    readonly show: boolean;
 }
 
 type IProps = IEditChannelModalStateProps & IEditChannelModalOwnProps & IEditChannelModalDispatchProps;
@@ -33,27 +41,44 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
         super(props);
         this.state = {
             invitedUsers: [],
-            channelName: props.channel ? props.channel.name : null
+            channelName: props.channel ? props.channel.name : '',
+            show: props.show,
         };
     }
 
-    onSubmit = (event) => {
+    private editChannel = (event: React.FormEvent) => {
         event.preventDefault();
-
+        this.props.editChannel(this.state.channelName, {
+            invitedUsers: this.state.invitedUsers.map((user) => {
+                return user.value;
+            })
+        });
+        this.props.hideEditChannel();
     };
 
-    handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {
+    private addChannel = (event: React.FormEvent) => {
+        event.preventDefault();
+        this.props.addChannel(this.state.channelName, {
+            invitedUsers: this.state.invitedUsers.map((user) => {
+                return user.value;
+            })
+        });
+        this.props.hideEditChannel();
+    };
+
+    private handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {
         const channelName = event.currentTarget.value;
         this.setState(_ => ({channelName}));
     };
 
-    inviteUser = (user) => {
-        const invitedUsers = user.value;
+    private inviteUser = (invitedUsers) => {
         this.setState( _ => ({ invitedUsers }));
     };
 
-    deleteChannel = (event: React.FormEvent<HTMLInputElement>) => {
-        console.log(event);
+    private deleteChannel = (event: React.FormEvent<HTMLInputElement>) => {
+        event.preventDefault();
+        this.props.deleteChannel();
+        this.props.hideEditChannel();
     };
 
     render() {
@@ -99,11 +124,13 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button bsStyle="success"
-                                type="edit"
-                                onClick={this.onSubmit}
-                        >{this.props.channel ? 'Edit' : 'Create'}</Button>
-                        <Button onClick={this.props.hideEditChannel}>Close</Button>
-                        {this.props.channel && <Button bsStyle="danger" onClick={this.deleteChannel}>Delete</Button>}
+                                type="submit"
+                                onClick={this.props.channel ? this.editChannel : this.addChannel}
+                        >
+                            {this.props.channel ? 'Edit' : 'Create'}
+                        </Button>
+                        <Button type="submit" onClick={this.props.hideEditChannel}>Close</Button>
+                        {this.props.channel && <Button bsStyle="danger"  type="submit" onClick={this.deleteChannel}>Delete</Button>}
                     </Modal.Footer>
                 </Modal>
             </div>

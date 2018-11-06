@@ -2,10 +2,17 @@ import * as Immutable from 'immutable';
 import { IChannel } from './IChannel';
 import {EditedChannels} from './EditedChannels';
 import {IUser} from './IUser';
+import {IVisibilityFilter} from './IVisibilityFilter';
 
 export interface IChannelList {
-    channels: Immutable.List<IChannel>;
-    showEditModal: EditedChannels;
-    users: Immutable.List<IUser>;
-    selectedChannelId: string | null;
+    readonly channels: IChannels;
+    readonly visibilityFilter: IVisibilityFilter;
+    readonly showEditModal: EditedChannels;
+    readonly users: Immutable.List<IUser>;
+    readonly selectedChannelId: string | null;
+}
+
+export interface IChannels {
+    readonly allIds: Immutable.List<string>;
+    readonly byId: Immutable.Map<string, IChannel>;
 }

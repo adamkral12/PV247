@@ -1,12 +1,9 @@
 import {connect} from 'react-redux';
 import {IState} from '../../common/IState';
-import {IChannel} from '../../Channels/models/IChannel';
 import {ChannelName, ICHannelNameStateProps} from '../components/ChannelName';
 
 const mapStateToProps = (state: IState): ICHannelNameStateProps => {
-    const channel = state.channelList.channels.find(
-        (i: IChannel) => i.id === state.channelList.selectedChannelId
-    );
+    const channel = state.channelList.selectedChannelId === null ? null : state.channelList.channels.byId.get(state.channelList.selectedChannelId);
     return {
         channelName: channel ? channel.name : null
     };
