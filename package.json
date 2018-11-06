@@ -5,21 +5,17 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.1.3",
-    "immutable": "latest",
-    "prop-types": "latest",
+    "immutable": "^3.8.2",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
-    "react-bootstrap-table-next": "latest",
-    "react-bootstrap-table2-filter": "latest",
-    "react-bootstrap-table2-paginator": "latest",
     "react-dom": "^16.5.2",
     "react-filtered-multiselect": "^0.5.1",
     "react-redux": "^5.0.7",
     "react-select": "^2.1.0",
     "redux": "^4.0.1",
     "uuid": "^3.3.2",
-    "reselect": "latest",
-    "redux-thunk": "latest"
+    "reselect": "^4.0.0",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "webpack-dev-server --mode=development",
