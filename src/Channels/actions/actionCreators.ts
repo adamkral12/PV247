@@ -8,24 +8,26 @@ import {
     CHANNEL_APP_SHOW_CREATE_CHANNEL,
     CHANNEL_APP_SELECT_CHANNEL, CHANNEL_LIST_CHANNEL_CREATE, CHANNEL_APP_SET_VISIBILITY_FILTER
 } from '../constants/actionTypes';
-import { IChannelCustomData } from '../models/IChannelCustomData';
 import {ChannelFilterEnum} from '../constants/ChannelFilterEnum';
+import {IEditedChannelCustomData} from '../models/IEditedChannelCustomData';
 
 export const showCreateChannel = (): Action => ({
   type: CHANNEL_APP_SHOW_CREATE_CHANNEL,
   payload: {},
 });
 
-export const updateChannel = (id: string | null, name: string, customData: IChannelCustomData): Action => ({
+export const updateChannel = (id: string | null, name: string, customData: IEditedChannelCustomData): Action => ({
   type: CHANNEL_LIST_CHANNEL_UPDATE,
   payload: {
-    id,
-    name,
-    customData,
+      channel: {
+          id,
+          name,
+          customData,
+      }
   }
 });
 
-export const addChannel = (name: string, customData: IChannelCustomData): Action => ({
+export const addChannel = (name: string, customData: IEditedChannelCustomData): Action => ({
     type: CHANNEL_LIST_CHANNEL_CREATE,
     payload: {
         channel: {

@@ -6,6 +6,7 @@ import './Header.less';
 import {PureComponent} from 'react';
 import {ChannelNameContainer} from '../containers/ChannelName';
 import {EditUserModalContainer} from '../../Users/containers/EditUserModal';
+import {ChannelPictureContainer} from '../containers/ChannelPicture';
 
 export interface HeaderDispatchProps {
     readonly showEditUserModal: () => void;
@@ -18,9 +19,7 @@ export class Header extends PureComponent<HeaderDispatchProps> {
             <Col xs={12} sm={9} md={9}>
                 <Navbar fluid className="navbar-wrapper">
                     <Navbar.Header>
-                        <Navbar.Brand className="nav-brand">
-                            <a href="#home">PV247</a>
-                        </Navbar.Brand>
+                        <ChannelPictureContainer/>
                         <ChannelNameContainer/>
                         <Navbar.Toggle/>
                     </Navbar.Header>

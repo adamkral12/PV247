@@ -55,14 +55,16 @@
       "id": "1",
       "name": "First channel",
       "customData": {
-        "type": "private"
+        "members": ["wwwwww@mail.muni.cz"],
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxFD7n3h5y3xX7sHwy-pcLfpJTQPsuzFrKKa2G3DvAV9wyUiJQAA"
       }
     },
     {
       "id": "2",
       "name": "Second channel",
       "customData": {
-        "type": "public"
+        "members": ["wwwwww@mail.muni.cz"],
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxFD7n3h5y3xX7sHwy-pcLfpJTQPsuzFrKKa2G3DvAV9wyUiJQAA"
       }
     }
   ],
