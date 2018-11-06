@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import {IMessage} from '../model/IMessage';
 
 const getChannelsMessageIds = memoize((allIds: Immutable.List<Uuid>, byId: Immutable.Map<Uuid, IMessage>, selectedChannelId): Immutable.List<Uuid> => {
-    // @ts-ignore
     return allIds.filter((id: Uuid) => byId.get(id).channelId === selectedChannelId).toList();
     });
 

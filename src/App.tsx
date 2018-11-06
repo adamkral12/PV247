@@ -27,7 +27,6 @@ const initialState: IState = {
     messageApp: {
         messages: {
             allIds: Immutable.List<Uuid>(CHANNEL_MESSAGES_DATA.map((item: IMessage) => item.id)),
-            // @ts-ignore
             byId: Immutable.Map(CHANNEL_MESSAGES_DATA.map((item: IMessage) => [item.id, item])),
         },
         user: USER_DATA,
