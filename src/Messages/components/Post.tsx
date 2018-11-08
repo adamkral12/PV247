@@ -37,12 +37,6 @@ export class Post extends React.PureComponent<IProps, IState> {
         super(props);
     }
 
-    /*
-    private delete = () => {
-        alert("del");
-        this.props.deleteMessage(this.props.id);
-    }*/
-
     render() {
         return (
             <div>
@@ -68,16 +62,22 @@ export class Post extends React.PureComponent<IProps, IState> {
                                 </Col>
                                 <Col xs={2}>
                                     <ButtonGroup>
-                                        <Button
-                                            onClick={this.props.onUpvote}>
-                                            <Glyphicon glyph="thumbs-up"
-                                            />
-                                        </Button>
-                                        <Button
-                                            onClick={this.props.onDownvote}>
-                                            <Glyphicon glyph="thumbs-down"
-                                            />
-                                        </Button>
+                                        {(this.props.user.email !== this.props.message.createdBy)
+                                            ?
+                                            <div>
+                                                <Button
+                                                    onClick={this.props.onUpvote}>
+                                                    <Glyphicon glyph="thumbs-up"
+                                                    />
+                                                </Button>
+                                                <Button
+                                                    onClick={this.props.onDownvote}>
+                                                    <Glyphicon glyph="thumbs-down"
+                                                    />
+                                                </Button>
+                                            </div>
+                                            : null
+                                        }
                                         {(this.props.user.email === this.props.message.createdBy)
                                             ?
                                             <Button

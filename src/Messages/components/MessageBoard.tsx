@@ -30,3 +30,4 @@ export class MessageBoard extends React.PureComponent<IMessageBoardStateProps> {
     );
   }
 }
+

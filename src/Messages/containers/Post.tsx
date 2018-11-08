@@ -6,7 +6,6 @@ import {IPostDispatchProps, IPostOwnProps, IPostStateProps, Post} from '../compo
 
 const mapStateToProps = (state: IState, ownProps: IPostOwnProps): IPostStateProps => {
     return {
-        // @ts-ignore
         message: state.messageApp.messages.byId.get(ownProps.id),
         user: state.messageApp.user
     };
