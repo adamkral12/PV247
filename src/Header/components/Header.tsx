@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {
-  Glyphicon, MenuItem, Nav, Navbar, NavDropdown, NavItem, Col
+  Glyphicon, Nav, Navbar, NavItem, Col
 } from 'react-bootstrap';
 import './Header.less';
 import {PureComponent} from 'react';
 import {ChannelNameContainer} from '../containers/ChannelName';
 import {EditUserModalContainer} from '../../Users/containers/EditUserModal';
 import {ChannelPictureContainer} from '../containers/ChannelPicture';
+import {ToggleChannelListContainer} from '../../Channels/containers/ToggleChannelList';
 
 export interface HeaderDispatchProps {
     readonly showEditUserModal: () => void;
@@ -29,12 +30,6 @@ export class Header extends PureComponent<HeaderDispatchProps> {
                             <NavItem eventKey={2} href="#">
                                 Members
                             </NavItem>
-                            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                                <MenuItem eventKey={1.1}>Change name</MenuItem>
-                                <MenuItem eventKey={1.2}>Invite member</MenuItem>
-                                <MenuItem divider/>
-                                <MenuItem eventKey={1.3}>Delete</MenuItem>
-                            </NavDropdown>
                         </Nav>
                         <Nav pullRight>
                             <NavItem

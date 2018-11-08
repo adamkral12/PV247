@@ -8,10 +8,7 @@ export interface IMessageBoardStateProps {
     readonly messageIds: Immutable.List<Uuid>;
     readonly user: IUser;
 }
-//
-// export interface IMessageBoardDispatchProps {
-//
-// }
+
 export class MessageBoard extends React.PureComponent<IMessageBoardStateProps> {
     render() {
         return (

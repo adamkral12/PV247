@@ -6,7 +6,7 @@ import {
     CHANNEL_APP_SHOW_EDIT_CHANNEL,
     CHANNEL_APP_HIDE_EDIT_CHANNEL,
     CHANNEL_APP_SHOW_CREATE_CHANNEL,
-    CHANNEL_APP_SELECT_CHANNEL, CHANNEL_LIST_CHANNEL_CREATE, CHANNEL_APP_SET_VISIBILITY_FILTER
+    CHANNEL_APP_SELECT_CHANNEL, CHANNEL_LIST_CHANNEL_CREATE, CHANNEL_APP_SET_VISIBILITY_FILTER, CHANNEL_LIST_SHOW_LIST, CHANNEL_LIST_HIDE_LIST
 } from '../constants/actionTypes';
 import {ChannelFilterEnum} from '../constants/ChannelFilterEnum';
 import {IEditedChannelCustomData} from '../models/IEditedChannelCustomData';
@@ -70,4 +70,13 @@ export const setVisibilityFilter = (filter: ChannelFilterEnum, text: string): Ac
         filter,
         text,
     }
+});
+
+
+export const showChannelList = (): Action => ({
+    type: CHANNEL_LIST_SHOW_LIST,
+});
+
+export const hideChannelList = (): Action => ({
+    type: CHANNEL_LIST_HIDE_LIST,
 });
