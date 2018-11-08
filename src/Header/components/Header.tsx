@@ -16,9 +16,10 @@ export class Header extends PureComponent<HeaderDispatchProps> {
     render() {
         const {showEditUserModal} = this.props;
         return (
-            <Col xs={12} sm={9} md={9}>
+            <Col xs={12} sm={9} md={9} className="header-wrapper">
                 <Navbar fluid className="navbar-wrapper">
                     <Navbar.Header>
+                        <ToggleChannelListContainer/>
                         <ChannelPictureContainer/>
                         <ChannelNameContainer/>
                         <Navbar.Toggle/>
