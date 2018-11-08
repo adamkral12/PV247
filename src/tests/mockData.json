@@ -70,55 +70,60 @@
   "channelMessages": [
     {
       "id": "1",
+      "channelId": "1",
       "value": "this is message 1 ",
       "createdAt": "2018-10-12T13:05:10.315Z",
-      "createdBy": "adam",
+      "createdBy": "433328@mail.muni.cz",
       "updatedAt": "2018-10-12T13:05:10.315Z",
-      "updatedBy": "adam",
+      "updatedBy": "433328@mail.muni.cz",
       "customData": {
         "votes": 2
       }
     },
     {
       "id": "2",
+      "channelId": "1",
       "value": "second message",
       "createdAt": "2018-10-12T13:05:10.315Z",
-      "createdBy": "adam",
+      "createdBy": "433328@mail.muni.cz",
       "updatedAt": "2018-10-12T13:05:10.315Z",
-      "updatedBy": "adam",
+      "updatedBy": "433328@mail.muni.cz",
       "customData": {
         "votes": 3
       }
     },
     {
       "id": "3",
+      "channelId": "1",
       "value": "thrid message",
       "createdAt": "2018-10-12T13:05:10.315Z",
-      "createdBy": "jozko",
+      "createdBy": "433733@mail.muni.cz",
       "updatedAt": "2018-10-12T13:05:10.315Z",
-      "updatedBy": "adam",
+      "updatedBy": "433328@mail.muni.cz",
       "customData": {
         "votes": 4
       }
     },
     {
       "id": "4",
+      "channelId": "1",
       "value": "fourth message",
       "createdAt": "2018-10-12T13:05:10.315Z",
-      "createdBy": "adam",
+      "createdBy": "433328@mail.muni.cz",
       "updatedAt": "2018-10-12T13:05:10.315Z",
-      "updatedBy": "adam",
+      "updatedBy": "433328@mail.muni.cz",
       "customData": {
         "votes": 1
       }
     },
     {
       "id": "5",
+      "channelId": "2",
       "value": "fifth 4",
       "createdAt": "2018-10-12T13:05:10.315Z",
-      "createdBy": "adam",
+      "createdBy": "zzzzzz8@mail.muni.cz",
       "updatedAt": "2018-10-12T13:05:10.315Z",
-      "updatedBy": "adam",
+      "updatedBy": "zzzzzz8@mail.muni.cz",
       "customData": {
         "votes": 5
       }
