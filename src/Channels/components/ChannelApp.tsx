@@ -12,11 +12,13 @@ import {ChannelSectionContainer} from '../containers/ChannelSection';
 export interface IChannelAppStateProps {
     readonly editedChannels: EditedChannels;
     readonly users: Immutable.List<IUser>;
+    readonly showListOnMobile: boolean;
 }
 
 export interface IChannelAppDispatchProps {
     readonly onAddChannel: () => void;
     readonly loadChannels: () => void;
+    readonly onHideChannelListMobile: () => void;
 }
 
 export class ChannelApp extends React.PureComponent<IChannelAppStateProps & IChannelAppDispatchProps> {
@@ -25,8 +27,9 @@ export class ChannelApp extends React.PureComponent<IChannelAppStateProps & ICha
     }
 
     render() {
+        const channelWrapperClass = 'channel-wrapper ' + (this.props.showListOnMobile ? 'show-mobile' : '');
         return(
-            <Col xs={3} className="channel-wrapper">
+            <Col xs={3} className={channelWrapperClass}>
                 <Panel className="dark-back">
                     <Panel.Body className="dark-back">
                         <ChannelSectionContainer/>
