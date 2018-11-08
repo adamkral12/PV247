@@ -1,6 +1,6 @@
-import * as Immutable from "immutable";
-import {IMessage} from "./IMessage";
-import {IUser} from "../../Channels/models/IUser";
+import * as Immutable from 'immutable';
+import {IMessage} from './IMessage';
+import {IUser} from '../../Channels/models/IUser';
 
 export interface IMessageApp {
     messages: IMessages;
