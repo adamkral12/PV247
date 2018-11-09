@@ -14,8 +14,8 @@ const mapStateToProps = (state: IState, ownProps: IPostOwnProps): IPostStateProp
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: IPostOwnProps): IPostDispatchProps => {
     return {
         delete: () => dispatch(deleteMessage(ownProps.id)),
-        onUpvote: () =>  dispatch(upvoteMessage(ownProps.id)),
-        onDownvote: () =>  dispatch(downvoteMessage(ownProps.id))
+        upvote: () =>  dispatch(upvoteMessage(ownProps.id)),
+        downvote: () =>  dispatch(downvoteMessage(ownProps.id))
     };
 };
 export const PostContainer = connect<IPostStateProps, IPostDispatchProps, IPostOwnProps>(mapStateToProps, mapDispatchToProps)(Post);
