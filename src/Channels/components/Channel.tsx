@@ -16,11 +16,13 @@ export interface IChannelStateProps {
 export interface IChannelDispatchProps {
     showEditChannel: (id: string) => void;
     selectChannel: (id: string) => void;
+    hideChannelList: () => void;
 }
 
 export class Channel extends React.PureComponent<IChannelOwnProps & IChannelStateProps & IChannelDispatchProps> {
     private onSelect = () => {
         this.props.selectChannel(this.props.id);
+        this.props.hideChannelList();
     };
 
     private showEditChannel = (event: React.ChangeEvent<HTMLBaseElement>) => {

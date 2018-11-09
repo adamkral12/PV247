@@ -10,7 +10,6 @@ export interface IMessageBoardStateProps {
     readonly user: IUser;
 }
 
-
 export class MessageBoard extends React.PureComponent<IMessageBoardStateProps> {
     render() {
         return (

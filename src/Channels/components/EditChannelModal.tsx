@@ -6,6 +6,7 @@ import {IUser} from '../models/IUser';
 import * as Immutable from 'immutable';
 import Select from 'react-select';
 import {IEditedChannelCustomData} from '../models/IEditedChannelCustomData';
+import {Col, Image} from 'react-bootstrap';
 
 export interface IEditChannelModalOwnProps {
     id: string | null;
@@ -32,6 +33,7 @@ interface IState {
     }>;
     readonly channelName: string;
     readonly show: boolean;
+    readonly picture: string;
 }
 
 type IProps = IEditChannelModalStateProps & IEditChannelModalOwnProps & IEditChannelModalDispatchProps;
@@ -43,6 +45,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
             invitedUsers: [],
             channelName: props.channel ? props.channel.name : '',
             show: props.show,
+            picture: props.channel ? props.channel.customData.picture : '',
         };
     }
 
@@ -51,7 +54,8 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
         this.props.editChannel(this.state.channelName, {
             invitedUsers: this.state.invitedUsers.map((user) => {
                 return user.value;
-            })
+            }),
+            image: this.state.picture,
         });
         this.props.hideEditChannel();
     };
@@ -61,7 +65,8 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
         this.props.addChannel(this.state.channelName, {
             invitedUsers: this.state.invitedUsers.map((user) => {
                 return user.value;
-            })
+            }),
+            image: this.state.picture
         });
         this.props.hideEditChannel();
     };
@@ -79,6 +84,22 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
         event.preventDefault();
         this.props.deleteChannel();
         this.props.hideEditChannel();
+    };
+
+    private handlePictureChange = (e) => {
+        e.preventDefault();
+
+        const reader = new FileReader();
+        const file = e.target.files[0];
+
+        reader.onloadend = () => {
+            const picture = reader.result;
+            if (typeof picture === 'string') {
+                this.setState(_ => ({picture}));
+            }
+        };
+
+        reader.readAsDataURL(file);
     };
 
     render() {
@@ -121,6 +142,19 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
                             value={this.state.invitedUsers}
                         />
 
+                    </Modal.Body>
+                    <Modal.Header closeButton={false}>
+                        <Modal.Title>Change channel picture</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Col xs={6}>
+                            {this.state.picture && <Image src={this.state.picture} circle responsive/>}
+                        </Col>
+                        <FormControl
+                            type="file"
+                            placeholder="change profile picture"
+                            onChange={this.handlePictureChange}
+                        />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button bsStyle="success"
