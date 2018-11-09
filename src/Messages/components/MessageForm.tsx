@@ -35,6 +35,9 @@ export class MessageForm extends React.PureComponent<IMessageFormStateProps & IM
     }
 
     private create = () => {
+        if (this.state.message === '') {
+            return;
+        }
         this.props.createMessage({
             id: uuid(),
             value: this.state.message,

@@ -24,7 +24,10 @@ const byId = (prevState = Immutable.Map<Uuid, IMessage>(), action: Action): Immu
             return prevState.set(id, {...oldTodo, customData: {votes: oldTodo.customData.votes - 1}});
         }
 
-
+        case MESSAGE_APP_DELETE_MESSAGE: {
+            const { id } = action.payload;
+            return prevState.remove(id);
+        }
 
 
         default:
