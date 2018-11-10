@@ -7,7 +7,7 @@ import {IPostDispatchProps, IPostOwnProps, IPostStateProps, Post} from '../compo
 const mapStateToProps = (state: IState, ownProps: IPostOwnProps): IPostStateProps => {
     return {
         message: state.messageApp.messages.byId.get(ownProps.id),
-        user: state.messageApp.user
+        user: state.userApp.user
     };
 };
 
