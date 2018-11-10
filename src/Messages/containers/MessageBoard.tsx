@@ -12,7 +12,7 @@ const getChannelsMessageIds = memoize((allIds: Immutable.List<Uuid>, byId: Immut
 const mapStateToProps = (state: IState): IMessageBoardStateProps => {
     return {
         messageIds: getChannelsMessageIds(state.messageApp.messages.allIds, state.messageApp.messages.byId, state.channelList.selectedChannelId),
-        user: state.userApp.user
+        user: state.userApp.users.byId.get(state.userApp.userEmail)
     };
 };
 

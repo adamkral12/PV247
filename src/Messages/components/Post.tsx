@@ -22,6 +22,7 @@ export interface IPostDispatchProps {
 export interface IPostStateProps {
     readonly message: IMessage;
     readonly user: IUser;
+    readonly author: IUser;
 
 }
 
@@ -45,13 +46,13 @@ export class Post extends React.PureComponent<IProps, IState> {
                         <Image
                             className="image"
                             circle
-                            src={this.props.user.customData.profilePicture}
+                            src={this.props.author.customData.profilePicture}
                         />
                     </Col>
                     <Col xs={10} sm={11} className="vertAlCenter">
                         <Panel className="panel">
                             <Panel.Heading>
-                                {this.props.message.createdBy}
+                                {this.props.author.customData.displayName}
                             </Panel.Heading>
                             <Panel.Body>
                                 <Col xs={8}>

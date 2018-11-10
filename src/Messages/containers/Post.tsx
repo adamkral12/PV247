@@ -5,9 +5,11 @@ import {deleteMessage, downvoteMessage, upvoteMessage} from '../actionCreators/a
 import {IPostDispatchProps, IPostOwnProps, IPostStateProps, Post} from '../components/Post';
 
 const mapStateToProps = (state: IState, ownProps: IPostOwnProps): IPostStateProps => {
+    const message = state.messageApp.messages.byId.get(ownProps.id);
     return {
-        message: state.messageApp.messages.byId.get(ownProps.id),
-        user: state.userApp.user
+        message,
+        user: state.userApp.users.byId.get((state.userApp.userEmail)),
+        author: state.userApp.users.byId.get(message.createdBy)
     };
 };
 

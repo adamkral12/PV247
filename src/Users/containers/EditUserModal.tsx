@@ -6,15 +6,15 @@ import {hideEditUser, editUser} from '../actions/actionCreators';
 
 const mapStateToProps = (state: IState): EditUserModalStateProps => {
     return {
-        user: state.userApp.user,
-        show: state.userApp.showEditModal,
+        user: state.userApp.users.byId.get(state.userApp.userEmail),
+        show: state.userApp.showEditUserModal,
     };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): EditUserModalDispatchProps => {
     return {
         hideEditUserModal: () => dispatch(hideEditUser()),
-        editUser: (profilePicture, displayName) =>  dispatch(editUser(profilePicture, displayName))
+        editUser: (email, profilePicture, displayName) =>  dispatch(editUser(email, profilePicture, displayName))
 
     };
 };

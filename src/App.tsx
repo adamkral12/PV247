@@ -41,8 +41,12 @@ const initialState: IState = {
         },
     },
     userApp: {
-      user: USER_DATA,
-        showEditModal: false,
+      userEmail: USER_DATA.email,
+        showEditUserModal: false,
+        users: {
+            allIds: Immutable.List<Uuid>(USERS_DATA.map((item: IUser) => item.email)),
+            byId: Immutable.Map(USERS_DATA.map((item: IUser) => [item.email, item])),
+        },
     }
 };
 

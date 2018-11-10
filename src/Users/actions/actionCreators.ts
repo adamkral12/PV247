@@ -14,9 +14,10 @@ export const hideEditUser = (): Action => ({
     }
 });
 
-export const editUser = (profilePicture: string, displayName: string): Action => ({
+export const editUser = (email: string, profilePicture: string, displayName: string): Action => ({
     type: USER_APP_EDIT_USER,
     payload: {
+        email,
         profilePicture,
         displayName,
         show: false

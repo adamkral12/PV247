@@ -4,6 +4,7 @@ import {
 } from 'react-bootstrap';
 import {IUser} from '../../Channels/models/IUser';
 
+
 export interface EditUserModalStateProps {
     readonly user: IUser;
     readonly show: boolean;
@@ -11,7 +12,7 @@ export interface EditUserModalStateProps {
 
 export interface EditUserModalDispatchProps {
     readonly hideEditUserModal: () => void;
-    readonly editUser: (profilePicture, displayName) => void;
+    readonly editUser: (email, profilePicture, displayName) => void;
 }
 
 interface IState {
@@ -35,7 +36,8 @@ export class EditUserModal extends React.PureComponent<EditUserModalStateProps &
     };
 
     private edit = () => {
-        this.props.editUser(this.state.profilePicture, this.state.displayName);
+        this.props.editUser(this.props.user.email, this.state.profilePicture, this.state.displayName);
+        this.props.hideEditUserModal();
     };
 
     private handleProfilePictureChange = (e) => {
