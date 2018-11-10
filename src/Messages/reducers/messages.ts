@@ -1,6 +1,6 @@
 import {IMessage} from '../model/IMessage';
 import * as Immutable from 'immutable';
-import {MESSAGE_APP_DOWNVOTE_MESSAGE, MESSAGE_APP_UPVOTE_MESSAGE, MESSAGE_APP_DELETE_MESSAGE, MESSAGE_APP_CREATE_MESSAGE} from '../constants/actionTypes';
+import {MESSAGE_APP_DOWNVOTE_MESSAGE, MESSAGE_APP_UPVOTE_MESSAGE, MESSAGE_APP_DELETE_MESSAGE, MESSAGE_APP_CREATE_MESSAGE, MESSAGE_APP_EDIT_MESSAGE} from '../constants/actionTypes';
 import {IMessages} from '../model/IMessageApp';
 import {combineReducers} from 'redux';
 
@@ -29,6 +29,11 @@ const byId = (prevState = Immutable.Map<Uuid, IMessage>(), action: Action): Immu
             return prevState.remove(id);
         }
 
+        case MESSAGE_APP_EDIT_MESSAGE: {
+            const { id, value } = action.payload;
+            const oldMessage = prevState.get(id);
+            return prevState.set(id, {...oldMessage, value});
+        }
 
         default:
             return prevState;
