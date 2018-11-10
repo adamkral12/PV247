@@ -10,6 +10,7 @@ export interface IChannelList {
     readonly showEditModal: EditedChannels;
     readonly users: Immutable.List<IUser>;
     readonly selectedChannelId: string;
+    readonly showChannelList: boolean;
 }
 
 export interface IChannels {

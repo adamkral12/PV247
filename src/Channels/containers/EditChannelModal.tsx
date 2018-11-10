@@ -26,4 +26,9 @@ const mapDispatchToProps = (dispatch: Dispatch, ownProps: IEditChannelModalOwnPr
     };
 };
 
-export const EditChannelModalContainer = connect<IEditChannelModalStateProps, IEditChannelModalDispatchProps, IEditChannelModalOwnProps>(mapStateToProps, mapDispatchToProps)(EditChannelModal);
+export const EditChannelModalContainer = connect<IEditChannelModalStateProps, IEditChannelModalDispatchProps, IEditChannelModalOwnProps>
+(
+    mapStateToProps,
+    mapDispatchToProps
+)
+(EditChannelModal);

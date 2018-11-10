@@ -32,6 +32,7 @@ const initialState: IState = {
           showEditChannelModal: false
       },
       selectedChannelId: '1',
+      showChannelList: false,
   },
     messageApp: {
         messages: {
