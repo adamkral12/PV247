@@ -7,7 +7,7 @@ export interface IMessage {
     // TODO: special format for dateTime?
     readonly createdAt: string;
     readonly createdBy: string;
-    readonly updatedAt: string;
-    readonly updatedBy: string;
+    readonly updatedAt: string | null;
+    readonly updatedBy: string | null;
     readonly customData: IMessageCustomData;
 }

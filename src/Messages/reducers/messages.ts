@@ -7,6 +7,7 @@ import {combineReducers} from 'redux';
 const byId = (prevState = Immutable.Map<Uuid, IMessage>(), action: Action): Immutable.Map<Uuid, IMessage> => {
     switch (action.type) {
         case MESSAGE_APP_CREATE_MESSAGE: {
+            console.log(action.payload);
             return prevState.set(action.payload.message.id, action.payload.message);
         }
 

@@ -9,7 +9,7 @@ export interface IChannelList {
     readonly visibilityFilter: IVisibilityFilter;
     readonly showEditModal: EditedChannels;
     readonly users: Immutable.List<IUser>;
-    readonly selectedChannelId: string | null;
+    readonly selectedChannelId: string;
 }
 
 export interface IChannels {

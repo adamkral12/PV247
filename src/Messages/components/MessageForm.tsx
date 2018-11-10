@@ -3,8 +3,6 @@ import './MessageBoard.css';
 import {
     FormControl, Button
 } from 'react-bootstrap';
-import {IUser} from '../../Channels/models/IUser';
-import * as uuid from 'uuid';
 
 
 interface IState {
@@ -12,12 +10,11 @@ interface IState {
 }
 
 export interface IMessageFormStateProps {
-    readonly channelId: string | null;
-    readonly user: IUser;
+    readonly channelId: string;
 }
 
 export interface IMessageFormDispatchProps {
-    readonly createMessage: (IMessage) => void;
+    readonly createMessage: (channelId: Uuid, message: string) => void;
 }
 
 export class MessageForm extends React.PureComponent<IMessageFormStateProps & IMessageFormDispatchProps, IState> {
@@ -38,14 +35,7 @@ export class MessageForm extends React.PureComponent<IMessageFormStateProps & IM
         if (this.state.message === '') {
             return;
         }
-        this.props.createMessage({
-            id: uuid(),
-            value: this.state.message,
-            channelId: this.props.channelId,
-            createdBy: this.props.user.email,
-            updatedBy: this.props.user.email,
-            customData: { votes: 0}
-        });
+        this.props.createMessage(this.props.channelId, this.state.message);
         this.setState(_ => ({message: ''}));
     };
 
