@@ -1,5 +1,6 @@
-// TODO: specify the properties of customData when known
+import * as Immutable from 'immutable';
+
 export interface IChannelCustomData {
-    readonly members: Array<string>;
+    readonly members: Immutable.Set<string>;
     readonly image: string;
 }
