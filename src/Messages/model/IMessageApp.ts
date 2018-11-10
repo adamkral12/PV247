@@ -3,6 +3,7 @@ import {IMessage} from './IMessage';
 
 export interface IMessageApp {
     readonly messages: IMessages;
+    readonly editedMessageId: Uuid | null;
 }
 
 export interface IMessages {
