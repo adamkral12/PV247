@@ -14,8 +14,8 @@ export interface IPostOwnProps {
 
 export interface IPostDispatchProps {
     readonly delete: () => void;
-    readonly onUpvote: () => void;
-    readonly onDownvote: () => void;
+    readonly upvote: () => void;
+    readonly downvote: () => void;
 
 }
 
@@ -66,12 +66,12 @@ export class Post extends React.PureComponent<IProps, IState> {
                                             ?
                                             <div>
                                                 <Button
-                                                    onClick={this.props.onUpvote}>
+                                                    onClick={this.props.upvote}>
                                                     <Glyphicon glyph="thumbs-up"
                                                     />
                                                 </Button>
                                                 <Button
-                                                    onClick={this.props.onDownvote}>
+                                                    onClick={this.props.downvote}>
                                                     <Glyphicon glyph="thumbs-down"
                                                     />
                                                 </Button>

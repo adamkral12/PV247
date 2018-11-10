@@ -7,15 +7,15 @@ import {IPostDispatchProps, IPostOwnProps, IPostStateProps, Post} from '../compo
 const mapStateToProps = (state: IState, ownProps: IPostOwnProps): IPostStateProps => {
     return {
         message: state.messageApp.messages.byId.get(ownProps.id),
-        user: state.userApp.user,
+        user: state.userApp.user
     };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: IPostOwnProps): IPostDispatchProps => {
     return {
         delete: () => dispatch(deleteMessage(ownProps.id)),
-        onUpvote: () =>  dispatch(upvoteMessage(ownProps.id)),
-        onDownvote: () =>  dispatch(downvoteMessage(ownProps.id))
+        upvote: () =>  dispatch(upvoteMessage(ownProps.id)),
+        downvote: () =>  dispatch(downvoteMessage(ownProps.id))
     };
 };
 export const PostContainer = connect<IPostStateProps, IPostDispatchProps, IPostOwnProps>(mapStateToProps, mapDispatchToProps)(Post);

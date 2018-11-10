@@ -3,6 +3,7 @@ import './MessageBoard.css';
 import {IUser} from '../../Channels/models/IUser';
 import * as Immutable from 'immutable';
 import {PostContainer} from '../containers/Post';
+import {MessageFormContainer} from '../containers/MessageForm';
 
 export interface IMessageBoardStateProps {
     readonly messageIds: Immutable.List<Uuid>;
@@ -23,6 +24,7 @@ export class MessageBoard extends React.PureComponent<IMessageBoardStateProps> {
                     ))
                     }
                 </div>
+                <MessageFormContainer/>
             </div>
     );
   }

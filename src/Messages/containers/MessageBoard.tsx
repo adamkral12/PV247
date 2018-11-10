@@ -16,4 +16,5 @@ const mapStateToProps = (state: IState): IMessageBoardStateProps => {
     };
 };
 
+
 export const MessageBoardContainer = connect<IMessageBoardStateProps>(mapStateToProps)(MessageBoard);
