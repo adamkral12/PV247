@@ -22,4 +22,4 @@ const mapDispatchToProps = (dispatch: Dispatch, ownProps: IPostOwnProps): IPostD
         cancelEditing: () => dispatch(cancelEditingMessage(ownProps.id)),
     };
 };
-export const PostContainer = connect<IPostStateProps, IPostDispatchProps, IPostOwnProps>(mapStateToProps, mapDispatchToProps)(Message);
+export const MessageContainer = connect<IPostStateProps, IPostDispatchProps, IPostOwnProps>(mapStateToProps, mapDispatchToProps)(Message);

@@ -2,7 +2,7 @@ import * as React from 'react';
 import './MessageBoard.css';
 import {IUser} from '../../Channels/models/IUser';
 import * as Immutable from 'immutable';
-import {PostContainer} from '../containers/Post';
+import {MessageContainer} from '../containers/Message';
 import {MessageFormContainer} from '../containers/MessageForm';
 
 export interface IMessageBoardStateProps {
@@ -16,7 +16,7 @@ export class MessageBoard extends React.PureComponent<IMessageBoardStateProps> {
             <div>
                 <div className="postWrapper">
                     {this.props.messageIds.map((id: Uuid, index: number) => (
-                        <PostContainer
+                        <MessageContainer
                             key={id}
                             id={id}
                             index={index + 1}
