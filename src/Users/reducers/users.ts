@@ -18,7 +18,7 @@ const byId = (prevState = Immutable.Map<string, IUser>(), action: Action): Immut
             const user: IUser = {email: action.payload.email, customData: {profilePicture: action.payload.profilePicture,
                         displayName: action.payload.displayName }};
 
-            return prevState.set(action.payload.id, { ...user });
+            return prevState.set(action.payload.email, { ...user });
         }
 
         default:
