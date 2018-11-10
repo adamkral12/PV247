@@ -62,21 +62,12 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
 
     private addChannel = (event: React.FormEvent) => {
         event.preventDefault();
-        if (this.state.picture) {
-            this.props.addChannel(this.state.channelName, {
-                invitedUsers: Immutable.Set(this.state.invitedUsers.map((user) => {
-                    return user.value;
-                })),
-                image: this.state.picture
-            });
-        } else {
-            this.props.addChannel(this.state.channelName, {
-                invitedUsers: Immutable.Set(this.state.invitedUsers.map((user) => {
-                    return user.value;
-                })),
-                image: this.state.picture ? this.state.picture : this.props.channel && this.props.channel.customData.image,
-            });
-        }
+        this.props.addChannel(this.state.channelName, {
+            invitedUsers: Immutable.Set(this.state.invitedUsers.map((user) => {
+                return user.value;
+            })),
+            image: this.state.picture ? this.state.picture : this.props.channel && this.props.channel.customData.image,
+        });
         this.props.hideEditChannel();
     };
 
