@@ -25,15 +25,35 @@ const byId = (prevState = Immutable.Map<string, IChannel>(), action: Action): Im
     switch (action.type) {
         case CHANNEL_APP_LOADING_SUCCESS:
         case CHANNEL_LIST_CHANNEL_REMOVE:
-            return Immutable.Map(action.payload.channels.map((channel: IChannel) => [channel.id, channel]));
-
+            console.log( Immutable.Map(action.payload.channels.map((channel: IChannel) => [channel.id, channel])));
+            return Immutable.Map(action.payload.channels.map((channel: IChannel) => [channel.id, {
+                ...channel, customData: {...channel.customData, members: Immutable.Set(channel.customData.members) }
+            }]));
         case CHANNEL_LIST_CHANNEL_CREATE:
             return prevState.set(action.payload.channel.id, action.payload.channel);
 
         case CHANNEL_LIST_CHANNEL_UPDATE: {
             const { channel } = action.payload;
-
-            return prevState.set(channel.id, { ...channel });
+            // const oldChannel = prevState.get(channel.id);
+            return prevState.set(channel.id, {...channel });
+            // console.log(channel);
+            // if (channel.customData.image) {
+            //     console.log("image");
+            //     return prevState.set(channel.id, {
+            //         ...oldChannel, customData: {...oldChannel.customData, image: channel.customData.image}
+            //     });
+            //
+            //     // console.log(prevState.get(channel.id));
+            // }
+            //
+            // const members = oldChannel.customData.members.union(action.payload.channel.customData.invitedUsers);
+            //
+            // const picovina = prevState.set(channel.id, {
+            //     ...oldChannel, customData: {...oldChannel.customData, members }
+            // });
+            //
+            // console.log(picovina);
+            // return prevState;
         }
 
         default:

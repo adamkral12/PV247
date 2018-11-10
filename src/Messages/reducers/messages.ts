@@ -12,16 +12,16 @@ const byId = (prevState = Immutable.Map<Uuid, IMessage>(), action: Action): Immu
 
         case MESSAGE_APP_UPVOTE_MESSAGE: {
             const { id } = action.payload;
-            const oldTodo = prevState.get(id);
+            const oldMessage = prevState.get(id);
 
-            return prevState.set(id, { ...oldTodo, customData: { votes: oldTodo.customData.votes + 1 }});
+            return prevState.set(id, { ...oldMessage, customData: { votes: oldMessage.customData.votes + 1 }});
         }
 
         case MESSAGE_APP_DOWNVOTE_MESSAGE: {
             const {id} = action.payload;
-            const oldTodo = prevState.get(id);
+            const oldMessage = prevState.get(id);
 
-            return prevState.set(id, {...oldTodo, customData: {votes: oldTodo.customData.votes - 1}});
+            return prevState.set(id, {...oldMessage, customData: {votes: oldMessage.customData.votes - 1}});
         }
 
         case MESSAGE_APP_DELETE_MESSAGE: {
@@ -43,9 +43,7 @@ const allIds = (prevState = Immutable.List<Uuid>(), action: Action): Immutable.L
 
         case MESSAGE_APP_DELETE_MESSAGE:
             const index = prevState.indexOf(action.payload.id);
-            const newList = prevState.delete(index);
-            return newList;
-
+            return prevState.delete(index);
         default:
             return prevState;
     }
