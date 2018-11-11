@@ -1,4 +1,12 @@
-import {MESSAGE_APP_CREATE_MESSAGE, MESSAGE_APP_DELETE_MESSAGE, MESSAGE_APP_UPVOTE_MESSAGE, MESSAGE_APP_DOWNVOTE_MESSAGE} from '../constants/actionTypes';
+import {
+    MESSAGE_APP_CREATE_MESSAGE,
+    MESSAGE_APP_DELETE_MESSAGE,
+    MESSAGE_APP_UPVOTE_MESSAGE,
+    MESSAGE_APP_DOWNVOTE_MESSAGE,
+    MESSAGE_APP_EDIT_MESSAGE,
+    MESSAGE_APP_START_EDITING_MESSAGE,
+    MESSAGE_APP_CANCEL_EDITING_MESSAGE
+} from '../constants/actionTypes';
 import {IMessage} from '../model/IMessage';
 import {Dispatch} from 'redux';
 import {IState} from '../../common/IState';
@@ -46,5 +54,27 @@ export const downvoteMessage = (id: Uuid): Action => ({
     type: MESSAGE_APP_DOWNVOTE_MESSAGE,
     payload: {
         id
+    }
+});
+
+export const editMessage = (value: string, id: Uuid): Action => ({
+    type: MESSAGE_APP_EDIT_MESSAGE,
+    payload: {
+        id,
+        value,
+    }
+});
+
+export const startEditingMessage = (id: Uuid): Action => ({
+    type: MESSAGE_APP_START_EDITING_MESSAGE,
+    payload: {
+        id,
+    }
+});
+
+export const cancelEditingMessage = (id: Uuid): Action => ({
+    type: MESSAGE_APP_CANCEL_EDITING_MESSAGE,
+    payload: {
+        id,
     }
 });

@@ -1,4 +1,6 @@
+import * as Immutable from 'immutable';
+
 export interface IEditedChannelCustomData {
-    readonly invitedUsers: Array<string>;
-    readonly image: string;
+    readonly invitedUsers: Immutable.Set<string>;
+    readonly image: string | null;
 }
