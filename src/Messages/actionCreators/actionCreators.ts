@@ -21,7 +21,7 @@ export const createMessage = (message: IMessage): Action => ({
 
 export const createMessageStarted = (channelId: Uuid, message: string): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        const createdBy = getState().userApp.user.email;
+        const createdBy = getState().userApp.userEmail;
         dispatch(createMessage({
             id: uuid(),
             channelId,

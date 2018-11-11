@@ -5,9 +5,11 @@ import {cancelEditingMessage, deleteMessage, downvoteMessage, editMessage, start
 import {IPostDispatchProps, IPostOwnProps, IPostStateProps, Message} from '../components/Message';
 
 const mapStateToProps = (state: IState, ownProps: IPostOwnProps): IPostStateProps => {
+    const message = state.messageApp.messages.byId.get(ownProps.id);
     return {
-        message: state.messageApp.messages.byId.get(ownProps.id),
-        user: state.userApp.user,
+        message,
+        user: state.userApp.users.byId.get((state.userApp.userEmail)),
+        author: state.userApp.users.byId.get(message.createdBy),
         isBeingEdited: state.messageApp.editedMessageId === ownProps.id,
     };
 };
