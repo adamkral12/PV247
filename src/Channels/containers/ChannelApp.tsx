@@ -8,7 +8,6 @@ import {loadChannels} from '../actions/loadChannels';
 const mapStateToProps = (state: IState): IChannelAppStateProps => {
     return {
         editedChannels: state.channelList.showEditModal,
-        //users: state.channelList.users,
         users: state.userApp.users.byId.toList(),
         showListOnMobile: state.channelList.showChannelList,
     };

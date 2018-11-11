@@ -6,4 +6,4 @@ export const userApp = (prevState = {} as IUserApp, action: Action): IUserApp =>
     userEmail: prevState.userEmail,
     users: users(prevState.users, action),
     showEditUserModal: showEditUserModal(prevState.showEditUserModal, action)
-})
+});
