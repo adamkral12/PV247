@@ -7,7 +7,7 @@ import {IVisibilityFilter} from './IVisibilityFilter';
 export interface IChannelList {
     readonly channels: IChannels;
     readonly visibilityFilter: IVisibilityFilter;
-    readonly showEditModal: EditedChannels;
+    readonly editedChannelModal: EditedChannels;
     readonly users: Immutable.List<IUser>;
     readonly selectedChannelId: string;
     readonly showChannelList: boolean;

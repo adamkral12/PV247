@@ -5,7 +5,7 @@ import '../css/Channel.less';
 
 export interface IChannelOwnProps {
     readonly id: string;
-    index: number;
+    readonly index: number;
 }
 
 export interface IChannelStateProps {
@@ -14,9 +14,9 @@ export interface IChannelStateProps {
 }
 
 export interface IChannelDispatchProps {
-    showEditChannel: (id: string) => void;
-    selectChannel: (id: string) => void;
-    hideChannelList: () => void;
+    readonly showEditChannel: (id: string) => void;
+    readonly selectChannel: (id: string) => void;
+    readonly hideChannelList: () => void;
 }
 
 export class Channel extends React.PureComponent<IChannelOwnProps & IChannelStateProps & IChannelDispatchProps> {
