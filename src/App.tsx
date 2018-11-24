@@ -27,7 +27,7 @@ const initialState: IState = {
           byId: Immutable.Map(),
       },
       users: Immutable.List<IUser>(USERS_DATA),
-      showEditModal: {
+      editedChannelModal: {
           editedChannelId: null,
           showEditChannelModal: false
       },

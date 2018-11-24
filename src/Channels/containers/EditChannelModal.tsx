@@ -12,7 +12,7 @@ import {addChannel, deleteChannel, hideEditChannel, updateChannel} from '../acti
 const mapStateToProps = (state: IState, ownProps: IEditChannelModalOwnProps): IEditChannelModalStateProps => {
     return {
         channel: ownProps.id === null ? null : state.channelList.channels.byId.get(ownProps.id),
-        show: state.channelList.showEditModal,
+        show: state.channelList.editedChannelModal,
         users: state.channelList.users,
     };
 };

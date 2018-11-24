@@ -6,21 +6,13 @@ export interface IChannelFilterDispatchProps {
     readonly onFilterTextChange: (value: string) => void;
 }
 
-interface IState {
-    readonly filterText: string;
+export interface IChannelFilterStateProps {
+    readonly text;
 }
 
-export class ChannelFilter extends React.PureComponent<IChannelFilterDispatchProps, IState> {
-    constructor(props) {
-        super(props);
-        this.state = {
-            filterText: '',
-        };
-    }
-
+export class ChannelFilter extends React.PureComponent<IChannelFilterDispatchProps & IChannelFilterStateProps> {
     private onFilterTextChange = (event: React.FormEvent<HTMLInputElement>) => {
         const filterText = event.currentTarget.value;
-        this.setState(_ => ({ filterText } ));
         this.props.onFilterTextChange(filterText);
     };
 
@@ -29,7 +21,7 @@ export class ChannelFilter extends React.PureComponent<IChannelFilterDispatchPro
             <div className="channel-filter">
                 <FormControl
                     type="text"
-                    value={this.state.filterText}
+                    value={this.props.text}
                     placeholder="Search for channel"
                     onChange={this.onFilterTextChange}
                 />

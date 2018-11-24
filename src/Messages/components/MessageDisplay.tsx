@@ -47,10 +47,7 @@ export class MessageDisplay extends React.PureComponent<IProps> {
                                     />
                                 </Button>
                             </div>
-                            : null
-                        }
-                        {(this.props.user.email === this.props.message.createdBy)
-                            ?
+                            :
                             <div>
                                 <Button
                                     onClick={this.props.delete}>
@@ -63,7 +60,6 @@ export class MessageDisplay extends React.PureComponent<IProps> {
                                     />
                                 </Button>
                             </div>
-                            : null
                         }
                     </ButtonGroup>
                 </Col>
