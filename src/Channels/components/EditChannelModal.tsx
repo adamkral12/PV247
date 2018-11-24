@@ -57,7 +57,6 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
             })),
             image: this.state.picture ? this.state.picture : this.props.channel && this.props.channel.customData.image,
         });
-        this.props.hideEditChannel();
     };
 
     private addChannel = (event: React.FormEvent) => {
@@ -68,7 +67,6 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
             })),
             image: this.state.picture ? this.state.picture : this.props.channel && this.props.channel.customData.image,
         });
-        this.props.hideEditChannel();
     };
 
     private handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -83,7 +81,6 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
     private deleteChannel = (event: React.FormEvent<HTMLInputElement>) => {
         event.preventDefault();
         this.props.deleteChannel();
-        this.props.hideEditChannel();
     };
 
     private handlePictureChange = (e) => {
