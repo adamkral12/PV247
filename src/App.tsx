@@ -1,18 +1,15 @@
 import * as React from 'react';
-import { Col } from 'react-bootstrap';
 import {applyMiddleware, createStore} from 'redux';
 import { Provider } from 'react-redux';
-import {CHANNEL_MESSAGES_DATA, USER_DATA, USERS_DATA} from './utils/exportData';
-import { Screen } from './Screen/Screen';
+import {CHANNEL_MESSAGES_DATA, USERS_DATA} from './utils/exportData';
 import { RootReducer } from './common/RootReducer';
-import { ChannelAppContainer } from './Channels/containers/ChannelApp';
 import * as Immutable from 'immutable';
 import {IUser} from './Channels/models/IUser';
 import {IState} from './common/IState';
 import {IMessage} from './Messages/model/IMessage';
-import {HeaderContainer} from './Header/containers/Header';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+import {AuthenticationContainer} from './Authentication/containers/Authentication';
 
 const initialState: IState = {
   channelList: {
@@ -39,7 +36,7 @@ const initialState: IState = {
         editedMessageId: null,
     },
     userApp: {
-      userEmail: USER_DATA.email,
+      userEmail: '',
         showEditUserModal: false,
         users: {
             allIds: Immutable.List<Uuid>(USERS_DATA.map((item: IUser) => item.email)),
@@ -63,14 +60,7 @@ export class App extends React.PureComponent {
       return (
           <Provider store={store}>
               <div className="App">
-                  <ChannelAppContainer/>
-                  <HeaderContainer/>
-                  <Col md={9} sm={9} xs={12}>
-                      <Screen
-                        // user={data.user}
-                        // messages={data.channelMessages}
-                      />
-                  </Col>
+                  <AuthenticationContainer/>
               </div>
           </Provider>
       );
