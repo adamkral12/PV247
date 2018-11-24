@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  Glyphicon, Nav, Navbar, NavItem, Col
+  Glyphicon, Nav, Navbar, NavItem, NavDropdown, MenuItem, Col
 } from 'react-bootstrap';
 import './Header.less';
 import {PureComponent} from 'react';
@@ -11,11 +11,12 @@ import {ToggleChannelListContainer} from '../../Channels/containers/ToggleChanne
 
 export interface HeaderDispatchProps {
     readonly showEditUserModal: () => void;
+    readonly logout: () => void;
 }
 
 export class Header extends PureComponent<HeaderDispatchProps> {
     render() {
-        const {showEditUserModal} = this.props;
+        const {showEditUserModal, logout} = this.props;
         return (
             <Col xs={12} sm={9} md={9} className="header-wrapper">
                 <Navbar fluid className="navbar-wrapper">
@@ -32,12 +33,11 @@ export class Header extends PureComponent<HeaderDispatchProps> {
                             </NavItem>
                         </Nav>
                         <Nav pullRight>
-                            <NavItem
-                                eventKey={1}
-                                onClick={showEditUserModal}
-                            >
-                                <Glyphicon glyph="user"/>
-                            </NavItem>
+                            <NavDropdown eventKey={1} title={<Glyphicon glyph="user"/>}>
+                                <MenuItem eventKey={1.1} onClick={showEditUserModal}>Profile management</MenuItem>
+                                <MenuItem divider />
+                                <MenuItem eventKey={1.2} onClick={logout}>Logout</MenuItem>
+                            </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
                     <EditUserModalContainer/>

@@ -1,0 +1,4 @@
+export const USER_APP_LOGIN = 'USER_APP_LOGIN';
+export const USER_APP_REGISTER = 'USER_APP_REGISTER';
+export const USER_APP_LOGOUT = 'USER_APP_LOGOUT';
+
