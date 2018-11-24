@@ -8,6 +8,7 @@ import {EditedChannels} from '../models/EditedChannels';
 import {IUser} from '../models/IUser';
 import '../css/ChannelApp.less';
 import {ChannelSectionContainer} from '../containers/ChannelSection';
+import * as classNames from 'classnames';
 
 export interface IChannelAppStateProps {
     readonly editedChannels: EditedChannels;
@@ -27,7 +28,11 @@ export class ChannelApp extends React.PureComponent<IChannelAppStateProps & ICha
     }
 
     render() {
-        const channelWrapperClass = 'channel-wrapper ' + (this.props.showListOnMobile ? 'show-mobile' : '');
+        const channelWrapperClass = classNames({
+            'channel-wrapper': true,
+            'show-mobile': this.props.showListOnMobile,
+        });
+
         return(
             <Col xs={3} className={channelWrapperClass}>
                 <Panel className="dark-back">

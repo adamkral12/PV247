@@ -16,7 +16,8 @@
     "redux": "^4.0.1",
     "uuid": "^3.3.2",
     "reselect": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "classnames": "^2.2.6"
   },
   "scripts": {
     "start": "webpack-dev-server --mode=development",
@@ -38,6 +39,7 @@
     "@types/react-dom": "^16.0.7",
     "@types/react-redux": "^6.0.9",
     "@types/webpack": "^4.4.17",
+    "@types/classnames": "^2.2.6",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^7.1.4",

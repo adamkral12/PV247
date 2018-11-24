@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Glyphicon } from 'react-bootstrap';
 import {IChannel} from '../models/IChannel';
 import '../css/Channel.less';
+import * as classNames from 'classnames';
 
 export interface IChannelOwnProps {
     readonly id: string;
@@ -32,7 +33,10 @@ export class Channel extends React.PureComponent<IChannelOwnProps & IChannelStat
 
     render() {
         const { index, channel, isSelected } = this.props;
-        const channelClass = 'channel-name ' + (isSelected ? 'selected-channel' : '');
+        const channelClass = classNames({
+            'channel-name': true,
+            'selected-channel': isSelected
+        });
 
         return (
                 <div
