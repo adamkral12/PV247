@@ -37,7 +37,6 @@ export class EditUserModal extends React.PureComponent<EditUserModalStateProps &
 
     private edit = () => {
         this.props.editUser(this.props.user.email, this.state.profilePicture, this.state.displayName);
-        this.props.hideEditUserModal();
     };
 
     private handleProfilePictureChange = (e) => {
