@@ -17,10 +17,10 @@ const byId = (prevState = Immutable.Map<string, IUser>(), action: Action): Immut
         case USER_APP_EDIT_USER: {
             const {email, profilePicture, displayName} = action.payload;
             const user: IUser = {
-                email: email,
+                email,
                 customData: {
-                    profilePicture: profilePicture,
-                    displayName: displayName
+                    profilePicture,
+                    displayName
                 }
             };
 
