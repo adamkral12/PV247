@@ -1,12 +1,16 @@
 import { Dispatch } from 'redux';
 import {
+    CHANNEL_APP_LOADING_STARTED,
     CHANNEL_APP_LOADING_SUCCESS,
 } from '../constants/actionTypes';
 import {IChannel} from '../models/IChannel';
-import {CHANNELS_DATA} from '../../utils/exportData';
+import {ChannelService} from '../../api/service/ChannelService';
 
+const loadingStarted = (): Action => ({
+    type: CHANNEL_APP_LOADING_STARTED,
+});
 
-const getChannels = (channels: ReadonlyArray<IChannel>): Action => ({
+const loadingSuccess = (channels: ReadonlyArray<IChannel>): Action => ({
     type: CHANNEL_APP_LOADING_SUCCESS,
     payload: {
         channels,
@@ -15,5 +19,7 @@ const getChannels = (channels: ReadonlyArray<IChannel>): Action => ({
 
 export const loadChannels = (): any =>
     async (dispatch: Dispatch): Promise<void> => {
-        dispatch(getChannels(CHANNELS_DATA));
+        dispatch(loadingStarted());
+        const channels = await new ChannelService().getAllChannels();
+        dispatch(loadingSuccess(channels));
     };
