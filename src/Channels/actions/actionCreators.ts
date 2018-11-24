@@ -8,7 +8,6 @@ import {
     CHANNEL_APP_SHOW_CREATE_CHANNEL,
     CHANNEL_APP_SELECT_CHANNEL, CHANNEL_LIST_CHANNEL_CREATE, CHANNEL_APP_SET_VISIBILITY_FILTER, CHANNEL_LIST_SHOW_LIST, CHANNEL_LIST_HIDE_LIST
 } from '../constants/actionTypes';
-import {ChannelFilterEnum} from '../constants/ChannelFilterEnum';
 import {IEditedChannelCustomData} from '../models/IEditedChannelCustomData';
 
 export const showCreateChannel = (): Action => ({
@@ -64,10 +63,9 @@ export const selectChannel = (id: string): Action => ({
     }
 });
 
-export const setVisibilityFilter = (filter: ChannelFilterEnum, text: string): Action => ({
+export const setVisibilityFilter = (text: string): Action => ({
     type: CHANNEL_APP_SET_VISIBILITY_FILTER,
     payload: {
-        filter,
         text,
     }
 });
