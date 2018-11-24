@@ -14,14 +14,14 @@ const byId = (prevState = Immutable.Map<Uuid, IMessage>(), action: Action): Immu
             const { id } = action.payload;
             const oldMessage = prevState.get(id);
 
-            return prevState.set(id, { ...oldMessage, customData: { votes: oldMessage.customData.votes + 1 }});
+            return prevState.set(id, { ...oldMessage, customData: { ...oldMessage.customData, votes: oldMessage.customData.votes + 1 }});
         }
 
         case MESSAGE_APP_DOWNVOTE_MESSAGE: {
             const {id} = action.payload;
             const oldMessage = prevState.get(id);
 
-            return prevState.set(id, {...oldMessage, customData: {votes: oldMessage.customData.votes - 1}});
+            return prevState.set(id, {...oldMessage, customData: { ...oldMessage.customData, votes: oldMessage.customData.votes - 1}});
         }
 
         case MESSAGE_APP_DELETE_MESSAGE: {
