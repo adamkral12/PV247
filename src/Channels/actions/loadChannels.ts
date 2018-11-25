@@ -20,6 +20,6 @@ const loadingSuccess = (channels: ReadonlyArray<IChannel>): Action => ({
 export const loadChannels = (): any =>
     async (dispatch: Dispatch): Promise<void> => {
         dispatch(loadingStarted());
-        const channels = await new ChannelService().getAllChannels();
+        const channels = await new ChannelService().getAllEntities();
         dispatch(loadingSuccess(channels));
     };

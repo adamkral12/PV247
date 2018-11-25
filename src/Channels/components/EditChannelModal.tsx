@@ -7,6 +7,7 @@ import * as Immutable from 'immutable';
 import Select from 'react-select';
 import {IEditedChannelCustomData} from '../models/IEditedChannelCustomData';
 import {Col, Image} from 'react-bootstrap';
+import {IChannelCustomData} from '../models/IChannelCustomData';
 
 export interface IEditChannelModalOwnProps {
     id: string | null;
@@ -22,7 +23,7 @@ export interface IEditChannelModalStateProps {
 export interface IEditChannelModalDispatchProps {
     readonly hideEditChannel: () => void;
     readonly editChannel: (name: string, customData: IEditedChannelCustomData) => void;
-    readonly addChannel: (name: string, customData: IEditedChannelCustomData) => void;
+    readonly addChannel: (name: string, customData: IChannelCustomData) => void;
     readonly deleteChannel: () => void;
 }
 
@@ -62,10 +63,10 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
     private addChannel = (event: React.FormEvent) => {
         event.preventDefault();
         this.props.addChannel(this.state.channelName, {
-            invitedUsers: Immutable.Set(this.state.invitedUsers.map((user) => {
+            members: Immutable.Set(this.state.invitedUsers.map((user) => {
                 return user.value;
             })),
-            image: this.state.picture ? this.state.picture : this.props.channel && this.props.channel.customData.image,
+            image: this.state.picture ? this.state.picture : "",
         });
     };
 
