@@ -6,7 +6,7 @@ import {hideEditUser, editUser} from '../actions/actionCreators';
 
 const mapStateToProps = (state: IState): EditUserModalStateProps => {
     return {
-        user: state.userApp.users.byId.get(state.userApp.userEmail),
+        user: state.userApp.users.byId.get('user'),
         show: state.userApp.showEditUserModal,
     };
 };
