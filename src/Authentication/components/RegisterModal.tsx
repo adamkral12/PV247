@@ -9,6 +9,7 @@ export interface IRegisterModalStateProps {
 
 export interface IRegisterModalDispatchProps {
     readonly register: (email) => void;
+    readonly hide: () => void;
 }
 
 interface IState {
@@ -33,9 +34,10 @@ export class RegisterModal extends React.PureComponent<IRegisterModalStateProps 
     };
 
     render() {
+        const {hide} = this.props;
         return (
             <div>
-                <Modal show={this.props.show}>
+                <Modal show={this.props.show} onHide={hide}>
                     <Modal.Header>
                         <Modal.Title>
                             Register
@@ -51,6 +53,7 @@ export class RegisterModal extends React.PureComponent<IRegisterModalStateProps 
                     </Modal.Body>
                     <Modal.Footer>
                         <Button bsStyle="primary" onClick={this.register}>Register</Button>
+                        <Button bsStyle="primary" onClick={hide}>Close</Button>
                     </Modal.Footer>
                 </Modal>
             </div>

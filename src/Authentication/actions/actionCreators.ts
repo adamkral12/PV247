@@ -5,7 +5,7 @@ import {
     AUTHENTICATION_SHOW_REGISTRATION_MODAL,
     AUTHENTICATION_LOGIN,
     AUTHENTICATION_LOGOUT,
-    AUTHENTICATION_REGISTER, AUTHENTICATION_SWITCH_TO_REGISTRATION
+    AUTHENTICATION_REGISTER
 } from '../constants/actionTypes';
 
 export const login = (email: string): Action => ({
@@ -29,32 +29,18 @@ export const register = (email: string): Action => ({
     }
 });
 
-export const switchToRegistration = (): Action => ({
-    type: AUTHENTICATION_SWITCH_TO_REGISTRATION,
-    payload: {
-    }
-});
-
 export const showLoginModal = (): Action => ({
     type: AUTHENTICATION_SHOW_LOGIN_MODAL,
-    payload: {
-    }
 });
 
 export const hideLoginModal = (): Action => ({
     type: AUTHENTICATION_HIDE_LOGIN_MODAL,
-    payload: {
-    }
 });
 
 export const showRegistrationModal = (): Action => ({
     type: AUTHENTICATION_SHOW_REGISTRATION_MODAL,
-    payload: {
-    }
 });
 
 export const hideRegistrationModal = (): Action => ({
     type: AUTHENTICATION_HIDE_REGISTRATION_MODAL,
-    payload: {
-    }
 });

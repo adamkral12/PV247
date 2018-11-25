@@ -46,7 +46,6 @@ export const deleteChannel = (id: string | null): Action => ({
 
 export const hideEditChannel = (): Action => ({
     type: CHANNEL_APP_HIDE_EDIT_CHANNEL,
-    payload: {}
 });
 
 export const showEditChannel = (id: string): Action => ({

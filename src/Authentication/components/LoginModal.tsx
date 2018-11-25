@@ -9,7 +9,7 @@ export interface ILoginModalStateProps {
 
 export interface ILoginModalDispatchProps {
     readonly login: (email) => void;
-    readonly switchToRegistration: () => void;
+    readonly hide: () => void;
 }
 
 interface IState {
@@ -33,14 +33,11 @@ export class LoginModal extends React.PureComponent<ILoginModalStateProps & ILog
         this.props.login(this.state.email);
     };
 
-    private switchToRegistration = () => {
-        this.props.switchToRegistration();
-    };
-
     render() {
+        const {hide} = this.props;
         return (
             <div>
-                <Modal show={this.props.show}>
+                <Modal show={this.props.show} onHide={hide}>
                     <Modal.Header>
                         <Modal.Title>
                             Login
@@ -56,7 +53,7 @@ export class LoginModal extends React.PureComponent<ILoginModalStateProps & ILog
                     </Modal.Body>
                     <Modal.Footer>
                         <Button bsStyle="primary" onClick={this.login}>Login</Button>
-                        <Button bsStyle="default" onClick={this.switchToRegistration} >Register</Button>
+                        <Button bsStyle="default" onClick={hide} >Close</Button>
                     </Modal.Footer>
                 </Modal>
             </div>
