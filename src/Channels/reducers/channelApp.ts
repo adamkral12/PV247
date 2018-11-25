@@ -4,6 +4,8 @@ import {showEditChannelModal} from './showEditChannelModal';
 import {selectedChannelId} from './selectedChannelId';
 import {visibilityFilter} from './visibilityFilter';
 import {showChannelList} from './showChannelList';
+import {apiResponse} from './apiResponse';
+import {isLoading} from './isLoading';
 
 export const channelApp = (prevState = {} as IChannelList, action: Action): IChannelList => ({
     channels: channels(prevState.channels, action),
@@ -11,5 +13,7 @@ export const channelApp = (prevState = {} as IChannelList, action: Action): ICha
     users: prevState.users,
     selectedChannelId: selectedChannelId(prevState.selectedChannelId, action),
     visibilityFilter: visibilityFilter(prevState.visibilityFilter, action),
-    showChannelList: showChannelList(prevState.showChannelList, action)
+    showChannelList: showChannelList(prevState.showChannelList, action),
+    isLoading: isLoading(prevState.showChannelList, action),
+    errorMessage: apiResponse(prevState.errorMessage, action),
 });

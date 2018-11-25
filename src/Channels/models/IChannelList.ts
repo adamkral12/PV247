@@ -11,6 +11,8 @@ export interface IChannelList {
     readonly users: Immutable.List<IUser>;
     readonly selectedChannelId: string;
     readonly showChannelList: boolean;
+    readonly isLoading: boolean;
+    readonly errorMessage?: string;
 }
 
 export interface IChannels {

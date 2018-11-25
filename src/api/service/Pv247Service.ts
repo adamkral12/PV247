@@ -1,5 +1,6 @@
 import {GenericService} from './GenericService';
 import {BASE_API_URL} from '../constants/api';
+import {validateResponse} from './validateResponse';
 
 export abstract class Pv247Service<T> extends GenericService {
     readonly basePath = BASE_API_URL;
@@ -7,7 +8,7 @@ export abstract class Pv247Service<T> extends GenericService {
     protected getAll = async (url: string): Promise<T[]> => {
         return this.get(url)
             .then(response => {
-                return response.json();
+                return validateResponse(response.json());
             }
         );
     };
@@ -15,7 +16,7 @@ export abstract class Pv247Service<T> extends GenericService {
     protected create = async (url: string, data: T): Promise<T> => {
         return this.post(url, data)
             .then(response => {
-                return response.json();
+                return validateResponse(response.json());
             }
         );
     };
@@ -23,7 +24,7 @@ export abstract class Pv247Service<T> extends GenericService {
     protected edit = async (url: string, data: T): Promise<T> => {
         return this.put(url, data)
             .then(response => {
-                    return response.json();
+                    return validateResponse(response.json());
                 }
             );
     };
