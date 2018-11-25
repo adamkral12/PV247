@@ -3,20 +3,19 @@ import {
     Modal, Button, FormControl
 } from 'react-bootstrap';
 
-export interface ILoginModalStateProps {
+export interface IRegisterModalStateProps {
     readonly show: boolean;
 }
 
-export interface ILoginModalDispatchProps {
-    readonly login: (email) => void;
-    readonly switchToRegistration: () => void;
+export interface IRegisterModalDispatchProps {
+    readonly register: (email) => void;
 }
 
 interface IState {
     readonly email: string;
 }
 
-export class LoginModal extends React.PureComponent<ILoginModalStateProps & ILoginModalDispatchProps, IState> {
+export class RegisterModal extends React.PureComponent<IRegisterModalStateProps & IRegisterModalDispatchProps, IState> {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,12 +28,8 @@ export class LoginModal extends React.PureComponent<ILoginModalStateProps & ILog
         this.setState(_ => ({email}));
     };
 
-    private login = () => {
-        this.props.login(this.state.email);
-    };
-
-    private switchToRegistration = () => {
-        this.props.switchToRegistration();
+    private register = () => {
+        this.props.register(this.state.email);
     };
 
     render() {
@@ -43,7 +38,7 @@ export class LoginModal extends React.PureComponent<ILoginModalStateProps & ILog
                 <Modal show={this.props.show}>
                     <Modal.Header>
                         <Modal.Title>
-                            Login
+                            Register
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
@@ -55,8 +50,7 @@ export class LoginModal extends React.PureComponent<ILoginModalStateProps & ILog
                         />
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button bsStyle="primary" onClick={this.login}>Login</Button>
-                        <Button bsStyle="default" onClick={this.switchToRegistration} >Register</Button>
+                        <Button bsStyle="primary" onClick={this.register}>Register</Button>
                     </Modal.Footer>
                 </Modal>
             </div>
