@@ -1,22 +1,30 @@
 import * as React from 'react';
 import {ChannelAppContainer} from '../../Channels/containers/ChannelApp';
 import {HeaderContainer} from '../../Header/containers/Header';
-import {Col} from 'react-bootstrap';
+import {Col, Row, Button} from 'react-bootstrap';
 import { Screen } from '../../Screen/Screen';
 import {LoginModalContainer} from '../containers/LoginModal';
 import {RegisterModalContainer} from '../containers/RegisterModal';
 
 
-
 export interface IAuthenticationStateProps {
-    readonly userEmail: string;
+    readonly isLoggedIn: boolean;
+    readonly showLoginModal: boolean;
+    readonly showRegistrationModal: boolean;
 }
 
-export class Authentication extends React.PureComponent<IAuthenticationStateProps> {
+export interface IAuthenticationDispatchProps {
+    readonly showRegistrationModal: () => void;
+    readonly showLoginModal: () => void;
+}
+
+type IProps = IAuthenticationDispatchProps & IAuthenticationStateProps;
+
+export class Authentication extends React.PureComponent<IProps> {
     render() {
         return (
             <div>
-                {this.props.userEmail !== '' ?
+                {this.props.isLoggedIn ?
                 <div>
                     <ChannelAppContainer/>
                     <HeaderContainer/>
@@ -24,10 +32,19 @@ export class Authentication extends React.PureComponent<IAuthenticationStateProp
                         <Screen/>
                     </Col>
                 </div>
-                : <div>
+                : <Row>
+                        <Col xs={12}>
+                            Welcome to messaging app, register or login to continue
+                            <Button
+                                onClick={this.props.showLoginModal}
+                            >Login</Button>
+                            <Button
+                                onClick={this.props.showRegistrationModal}
+                            >Register</Button>
+                        </Col>
                         <LoginModalContainer/>
                         <RegisterModalContainer/>
-                    </div>}
+                    </Row>}
             </div>
         );
     }

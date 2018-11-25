@@ -12,6 +12,11 @@ import thunk from 'redux-thunk';
 import {AuthenticationContainer} from './Authentication/containers/Authentication';
 
 const initialState: IState = {
+    authenticationApp: {
+        isLoggedIn: false,
+        showRegistrationModal: false,
+        showLoginModal: false,
+    },
   channelList: {
       visibilityFilter: {
           text: '',
@@ -36,7 +41,6 @@ const initialState: IState = {
         editedMessageId: null,
     },
     userApp: {
-      userEmail: '',
         showEditUserModal: false,
         users: {
             allIds: Immutable.List<Uuid>(USERS_DATA.map((item: IUser) => item.email)),

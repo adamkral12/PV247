@@ -2,11 +2,8 @@ import * as Immutable from 'immutable';
 import {IUser} from '../../Channels/models/IUser';
 
 export interface IUserApp {
-    readonly userEmail: string;
     readonly showEditUserModal: boolean;
     readonly users: IUsers;
-    readonly showLoginModal: boolean;
-    readonly showRegistrationModal: boolean;
 }
 
 export interface IUsers {

@@ -9,7 +9,6 @@ import {
 } from '../constants/actionTypes';
 import {IMessage} from '../model/IMessage';
 import {Dispatch} from 'redux';
-import {IState} from '../../common/IState';
 import * as uuid from 'uuid';
 
 export const createMessage = (message: IMessage): Action => ({
@@ -20,13 +19,13 @@ export const createMessage = (message: IMessage): Action => ({
 });
 
 export const createMessageStarted = (channelId: Uuid, message: string): any =>
-    async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        const createdBy = getState().userApp.userEmail;
+    async (dispatch: Dispatch): Promise<void> => {
         dispatch(createMessage({
             id: uuid(),
             channelId,
             value: message,
-            createdBy,
+            // TODO: redo
+            createdBy: 'lolo',
             createdAt: Date.now().toString(),
             updatedBy: null,
             updatedAt: null,
