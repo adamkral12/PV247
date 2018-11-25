@@ -46,8 +46,6 @@ const initialState: IState = {
             allIds: Immutable.List<Uuid>(USERS_DATA.map((item: IUser) => item.email)),
             byId: Immutable.Map(USERS_DATA.map((item: IUser) => [item.email, item])),
         },
-        showLoginModal: true,
-        showRegistrationModal: false
     }
 };
 
