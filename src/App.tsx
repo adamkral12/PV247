@@ -8,20 +8,15 @@ import { RootReducer } from './common/RootReducer';
 import { ChannelAppContainer } from './Channels/containers/ChannelApp';
 import * as Immutable from 'immutable';
 import {IUser} from './Channels/models/IUser';
-import {IState} from './common/IState';
 import {IMessage} from './Messages/model/IMessage';
 import {HeaderContainer} from './Header/containers/Header';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-const initialState: IState = {
+const initialState = {
   channelList: {
       visibilityFilter: {
           text: '',
-      },
-      channels: {
-          allIds: Immutable.List(),
-          byId: Immutable.Map(),
       },
       users: Immutable.List<IUser>(USERS_DATA),
       editedChannelModal: {

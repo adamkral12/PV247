@@ -5,3 +5,7 @@ export const HTTP_METHOD_GET = 'GET';
 export const HTTP_METHOD_POST = 'POST';
 export const HTTP_METHOD_PUT = 'PUT';
 export const HTTP_METHOD_DELETE = 'DELETE';
+
+export const AUTH_TOKEN_STORAGE_KEY = 'auth_token';
+
+export const CONTENT_TYPE_PATCH_JSON = 'application/json-patch+json';

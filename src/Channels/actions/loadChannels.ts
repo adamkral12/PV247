@@ -32,6 +32,6 @@ export const loadChannels = (): any =>
             const channels = await new ChannelService().getAllEntities();
             dispatch(loadingSuccess(channels));
         } catch (e) {
-            dispatch(loadingFailure(e.message))
+            dispatch(loadingFailure(e.message));
         }
     };

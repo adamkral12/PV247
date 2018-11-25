@@ -16,6 +16,10 @@ import * as Immutable from 'immutable';
 
 const channelService = new ChannelService();
 
+const loadingStarted = (): Action => ({
+    type: CHANNEL_APP_LOADING_STARTED,
+});
+
 export const showCreateChannel = (): Action => ({
   type: CHANNEL_APP_SHOW_CREATE_CHANNEL,
   payload: {},
@@ -31,8 +35,8 @@ const updateChannelSuccess = (channel: IChannel): Action => ({
 export const updateChannel = (id: string, name: string, customData: IEditedChannelCustomData): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
     dispatch(loadingStarted());
-        const currentChannel = getState().channelList.channels.byId.get(id);
-        const channelToEdit: IChannel = {
+    const currentChannel = getState().channelList.channels.byId.get(id);
+    const channelToEdit: IChannel = {
             id,
             name,
             customData: {
@@ -40,12 +44,16 @@ export const updateChannel = (id: string, name: string, customData: IEditedChann
                 members: Immutable.Set(currentChannel.customData.members).merge(customData.invitedUsers)
             }
         };
-        const channel = await channelService.editEntity(channelToEdit);
-        dispatch(updateChannelSuccess(channel));
+    const channel = await channelService.editEntity(channelToEdit);
+    dispatch(updateChannelSuccess(channel));
     };
 
-const loadingStarted = (): Action => ({
-    type: CHANNEL_APP_LOADING_STARTED,
+
+const addChannelSuccess = (channel: IChannel): Action => ({
+    type: CHANNEL_LIST_CHANNEL_CREATE,
+    payload: {
+        channel,
+    }
 });
 
 export const addChannel = (name: string, customData: IChannelCustomData): any =>
@@ -58,14 +66,6 @@ export const addChannel = (name: string, customData: IChannelCustomData): any =>
         });
         dispatch(addChannelSuccess(channel));
     };
-
-
-const addChannelSuccess = (channel: IChannel): Action => ({
-    type: CHANNEL_LIST_CHANNEL_CREATE,
-    payload: {
-        channel,
-    }
-});
 
 const deleteChannelSuccess = (channelId: string): Action => ({
     type: CHANNEL_LIST_CHANNEL_REMOVE_SUCCESS,
