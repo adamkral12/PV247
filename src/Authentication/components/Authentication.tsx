@@ -4,6 +4,7 @@ import {HeaderContainer} from '../../Header/containers/Header';
 import {Col} from 'react-bootstrap';
 import { Screen } from '../../Screen/Screen';
 import {LoginModalContainer} from '../containers/LoginModal';
+import {RegisterModalContainer} from '../containers/RegisterModal';
 
 
 
@@ -23,7 +24,10 @@ export class Authentication extends React.PureComponent<IAuthenticationStateProp
                         <Screen/>
                     </Col>
                 </div>
-                : <LoginModalContainer/>}
+                : <div>
+                        <LoginModalContainer/>
+                        <RegisterModalContainer/>
+                    </div>}
             </div>
         );
     }
