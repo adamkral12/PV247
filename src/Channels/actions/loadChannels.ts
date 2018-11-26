@@ -29,7 +29,7 @@ export const loadChannels = (): any =>
     async (dispatch: Dispatch): Promise<void> => {
         dispatch(loadingStarted());
         try {
-            const channels = await new ChannelService().getAllEntities();
+            const channels = await ChannelService.getAllEntities();
             dispatch(loadingSuccess(channels));
         } catch (e) {
             dispatch(loadingFailure(e.message));

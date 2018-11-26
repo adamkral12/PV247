@@ -31,6 +31,7 @@ export const login = (email: string): any =>
             localStorage.setItem(AUTH_TOKEN_STORAGE_KEY, data.token);
             localStorage.setItem(AUTH_EXPIRATION_STORAGE_KEY, data.expiration);
             localStorage.setItem(EMAIL_STORAGE_KEY, email);
+            console.log('loading');
             dispatch(loadUser(email));
         } catch (e) {
             dispatch(loginFailure());

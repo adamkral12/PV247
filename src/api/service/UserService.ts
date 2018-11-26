@@ -1,29 +1,26 @@
 import {Pv247Service} from './Pv247Service';
 import {APP_ID} from '../constants/api';
 import {IUser} from '../../Channels/models/IUser';
+import {IApiService} from '../model/IApiService';
 
-export class UserService extends Pv247Service<IUser> implements IApiService<IUser> {
-    private baseUserUrl = this.basePath + APP_ID + '/user';
+const extendedUrl: string = APP_ID + '/user';
 
-    public getEntity = async (userId: string) => {
-        const url = this.baseUserUrl + '/' + userId;
-        return this.getOne(url);
-    };
-
-    readonly getAllEntities = async () => {
-        return this.getAll(this.baseUserUrl);
-    };
-
-    public deleteEntity = async (userId: string) => {
-        const url = this.baseUserUrl + '/' + userId;
-        this.delete(url, userId);
-    };
-
-    public createEntity = async (data: IUser) => {
-        return this.create(this.baseUserUrl, data);
-    };
-
-    public editEntity = async (data: IUser) => {
-        return this.edit(this.baseUserUrl + '/' + data.email, data);
-    };
-}
+export const UserService: IApiService<IUser> = {
+    getEntity: async (userId: string) => {
+        const url = extendedUrl + '/' + userId;
+        return <Promise<IUser>>Pv247Service.getOne(url);
+    },
+    getAllEntities: async () => {
+        return <Promise<IUser[]>>Pv247Service.getAll(this.extendedUrl());
+    },
+    deleteEntity: async (userId: string) => {
+        const url = this.extendedUrl() + '/' + userId;
+        return <Promise<void>>Pv247Service.delete(url, userId);
+    },
+    createEntity: async (data: IUser) => {
+        return Pv247Service.create(this.extendedUrl(), data);
+    },
+    editEntity: async (data: IUser) => {
+        return Pv247Service.edit(this.extendedUrl() + '/' + data.email, data);
+    }
+};

@@ -1,29 +1,26 @@
 import {Pv247Service} from './Pv247Service';
 import {APP_ID} from '../constants/api';
 import {IChannel} from '../../Channels/models/IChannel';
+import {IApiService} from '../model/IApiService';
 
-export class ChannelService extends Pv247Service<IChannel> implements IApiService<IChannel> {
-    private baseChannelUrl = this.basePath + 'app/' + APP_ID + '/channel/';
+const extendedUrl: string = 'app/' + APP_ID + '/channel/';
 
-    public getEntity = async (channelId: string) => {
-        const url = this.baseChannelUrl + channelId;
-        return this.getOne(url);
-    };
-
-    readonly getAllEntities = async () => {
-        return this.getAll(this.baseChannelUrl);
-    };
-
-    public deleteEntity = async (channelId: string) => {
-        const url = this.baseChannelUrl + channelId;
-        this.delete(url, channelId);
-    };
-
-    public createEntity = async (data: IChannel) => {
-        return this.create(this.baseChannelUrl, data);
-    };
-
-    public editEntity = async (data: IChannel) => {
-        return this.edit(this.baseChannelUrl + data.id, data);
-    };
-}
+export const ChannelService: IApiService<IChannel> = {
+    getEntity: async (channelId: string) => {
+        const url = extendedUrl + channelId;
+        return <Promise<IChannel>>Pv247Service.getOne(url);
+    },
+    getAllEntities: async () => {
+        return <Promise<IChannel[]>>Pv247Service.getAll(extendedUrl);
+    },
+    deleteEntity: async (channelId: string) => {
+        const url = extendedUrl + channelId;
+        Pv247Service.delete(url, channelId);
+    },
+    createEntity: async (data: IChannel) => {
+        return Pv247Service.create(extendedUrl, data);
+    },
+    editEntity: async (data: IChannel) => {
+        return Pv247Service.edit(extendedUrl + data.id, data);
+    }
+};

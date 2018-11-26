@@ -14,8 +14,6 @@ import {IChannelCustomData} from '../models/IChannelCustomData';
 import {IState} from '../../common/IState';
 import * as Immutable from 'immutable';
 
-const channelService = new ChannelService();
-
 const loadingStarted = (): Action => ({
     type: CHANNEL_APP_LOADING_STARTED,
 });
@@ -44,7 +42,7 @@ export const updateChannel = (id: string, name: string, customData: IEditedChann
                 members: Immutable.Set(currentChannel.customData.members).merge(customData.invitedUsers)
             }
         };
-    const channel = await channelService.editEntity(channelToEdit);
+    const channel = await ChannelService.editEntity(channelToEdit);
     dispatch(updateChannelSuccess(channel));
     };
 
@@ -59,7 +57,7 @@ const addChannelSuccess = (channel: IChannel): Action => ({
 export const addChannel = (name: string, customData: IChannelCustomData): any =>
     async (dispatch: Dispatch): Promise<void> => {
         dispatch(loadingStarted());
-        const channel = await channelService.createEntity({
+        const channel = await ChannelService.createEntity({
             name,
             customData,
             id: '',
@@ -78,7 +76,7 @@ export const deleteChannel = (id: string | null): any =>
     async (dispatch: Dispatch): Promise<void> => {
         if (id) {
             dispatch(loadingStarted());
-            await channelService.deleteEntity(id);
+            await ChannelService.deleteEntity(id);
             dispatch(deleteChannelSuccess(id));
         }
     };
