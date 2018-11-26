@@ -15,8 +15,11 @@ const loginStarted = (): Action => ({
     type: AUTHENTICATION_LOGIN_STARTED,
 });
 
-const loginFailure = (): Action => ({
+const loginFailure = (message: string): Action => ({
     type: AUTHENTICATION_LOGIN_FAILURE,
+    payload: {
+        message,
+    }
 });
 
 export const logout = (): Action => ({
@@ -33,7 +36,7 @@ export const login = (email: string): any =>
             localStorage.setItem(EMAIL_STORAGE_KEY, email);
             dispatch(loadUser(email));
         } catch (e) {
-            dispatch(loginFailure());
+            dispatch(loginFailure(e.message));
         }
     };
 

@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {
-    Modal, Button, FormControl
+    Modal, Button, FormControl, Alert
 } from 'react-bootstrap';
 
 export interface ILoginModalStateProps {
     readonly show: boolean;
+    readonly apiResponseErrorMessage?: string;
 }
 
 export interface ILoginModalDispatchProps {
@@ -34,7 +35,7 @@ export class LoginModal extends React.PureComponent<ILoginModalStateProps & ILog
     };
 
     render() {
-        const {hide} = this.props;
+        const {hide, apiResponseErrorMessage} = this.props;
         return (
             <div>
                 <Modal show={this.props.show} onHide={hide}>
@@ -44,6 +45,12 @@ export class LoginModal extends React.PureComponent<ILoginModalStateProps & ILog
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
+                        {apiResponseErrorMessage && <Alert bsStyle="danger">
+                            <h4>Could not log you in</h4>
+                            <p>
+                                {apiResponseErrorMessage}
+                            </p>
+                        </Alert>}
                         <FormControl
                             type="text"
                             value={this.state.email}
