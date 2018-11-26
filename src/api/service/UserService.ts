@@ -8,14 +8,14 @@ const extendedUrl: string = APP_ID + '/user';
 export const UserService: IApiService<IUser> = {
     getEntity: async (userId: string) => {
         const url = extendedUrl + '/' + userId;
-        return <Promise<IUser>>Pv247Service.getOne(url);
+        return Pv247Service.getOne(url) as Promise<IUser>;
     },
     getAllEntities: async () => {
-        return <Promise<IUser[]>>Pv247Service.getAll(this.extendedUrl());
+        return Pv247Service.getAll(this.extendedUrl()) as Promise<IUser[]>;
     },
     deleteEntity: async (userId: string) => {
         const url = this.extendedUrl() + '/' + userId;
-        return <Promise<void>>Pv247Service.delete(url, userId);
+        Pv247Service.delete(url, userId);
     },
     createEntity: async (data: IUser) => {
         return Pv247Service.create(this.extendedUrl(), data);

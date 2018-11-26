@@ -19,7 +19,6 @@ export const Pv247Service: Service = {
         );
     },
     getOne: async (url: string) => {
-        console.log("getting");
         return GenericService.get(BASE_API_URL + url)
             .then(response => {
                     return validateResponse(response);

@@ -23,13 +23,9 @@ const loadingFailure = (message: string): Action => ({
 
 export const loadUser = (email: string): any =>
     async (dispatch: Dispatch): Promise<void> => {
-        console.log('loading started');
         dispatch(loadingStarted());
         try {
-            console.log('before getting');
-            console.log(UserService.getEntity(email));
             const user = await UserService.getEntity(email);
-            console.log("lolo");
             dispatch(loadingSuccess(user));
         } catch (e) {
             dispatch(loadingFailure(e.message));
