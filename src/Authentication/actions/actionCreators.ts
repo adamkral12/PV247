@@ -3,17 +3,35 @@ import {
     AUTHENTICATION_HIDE_REGISTRATION_MODAL,
     AUTHENTICATION_SHOW_LOGIN_MODAL,
     AUTHENTICATION_SHOW_REGISTRATION_MODAL,
-    AUTHENTICATION_LOGIN,
     AUTHENTICATION_LOGOUT,
-    AUTHENTICATION_REGISTER
+    AUTHENTICATION_REGISTER, AUTHENTICATION_LOGIN_STARTED, AUTHENTICATION_LOGIN_FAILURE
 } from '../constants/actionTypes';
+import {Dispatch} from 'redux';
+import {auth} from '../../api/service/AuthService';
+import {AUTH_TOKEN_STORAGE_KEY} from '../../api/constants/api';
+import {loadUser} from '../../Users/actions/user';
 
-export const login = (email: string): Action => ({
-    type: AUTHENTICATION_LOGIN,
-    payload: {
-        email
-    }
+const loginStarted = (): Action => ({
+    type: AUTHENTICATION_LOGIN_STARTED,
 });
+
+const loginFailure = (): Action => ({
+    type: AUTHENTICATION_LOGIN_FAILURE,
+});
+
+export const login = (email: string): any =>
+    async (dispatch: Dispatch): Promise<void> => {
+        dispatch(loginStarted());
+        try {
+            const data = await auth(email);
+            localStorage.setItem(AUTH_TOKEN_STORAGE_KEY, data.token);
+            console.log('are we loading?');
+            dispatch(loadUser(email));
+        } catch (e) {
+            dispatch(loginFailure());
+        }
+    };
+
 
 
 export const logout = (): Action => ({

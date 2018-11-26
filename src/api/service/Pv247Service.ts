@@ -12,6 +12,14 @@ export abstract class Pv247Service<T> {
         );
     };
 
+    protected getOne = async (url: string): Promise<T> => {
+        return GenericService.get(url)
+            .then(response => {
+                    return validateResponse(response);
+                }
+            );
+    };
+
     protected create = async (url: string, data: T): Promise<T> => {
         return GenericService.post(url, data)
             .then(response => {
@@ -22,6 +30,14 @@ export abstract class Pv247Service<T> {
 
     protected edit = async (url: string, data: T): Promise<T> => {
         return GenericService.put(url, data)
+            .then(response => {
+                    return validateResponse(response);
+                }
+            );
+    };
+
+    protected delete = async (url: string, id: string): Promise<T> => {
+        return GenericService.delete(url + id)
             .then(response => {
                     return validateResponse(response);
                 }

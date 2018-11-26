@@ -7,7 +7,7 @@ export class ChannelService extends Pv247Service<IChannel> implements IApiServic
 
     public getEntity = async (channelId: string) => {
         const url = this.baseChannelUrl + channelId;
-        return this.get(url);
+        return this.getOne(url);
     };
 
     readonly getAllEntities = async () => {
@@ -16,7 +16,7 @@ export class ChannelService extends Pv247Service<IChannel> implements IApiServic
 
     public deleteEntity = async (channelId: string) => {
         const url = this.baseChannelUrl + channelId;
-        this.delete(url);
+        this.delete(url, channelId);
     };
 
     public createEntity = async (data: IChannel) => {
