@@ -23,7 +23,6 @@ interface IState {
 export class EditUserModal extends React.PureComponent<EditUserModalStateProps & EditUserModalDispatchProps, IState> {
     constructor(props) {
         super(props);
-        console.log(this.props.user);
         const {displayName, profilePicture} = this.props.user.customData;
         this.state = {
             displayName,

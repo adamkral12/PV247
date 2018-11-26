@@ -8,7 +8,7 @@ import {
 } from '../constants/actionTypes';
 import {Dispatch} from 'redux';
 import {auth} from '../../api/service/AuthService';
-import {AUTH_TOKEN_STORAGE_KEY} from '../../api/constants/api';
+import {AUTH_EXPIRATION_STORAGE_KEY, AUTH_TOKEN_STORAGE_KEY, EMAIL_STORAGE_KEY} from '../../api/constants/api';
 import {loadUser} from '../../Users/actions/user';
 
 const loginStarted = (): Action => ({
@@ -19,26 +19,41 @@ const loginFailure = (): Action => ({
     type: AUTHENTICATION_LOGIN_FAILURE,
 });
 
+export const logout = (): Action => ({
+    type: AUTHENTICATION_LOGOUT,
+});
+
 export const login = (email: string): any =>
     async (dispatch: Dispatch): Promise<void> => {
         dispatch(loginStarted());
         try {
             const data = await auth(email);
             localStorage.setItem(AUTH_TOKEN_STORAGE_KEY, data.token);
-            console.log('are we loading?');
+            localStorage.setItem(AUTH_EXPIRATION_STORAGE_KEY, data.expiration);
+            localStorage.setItem(EMAIL_STORAGE_KEY, email);
             dispatch(loadUser(email));
         } catch (e) {
             dispatch(loginFailure());
         }
     };
 
-
-
-export const logout = (): Action => ({
-    type: AUTHENTICATION_LOGOUT,
-    payload: {
-    }
-});
+export const checkIfLoggedIn = (): any =>
+    async (dispatch: Dispatch): Promise<void> => {
+        const token = localStorage.getItem(AUTH_TOKEN_STORAGE_KEY);
+        const expiration = localStorage.getItem(AUTH_EXPIRATION_STORAGE_KEY);
+        const email = localStorage.getItem(EMAIL_STORAGE_KEY);
+        if (!token || !expiration || !email) {
+            dispatch(logout());
+        } else {
+            const expirationDate = new Date(expiration);
+            // expired token
+            if (new Date() > expirationDate) {
+                dispatch(logout());
+            } else {
+                dispatch(loadUser(email));
+            }
+        }
+    };
 
 export const register = (email: string): Action => ({
     type: AUTHENTICATION_REGISTER,

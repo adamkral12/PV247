@@ -3,7 +3,7 @@ import {validateResponse} from './validateResponse';
 
 export const auth = async (email: string) => {
     return fetch(
-        BASE_API_URL + "auth", {
+        BASE_API_URL + 'auth', {
             method: HTTP_METHOD_POST,
             body: JSON.stringify({email}),
             headers: {

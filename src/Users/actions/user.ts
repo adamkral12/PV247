@@ -25,7 +25,6 @@ export const loadUser = (email: string): any =>
     async (dispatch: Dispatch): Promise<void> => {
         dispatch(loadingStarted());
         try {
-            console.log("we loading");
             const user = await new UserService().getEntity(email);
             dispatch(loadingSuccess(user));
         } catch (e) {
