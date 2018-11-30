@@ -16,11 +16,16 @@ export interface IAuthenticationStateProps {
 export interface IAuthenticationDispatchProps {
     readonly showRegistrationModal: () => void;
     readonly showLoginModal: () => void;
+    readonly checkIfLoggedIn: () => void;
 }
 
 type IProps = IAuthenticationDispatchProps & IAuthenticationStateProps;
 
 export class Authentication extends React.PureComponent<IProps> {
+    componentDidMount() {
+        this.props.checkIfLoggedIn();
+    }
+
     render() {
         return (
             <div>

@@ -8,7 +8,7 @@ const mapStateToProps = (state: IState, ownProps: IPostOwnProps): IPostStateProp
     const message = state.messageApp.messages.byId.get(ownProps.id);
     return {
         message,
-        user: state.userApp.users.byId.get('user'),
+        user: state.userApp.user,
         author: state.userApp.users.byId.get(message.createdBy),
         isBeingEdited: state.messageApp.editedMessageId === ownProps.id,
     };

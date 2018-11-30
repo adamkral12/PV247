@@ -19,6 +19,8 @@ const getVisibleChannelIds = createSelector<IState, IVisibilityFilter, Immutable
 const mapStateToProps = (state: IState): IChannelSectionStateProps => {
     return {
         channelIds: getVisibleChannelIds(state),
+        isLoading: state.channelList.isLoading,
+        errorMessage: state.channelList.errorMessage,
     };
 };
 

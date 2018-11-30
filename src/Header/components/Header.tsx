@@ -33,7 +33,7 @@ export class Header extends PureComponent<HeaderDispatchProps> {
                             </NavItem>
                         </Nav>
                         <Nav pullRight>
-                            <NavDropdown eventKey={1} title={<Glyphicon glyph="user"/>}>
+                            <NavDropdown eventKey={1} title={<Glyphicon glyph="user"/>} id="dropdown">
                                 <MenuItem eventKey={1.1} onClick={showEditUserModal}>Profile management</MenuItem>
                                 <MenuItem divider />
                                 <MenuItem eventKey={1.2} onClick={logout}>Logout</MenuItem>

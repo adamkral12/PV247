@@ -1,19 +1,37 @@
 import { Dispatch } from 'redux';
 import {
+    CHANNEL_APP_LIST_LOADING_FAILURE,
+    CHANNEL_APP_LOADING_STARTED,
     CHANNEL_APP_LOADING_SUCCESS,
 } from '../constants/actionTypes';
 import {IChannel} from '../models/IChannel';
-import {CHANNELS_DATA} from '../../utils/exportData';
+import {ChannelService} from '../../api/service/ChannelService';
 
+const loadingStarted = (): Action => ({
+    type: CHANNEL_APP_LOADING_STARTED,
+});
 
-const getChannels = (channels: ReadonlyArray<IChannel>): Action => ({
+const loadingSuccess = (channels: ReadonlyArray<IChannel>): Action => ({
     type: CHANNEL_APP_LOADING_SUCCESS,
     payload: {
         channels,
     }
 });
 
+const loadingFailure = (message: string): Action => ({
+    type: CHANNEL_APP_LIST_LOADING_FAILURE,
+    payload: {
+        message,
+    }
+});
+
 export const loadChannels = (): any =>
     async (dispatch: Dispatch): Promise<void> => {
-        dispatch(getChannels(CHANNELS_DATA));
+        dispatch(loadingStarted());
+        try {
+            const channels = await ChannelService.getAllEntities();
+            dispatch(loadingSuccess(channels));
+        } catch (e) {
+            dispatch(loadingFailure(e.message));
+        }
     };

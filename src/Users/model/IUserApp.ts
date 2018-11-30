@@ -4,6 +4,7 @@ import {IUser} from '../../Channels/models/IUser';
 export interface IUserApp {
     readonly showEditUserModal: boolean;
     readonly users: IUsers;
+    readonly user: IUser;
 }
 
 export interface IUsers {

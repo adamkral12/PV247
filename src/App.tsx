@@ -5,13 +5,12 @@ import {CHANNEL_MESSAGES_DATA, USERS_DATA} from './utils/exportData';
 import { RootReducer } from './common/RootReducer';
 import * as Immutable from 'immutable';
 import {IUser} from './Channels/models/IUser';
-import {IState} from './common/IState';
 import {IMessage} from './Messages/model/IMessage';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import {AuthenticationContainer} from './Authentication/containers/Authentication';
 
-const initialState: IState = {
+const initialState = {
     authenticationApp: {
         isLoggedIn: false,
         showRegistrationModal: false,
@@ -20,10 +19,6 @@ const initialState: IState = {
   channelList: {
       visibilityFilter: {
           text: '',
-      },
-      channels: {
-          allIds: Immutable.List(),
-          byId: Immutable.Map(),
       },
       users: Immutable.List<IUser>(USERS_DATA),
       editedChannelModal: {

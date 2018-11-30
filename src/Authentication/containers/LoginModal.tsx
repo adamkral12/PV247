@@ -10,7 +10,8 @@ import {IState} from '../../common/IState';
 
 const mapStateToProps = (state: IState): ILoginModalStateProps => {
     return {
-        show: state.authenticationApp.showLoginModal
+        show: state.authenticationApp.showLoginModal,
+        apiResponseErrorMessage: state.authenticationApp.loginApiResponseErrorMessage,
     };
 };
 

@@ -20,7 +20,7 @@ const mapStateToProps = (state: IState, ownProps: IEditChannelModalOwnProps): IE
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: IEditChannelModalOwnProps): IEditChannelModalDispatchProps => {
     return {
         hideEditChannel: () => dispatch(hideEditChannel()),
-        editChannel: (name: string, customData) => dispatch(updateChannel(ownProps.id, name, customData)),
+        editChannel: (name: string, customData) => dispatch(updateChannel(ownProps.id || '', name, customData)),
         addChannel: (name: string, customData) => dispatch(addChannel(name, customData)),
         deleteChannel: () => dispatch(deleteChannel(ownProps.id)),
     };

@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import {IState} from '../../common/IState';
 import {Authentication, IAuthenticationDispatchProps, IAuthenticationStateProps} from '../components/Authentication';
 import {Dispatch} from 'redux';
-import {showLoginModal, showRegistrationModal} from '../actions/actionCreators';
+import {checkIfLoggedIn, showLoginModal, showRegistrationModal} from '../actions/actionCreators';
 
 const mapStateToProps = (state: IState): IAuthenticationStateProps => {
     return {
@@ -15,7 +15,8 @@ const mapStateToProps = (state: IState): IAuthenticationStateProps => {
 const mapDispatchToProps = (dispatch: Dispatch): IAuthenticationDispatchProps => {
     return {
         showLoginModal: () => dispatch(showLoginModal()),
-        showRegistrationModal: () => dispatch(showRegistrationModal())
+        showRegistrationModal: () => dispatch(showRegistrationModal()),
+        checkIfLoggedIn: () => dispatch(checkIfLoggedIn()),
     };
 };
 
