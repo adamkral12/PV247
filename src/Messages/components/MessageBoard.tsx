@@ -10,7 +10,15 @@ export interface IMessageBoardStateProps {
     readonly user: IUser;
 }
 
-export class MessageBoard extends React.PureComponent<IMessageBoardStateProps> {
+export interface IMessageBoardDispatchProps {
+    readonly loadMessages: () => void;
+}
+
+
+export class MessageBoard extends React.PureComponent<IMessageBoardStateProps & IMessageBoardDispatchProps> {
+    componentDidMount() {
+        this.props.loadMessages();
+    }
     render() {
         return (
             <div>

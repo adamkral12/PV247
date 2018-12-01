@@ -11,16 +11,16 @@ export const UserService: IApiService<IUser> = {
         return Pv247Service.getOne(url) as Promise<IUser>;
     },
     getAllEntities: async () => {
-        return Pv247Service.getAll(this.extendedUrl()) as Promise<IUser[]>;
+        return Pv247Service.getAll(extendedUrl) as Promise<IUser[]>;
     },
     deleteEntity: async (userId: string) => {
-        const url = this.extendedUrl() + '/' + userId;
-        Pv247Service.delete(url, userId);
+        const url = extendedUrl + '/' + userId;
+        Pv247Service.delete(url);
     },
     createEntity: async (data: IUser) => {
-        return Pv247Service.create(this.extendedUrl(), data);
+        return Pv247Service.create(extendedUrl, data);
     },
     editEntity: async (data: IUser) => {
-        return Pv247Service.edit(this.extendedUrl() + '/' + data.email, data);
+        return Pv247Service.edit(extendedUrl + '/' + data.email, data);
     }
 };

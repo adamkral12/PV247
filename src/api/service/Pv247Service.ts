@@ -7,7 +7,7 @@ interface Service {
     getOne<T>(url: string): Promise<T>;
     create<T>(url: string, data: T): Promise<T>;
     edit<T>(url: string, t: T): Promise<T>;
-    delete<T>(url: string, id: string): Promise<T>;
+    delete<T>(url: string): Promise<T>;
 }
 
 export const Pv247Service: Service = {
@@ -39,8 +39,8 @@ export const Pv247Service: Service = {
                 }
             );
     },
-    delete: async (url: string, id: string) => {
-        return GenericService.delete(BASE_API_URL + url + id)
+    delete: async (url: string) => {
+        return GenericService.delete(BASE_API_URL + url)
             .then(response => {
                     return validateResponse(response);
                 }
