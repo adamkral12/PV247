@@ -30,7 +30,6 @@ const createMessageSuccess = (message: IMessage): Action => ({
 
 export const createMessage = (text: string): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        const userId = getState().userApp.user.email;
         const channelId = getState().channelList.selectedChannelId;
         dispatch(loadingStarted());
 
@@ -39,8 +38,8 @@ export const createMessage = (text: string): any =>
                 id: '',
                 channelId,
                 value: text,
-                createdBy: userId,
-                createdAt: Date.now().toString(),
+                createdBy: '',
+                createdAt: '',
                 updatedBy: null,
                 updatedAt: null,
                 customData: {votes: 0}
