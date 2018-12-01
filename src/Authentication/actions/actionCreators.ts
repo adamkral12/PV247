@@ -22,9 +22,17 @@ const loginFailure = (message: string): Action => ({
     }
 });
 
-export const logout = (): Action => ({
+const logoutAction = (): Action => ({
     type: AUTHENTICATION_LOGOUT,
 });
+
+export const logout = (): any =>
+    dispatch => {
+            localStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
+            localStorage.removeItem(AUTH_EXPIRATION_STORAGE_KEY);
+            localStorage.removeItem(EMAIL_STORAGE_KEY);
+            dispatch(logoutAction());
+        };
 
 export const login = (email: string): any =>
     async (dispatch: Dispatch): Promise<void> => {
