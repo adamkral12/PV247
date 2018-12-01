@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    Modal, Button, FormControl, Col, Image, Alert
+    Modal, Button, FormControl, Col, Image, Alert, Row
 } from 'react-bootstrap';
 import {ScaleLoader} from 'react-spinners';
 
@@ -79,33 +79,37 @@ export class RegisterModal extends React.PureComponent<RegisterModalStateProps &
                               {apiResponse}
                           </p>
                         </Alert>}
-                        <Col xs={6}>
-                            {profilePicture && <Image src={profilePicture} circle responsive/>}
-                        </Col>
-                        <Col xs={6}>
-                            <FormControl
-                                type="file"
-                                onChange={this.handleProfilePictureChange}
-                            />
-                        </Col>
-                        <Col xs={6}>
-                            <FormControl
-                                type="text"
-                                value={displayName}
-                                placeholder="Enter displayed name"
-                                onChange={this.handleNameChange}
-                            />
-                            <FormControl
-                                type="text"
-                                value={email}
-                                placeholder="Enter email"
-                                onChange={this.handleEmailChange}
-                            />
-                        </Col>
+                        <Row>
+                            <Col xs={6}>
+                                {profilePicture && <Image src={profilePicture} circle responsive/>}
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={6}>
+                                <FormControl
+                                    type="file"
+                                    onChange={this.handleProfilePictureChange}
+                                />
+                            </Col>
+                            <Col xs={6}>
+                                <FormControl
+                                    type="text"
+                                    value={displayName}
+                                    placeholder="Enter displayed name"
+                                    onChange={this.handleNameChange}
+                                />
+                                <FormControl
+                                    type="text"
+                                    value={email}
+                                    placeholder="Enter email"
+                                    onChange={this.handleEmailChange}
+                                />
+                            </Col>
+                        </Row>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button onClick={this.register}>Register</Button>
-                        <Button onClick={hideModal}>Close</Button>
+                        <Button bsStyle="success" onClick={this.register}>Register</Button>
+                        <Button bsStyle="primary" onClick={hideModal}>Close</Button>
                     </Modal.Footer>
                 </div>
                     }
