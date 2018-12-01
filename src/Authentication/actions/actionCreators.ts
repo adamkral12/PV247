@@ -4,7 +4,7 @@ import {
     AUTHENTICATION_SHOW_LOGIN_MODAL,
     AUTHENTICATION_SHOW_REGISTRATION_MODAL,
     AUTHENTICATION_LOGOUT,
-    AUTHENTICATION_REGISTER, AUTHENTICATION_LOGIN_STARTED, AUTHENTICATION_LOGIN_FAILURE
+    AUTHENTICATION_LOGIN_STARTED, AUTHENTICATION_LOGIN_FAILURE
 } from '../constants/actionTypes';
 import {Dispatch} from 'redux';
 import {auth} from '../../api/service/AuthService';
@@ -57,13 +57,6 @@ export const checkIfLoggedIn = (): any =>
             }
         }
     };
-
-export const register = (email: string): Action => ({
-    type: AUTHENTICATION_REGISTER,
-    payload: {
-        email
-    }
-});
 
 export const showLoginModal = (): Action => ({
     type: AUTHENTICATION_SHOW_LOGIN_MODAL,

@@ -1,19 +1,22 @@
 import {connect} from 'react-redux';
-import {hideRegistrationModal, register} from '../actions/actionCreators';
-import {Dispatch} from 'redux';
 import {IState} from '../../common/IState';
-import {IRegisterModalDispatchProps, IRegisterModalStateProps, RegisterModal} from '../components/RegisterModal';
+import {Dispatch} from 'redux';
+import {hideRegistrationModal} from '../actions/actionCreators';
+import {RegisterModal, RegisterModalDispatchProps, RegisterModalStateProps} from '../components/RegisterModal';
+import {register} from '../actions/registration';
 
-const mapStateToProps = (state: IState): IRegisterModalStateProps => {
+const mapStateToProps = (state: IState): RegisterModalStateProps => {
     return {
-        show: state.authenticationApp.showRegistrationModal
+        show: state.authenticationApp.showRegistrationModal,
+        isLoading: state.authenticationApp.isRegistrationModalLoading,
+        apiResponse: state.authenticationApp.registrationApiResponse,
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): IRegisterModalDispatchProps => {
+const mapDispatchToProps = (dispatch: Dispatch): RegisterModalDispatchProps => {
     return {
-        register: (email) =>  dispatch(register(email)),
-        hide: () => dispatch(hideRegistrationModal())
+        hideModal: () => dispatch(hideRegistrationModal()),
+        addUser: (email, profilePicture, displayName) =>  dispatch(register(email, profilePicture, displayName)),
     };
 };
-export const RegisterModalContainer = connect<IRegisterModalStateProps, IRegisterModalDispatchProps>(mapStateToProps, mapDispatchToProps)(RegisterModal);
+export const RegisterModalContainer = connect<RegisterModalStateProps, RegisterModalDispatchProps>(mapStateToProps, mapDispatchToProps)(RegisterModal);
