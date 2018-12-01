@@ -38,12 +38,12 @@ export class Authentication extends React.PureComponent<IProps> {
                     </Col>
                 </div>
                 : <Row>
-                        <Col xs={12}>
-                            Welcome to messaging app, register or login to continue
-                            <Button
+                        <Col xs={12} style={{textAlign: 'center'}}>
+                            <h2>Welcome to messaging app, register or login to continue</h2>
+                            <Button bsStyle="success"
                                 onClick={this.props.showLoginModal}
                             >Login</Button>
-                            <Button
+                            <Button bsStyle="primary"
                                 onClick={this.props.showRegistrationModal}
                             >Register</Button>
                         </Col>
