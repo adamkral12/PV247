@@ -1,7 +1,11 @@
 import {EditedChannels} from '../models/EditedChannels';
 import {
-    CHANNEL_APP_HIDE_EDIT_CHANNEL, CHANNEL_APP_SHOW_CREATE_CHANNEL,
-    CHANNEL_APP_SHOW_EDIT_CHANNEL, CHANNEL_LIST_CHANNEL_CREATE, CHANNEL_LIST_CHANNEL_REMOVE_SUCCESS, CHANNEL_LIST_CHANNEL_UPDATE_SUCCESS,
+    CHANNEL_APP_SHOW_EDIT_CHANNEL,
+    CHANNEL_APP_SHOW_CREATE_CHANNEL,
+    CHANNEL_APP_HIDE_EDIT_CHANNEL,
+    CHANNEL_APP_CHANNEL_CREATE_SUCCESS,
+    CHANNEL_APP_CHANNEL_UPDATE_SUCCESS,
+    CHANNEL_APP_CHANNEL_REMOVE_SUCCESS,
 } from '../constants/actionTypes';
 
 const defaultPrevState: EditedChannels = {
@@ -21,9 +25,9 @@ export const showEditChannelModal = (prevState: EditedChannels = defaultPrevStat
                 editedChannelId: action.payload.id,
                 showEditChannelModal: true,
             };
-        case CHANNEL_LIST_CHANNEL_CREATE:
-        case CHANNEL_LIST_CHANNEL_UPDATE_SUCCESS:
-        case CHANNEL_LIST_CHANNEL_REMOVE_SUCCESS:
+        case CHANNEL_APP_CHANNEL_CREATE_SUCCESS:
+        case CHANNEL_APP_CHANNEL_UPDATE_SUCCESS:
+        case CHANNEL_APP_CHANNEL_REMOVE_SUCCESS:
         case CHANNEL_APP_HIDE_EDIT_CHANNEL:
             return {
                 editedChannelId: null,

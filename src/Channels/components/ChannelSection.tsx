@@ -9,7 +9,7 @@ import {ScaleLoader} from 'react-spinners';
 export interface IChannelSectionStateProps {
     readonly channelIds: Immutable.List<string>;
     readonly isLoading: boolean;
-    readonly errorMessage?: string;
+    readonly loadingErrorMessage?: string;
 }
 export class ChannelSection extends React.PureComponent<IChannelSectionStateProps> {
     render() {
@@ -23,11 +23,11 @@ export class ChannelSection extends React.PureComponent<IChannelSectionStateProp
             );
         }
 
-        if (this.props.errorMessage) {
+        if (this.props.loadingErrorMessage) {
             return (
                 <Panel.Body>
                     <div className="col-sm-12 text-center">
-                        Could not load channels: {this.props.errorMessage}
+                        Could not load channels: {this.props.loadingErrorMessage}
                     </div>
                 </Panel.Body>
             );

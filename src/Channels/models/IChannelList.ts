@@ -12,7 +12,8 @@ export interface IChannelList {
     readonly selectedChannelId: string;
     readonly showChannelList: boolean;
     readonly isLoading: boolean;
-    readonly errorMessage?: string;
+    readonly loadingErrorMessage?: string;
+    readonly crudErrorMessage?: string;
 }
 
 export interface IChannels {

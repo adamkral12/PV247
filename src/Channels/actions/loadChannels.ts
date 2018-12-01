@@ -1,13 +1,13 @@
 import { Dispatch } from 'redux';
 import {
-    CHANNEL_APP_LIST_LOADING_FAILURE,
+    CHANNEL_APP_LOADING_FAILURE,
     CHANNEL_APP_LOADING_STARTED,
     CHANNEL_APP_LOADING_SUCCESS,
 } from '../constants/actionTypes';
 import {IChannel} from '../models/IChannel';
 import {ChannelService} from '../../api/service/ChannelService';
 
-const loadingStarted = (): Action => ({
+export const loadingStarted = (): Action => ({
     type: CHANNEL_APP_LOADING_STARTED,
 });
 
@@ -19,7 +19,7 @@ const loadingSuccess = (channels: ReadonlyArray<IChannel>): Action => ({
 });
 
 const loadingFailure = (message: string): Action => ({
-    type: CHANNEL_APP_LIST_LOADING_FAILURE,
+    type: CHANNEL_APP_LOADING_FAILURE,
     payload: {
         message,
     }

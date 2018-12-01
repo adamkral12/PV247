@@ -6,7 +6,7 @@ import {IUser} from '../models/IUser';
 import * as Immutable from 'immutable';
 import Select from 'react-select';
 import {IEditedChannelCustomData} from '../models/IEditedChannelCustomData';
-import {Col, Image} from 'react-bootstrap';
+import {Col, Image, Alert} from 'react-bootstrap';
 import {IChannelCustomData} from '../models/IChannelCustomData';
 
 export interface IEditChannelModalOwnProps {
@@ -18,6 +18,7 @@ export interface IEditChannelModalStateProps {
     readonly channel: IChannel | null;
     readonly show: EditedChannels;
     readonly users: Immutable.List<IUser>;
+    readonly crudErrorMessage?: string;
 }
 
 export interface IEditChannelModalDispatchProps {
@@ -155,6 +156,11 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
                         />
                     </Modal.Body>
                     <Modal.Footer>
+                        {this.props.crudErrorMessage ?
+                            <Alert bsStyle="warning">
+                                {this.props.crudErrorMessage}
+                            </Alert> : null
+                        }
                         <Button bsStyle="success"
                                 type="submit"
                                 onClick={this.props.channel ? this.editChannel : this.addChannel}

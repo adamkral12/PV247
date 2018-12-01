@@ -14,6 +14,7 @@ const mapStateToProps = (state: IState, ownProps: IEditChannelModalOwnProps): IE
         channel: ownProps.id === null ? null : state.channelList.channels.byId.get(ownProps.id),
         show: state.channelList.editedChannelModal,
         users: state.channelList.users,
+        crudErrorMessage: state.channelList.crudErrorMessage
     };
 };
 
