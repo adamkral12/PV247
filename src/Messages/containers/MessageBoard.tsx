@@ -16,8 +16,8 @@ const mapStateToProps = (state: IState): IMessageBoardStateProps => {
         messageIds: getChannelsMessageIds(state.messageApp.messages.allIds, state.messageApp.messages.byId, state.channelList.selectedChannelId),
         user: state.userApp.users.byId.get('email'),
         loadingErrorMessage: state.messageApp.loadingErrorMessage,
-        crudErrorMessage: state.messageApp.crudErrorMessage
-
+        crudErrorMessage: state.messageApp.crudErrorMessage,
+        isLoading: state.messageApp.isLoading
     };
 };
 

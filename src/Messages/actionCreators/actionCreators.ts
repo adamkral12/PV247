@@ -12,6 +12,7 @@ import {MessageService} from '../../api/service/MessageService';
 import {MESSAGE_APP_UPVOTE_MESSAGE_SUCCESS} from '../constants/actionTypes';
 import {MESSAGE_APP_DOWNVOTE_MESSAGE_SUCCESS} from '../constants/actionTypes';
 import {MESSAGE_APP_UPDATE_MESSAGE_SUCCESS} from '../constants/actionTypes';
+import {loadingStarted} from './loadMessages';
 
 
 export const crudFailure = (message: string): Action => ({
@@ -31,7 +32,7 @@ export const createMessage = (text: string): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
         const userId = getState().userApp.user.email;
         const channelId = getState().channelList.selectedChannelId;
-        //dispatch(loadingStarted());
+        dispatch(loadingStarted());
 
         try {
             const message = await MessageService.createEntity({
@@ -68,7 +69,7 @@ export const deleteMessage = (id: string | null): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
         if (id) {
             const channelId = getState().channelList.selectedChannelId;
-            //dispatch(loadingStarted());
+            dispatch(loadingStarted());
             try {
                 await MessageService.deleteEntity(id, channelId);
                 dispatch(deleteMessageSuccess(id));
@@ -87,7 +88,7 @@ const upvoteMessageSuccess = (message: IMessage): Action => ({
 
 export const upvoteMessage = (id: string): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        //dispatch(loadingStarted());
+        dispatch(loadingStarted());
         try {
 
             const currentMessage = getState().messageApp.messages.byId.get(id);
@@ -120,7 +121,7 @@ const downvoteMessageSuccess = (message: IMessage): Action => ({
 
 export const downvoteMessage = (id: string): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        //dispatch(loadingStarted());
+        dispatch(loadingStarted());
         try {
             const currentMessage = getState().messageApp.messages.byId.get(id);
             const channelId = getState().channelList.selectedChannelId;
@@ -152,7 +153,7 @@ const updateMessageSuccess = (message: IMessage): Action => ({
 
 export const updateMessage = (id: string, text: string): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        //dispatch(loadingStarted());
+        dispatch(loadingStarted());
         try {
             const currentMessage = getState().messageApp.messages.byId.get(id);
             const channelId = getState().channelList.selectedChannelId;

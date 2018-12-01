@@ -5,12 +5,14 @@ import * as Immutable from 'immutable';
 import {MessageContainer} from '../containers/Message';
 import {MessageFormContainer} from '../containers/MessageForm';
 import { Panel, Alert } from 'react-bootstrap';
+import {ScaleLoader} from 'react-spinners';
 
 export interface IMessageBoardStateProps {
     readonly messageIds: Immutable.List<Uuid>;
     readonly user: IUser;
     readonly loadingErrorMessage?: string;
     readonly crudErrorMessage?: string;
+    readonly isLoading: boolean;
 
 }
 
@@ -24,6 +26,15 @@ export class MessageBoard extends React.PureComponent<IMessageBoardStateProps & 
         this.props.loadMessages();
     }
     render() {
+        if (this.props.isLoading) {
+            return (
+                <Panel.Body>
+                    <div className="col-sm-12 text-center">
+                        <ScaleLoader/>
+                    </div>
+                </Panel.Body>
+            );
+        }
         if (this.props.loadingErrorMessage) {
             return (
                 <Panel.Body>
