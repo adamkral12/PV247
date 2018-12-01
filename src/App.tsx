@@ -11,7 +11,6 @@ import {USERS_DATA} from './utils/exportData';
 
 const initialState = {
     authenticationApp: {
-        isLoggedIn: false,
         showRegistrationModal: false,
         showLoginModal: false,
     },

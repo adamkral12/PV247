@@ -5,6 +5,7 @@ import {Col, Row, Button} from 'react-bootstrap';
 import { Screen } from '../../Screen/Screen';
 import {LoginModalContainer} from '../containers/LoginModal';
 import {RegisterModalContainer} from '../containers/RegisterModal';
+import {ScaleLoader} from 'react-spinners';
 
 
 export interface IAuthenticationStateProps {
@@ -27,6 +28,13 @@ export class Authentication extends React.PureComponent<IProps> {
     }
 
     render() {
+        if (this.props.isLoggedIn === undefined) {
+            return (
+                <Col xs={12} style={{textAlign: 'center'}}>
+                    <ScaleLoader/>
+                </Col>
+            );
+        }
         return (
             <div>
                 {this.props.isLoggedIn ?
