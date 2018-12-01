@@ -9,15 +9,11 @@ interface IState {
     readonly message: string;
 }
 
-export interface IMessageFormStateProps {
-    readonly channelId: string;
-}
-
 export interface IMessageFormDispatchProps {
-    readonly createMessage: (channelId: Uuid, message: string) => void;
+    readonly createMessage: (message: string) => void;
 }
 
-export class MessageForm extends React.PureComponent<IMessageFormStateProps & IMessageFormDispatchProps, IState> {
+export class MessageForm extends React.PureComponent<IMessageFormDispatchProps, IState> {
     constructor(props) {
         super(props);
         this.state = {
@@ -35,7 +31,7 @@ export class MessageForm extends React.PureComponent<IMessageFormStateProps & IM
         if (this.state.message === '') {
             return;
         }
-        this.props.createMessage(this.props.channelId, this.state.message);
+        this.props.createMessage(this.state.message);
         this.setState(_ => ({message: ''}));
     };
 

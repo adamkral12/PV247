@@ -13,6 +13,7 @@ export interface EditUserModalStateProps {
 export interface EditUserModalDispatchProps {
     readonly hideEditUserModal: () => void;
     readonly editUser: (email, profilePicture, displayName) => void;
+    readonly loadUsers: () => void;
 }
 
 interface IState {
@@ -28,6 +29,10 @@ export class EditUserModal extends React.PureComponent<EditUserModalStateProps &
             displayName,
             profilePicture,
         };
+    }
+
+    componentDidMount() {
+        this.props.loadUsers();
     }
 
     private handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {

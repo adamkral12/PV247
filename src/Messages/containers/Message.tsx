@@ -1,7 +1,7 @@
 import {IState} from '../../common/IState';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import {cancelEditingMessage, deleteMessage, downvoteMessage, editMessage, startEditingMessage, upvoteMessage} from '../actionCreators/actionCreators';
+import {cancelEditingMessage, deleteMessage, downvoteMessage, updateMessage, startEditingMessage, upvoteMessage} from '../actionCreators/actionCreators';
 import {IPostDispatchProps, IPostOwnProps, IPostStateProps, Message} from '../components/Message';
 
 const mapStateToProps = (state: IState, ownProps: IPostOwnProps): IPostStateProps => {
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch: Dispatch, ownProps: IPostOwnProps): IPostD
         delete: () => dispatch(deleteMessage(ownProps.id)),
         upvote: () =>  dispatch(upvoteMessage(ownProps.id)),
         downvote: () =>  dispatch(downvoteMessage(ownProps.id)),
-        edit: (text: string) => dispatch(editMessage(text, ownProps.id)),
+        edit: (text: string) => dispatch(updateMessage(ownProps.id, text)),
         startEditing: () => dispatch(startEditingMessage(ownProps.id)),
         cancelEditing: () => dispatch(cancelEditingMessage(ownProps.id)),
     };
