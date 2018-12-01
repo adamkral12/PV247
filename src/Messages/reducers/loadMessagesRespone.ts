@@ -1,6 +1,9 @@
-import {MESSAGE_APP_LOADING_FAILURE, MESSAGE_APP_LOADING_SUCCESS} from '../constants/actionTypes';
+import {
+    MESSAGE_APP_LOADING_FAILURE,
+    MESSAGE_APP_LOADING_SUCCESS
+} from '../constants/actionTypes';
 
-export const apiResponse = (prevState: string | undefined, action: Action): string | undefined => {
+export const loadMessagesRespone = (prevState: string | undefined, action: Action): string | undefined => {
     switch (action.type) {
         case MESSAGE_APP_LOADING_SUCCESS:
             return undefined;

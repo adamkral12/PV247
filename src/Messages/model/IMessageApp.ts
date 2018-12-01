@@ -5,8 +5,9 @@ export interface IMessageApp {
     readonly messages: IMessages;
     readonly editedMessageId: Uuid | null;
     /*readonly showMessages: boolean;
-    readonly isLoading: boolean;
-    readonly errorMessage?: string;*/
+    readonly isLoading: boolean;*/
+    readonly loadingErrorMessage?: string;
+    readonly crudErrorMessage?: string;
 }
 
 export interface IMessages {

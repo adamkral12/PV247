@@ -9,7 +9,7 @@ import {MessageService} from '../../api/service/MessageService';
 import {IMessage} from '../model/IMessage';
 import {IState} from '../../common/IState';
 
-const loadingStarted = (): Action => ({
+export const loadingStarted = (): Action => ({
     type: MESSAGE_APP_LOADING_STARTED,
 });
 
@@ -20,7 +20,7 @@ const loadingSuccess = (messages: ReadonlyArray<IMessage>): Action => ({
     }
 });
 
-const loadingFailure = (message: string): Action => ({
+export const loadingFailure = (message: string): Action => ({
     type: MESSAGE_APP_LOADING_FAILURE,
     payload: {
         message,
