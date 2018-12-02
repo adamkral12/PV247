@@ -8,13 +8,18 @@ import {ChannelNameContainer} from '../containers/ChannelName';
 import {EditUserModalContainer} from '../../Users/containers/EditUserModal';
 import {ChannelPictureContainer} from '../containers/ChannelPicture';
 import {ToggleChannelListContainer} from '../../Channels/containers/ToggleChannelList';
+import {Badge} from 'react-bootstrap';
+
+export interface HeaderStateProps {
+    readonly numberOfMembers: number | undefined;
+}
 
 export interface HeaderDispatchProps {
     readonly showEditUserModal: () => void;
     readonly logout: () => void;
 }
 
-export class Header extends PureComponent<HeaderDispatchProps> {
+export class Header extends PureComponent<HeaderDispatchProps & HeaderStateProps> {
     render() {
         const {showEditUserModal, logout} = this.props;
         return (
@@ -29,7 +34,7 @@ export class Header extends PureComponent<HeaderDispatchProps> {
                     <Navbar.Collapse>
                         <Nav>
                             <NavItem eventKey={2} href="#">
-                                Members
+                                Members <Badge>{this.props.numberOfMembers}</Badge>
                             </NavItem>
                         </Nav>
                         <Nav pullRight>
