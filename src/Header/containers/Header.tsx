@@ -8,17 +8,8 @@ import {IState} from '../../common/IState';
 
 const mapStateToProps = (state: IState): HeaderStateProps => {
     const channelId = state.channelList.selectedChannelId;
-    if (channelId === undefined) {
-        return {
-            numberOfMembers: undefined
-        };
-    }
-    console.log(channelId);
-    const userEmails = state.channelList.channels.byId.get(channelId).customData.members;
-    console.log(userEmails.toSeq().size);
-    console.log(userEmails.size);
     return {
-        numberOfMembers: userEmails.size
+        numberOfMembers: channelId === undefined ? undefined : state.channelList.channels.byId.get(channelId).customData.members.count(),
     };
 };
 
