@@ -137,7 +137,18 @@ export const selectChannel = (id: string): any =>
         if (id) {
             dispatch(loadingStarted());
             try {
-                const messages = await MessageService.getAllEntities(id);
+                let messages = await MessageService.getAllEntities(id);
+                messages = messages.sort((m1, m2) => {
+                    if (m1.createdAt > m2.createdAt) {
+                        return 1;
+                    }
+
+                    if (m1.createdAt < m2.createdAt) {
+                        return -1;
+                    }
+
+                    return 0;
+                });
                 dispatch(selectChannelSuccess(id, messages));
             } catch (e) {
                 dispatch(selectChannelFailure('An error occurred.'));
