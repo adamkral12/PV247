@@ -18,7 +18,7 @@ const allIds = (prevState: Immutable.List<string> = Immutable.List(), action: Ac
           return prevState.push(action.payload.channel.id);
 
       case CHANNEL_APP_CHANNEL_REMOVE_SUCCESS:
-          const index = prevState.indexOf(action.payload.messageId);
+          const index = prevState.indexOf(action.payload.channelId);
           return prevState.delete(index);
       default:
         return prevState;
@@ -37,7 +37,7 @@ const byId = (prevState = Immutable.Map<string, IChannel>(), action: Action): Im
             return prevState.set(channel.id, { ...channel });
         }
         case CHANNEL_APP_CHANNEL_REMOVE_SUCCESS:
-            return prevState.remove(action.payload.id);
+            return prevState.remove(action.payload.channelId);
 
 
         default:
