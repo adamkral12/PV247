@@ -69,7 +69,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
             members: Immutable.Set(this.state.invitedUsers.map((user) => {
                 return user.value;
             })),
-            image: this.state.picture ? this.state.picture : '',
+            image: this.state.pictureFile ? this.state.pictureFile : '',
         });
     };
 

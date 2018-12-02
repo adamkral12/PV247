@@ -3,7 +3,7 @@ import {Image} from 'react-bootstrap';
 import './ChannelPicture.less';
 
 export interface IChannelPictureStateProps {
-    readonly picture: string | null;
+    readonly picture: string | File | null;
 }
 
 export const ChannelPicture: React.SFC<IChannelPictureStateProps> = ({ picture }) => (

@@ -94,16 +94,28 @@ const addChannelSuccess = (channel: IChannel): Action => ({
 export const addChannel = (name: string, customData: IChannelCustomData): any =>
     async (dispatch: Dispatch): Promise<void> => {
         dispatch(loadingStarted());
+        console.log(customData.image);
         try {
-            const channel = await ChannelService.createEntity({
-                name,
-                customData,
-                id: '',
-            });
-            dispatch(addChannelSuccess(channel));
+            if (typeof customData.image !== 'string') {
+                const file = await Pv247Service.uploadFile(customData.image);
+                if (file) {
+                    const getFile = await Pv247Service.getFile(file[0].id);
+                    const dataWithFile: IChannelCustomData = {
+                        ...customData, image: getFile.fileUri,
+                    };
+                    const channel = await ChannelService.createEntity({
+                        name,
+                        customData: dataWithFile,
+                        id: '',
+                    });
+                    dispatch(addChannelSuccess(channel));
+                }
+            } else {
+                throw Error('Please upload channel image');
+            }
         } catch (e) {
-            dispatch(crudFailure('An error occurred while creating the channel.'));
-}
+            dispatch(crudFailure(e.message));
+        }
     };
 
 const deleteChannelSuccess = (channelId: string): Action => ({
