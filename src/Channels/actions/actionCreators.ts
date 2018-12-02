@@ -53,7 +53,7 @@ export const updateChannel = (id: string, name: string, customData: IEditedChann
         const channel = await ChannelService.editEntity(channelToEdit);
         dispatch(updateChannelSuccess(channel));
     } catch (e) {
-        dispatch(crudFailure('There was an error.'));
+        dispatch(crudFailure('An error occurred while editing the channel.'));
     }
     };
 
@@ -76,7 +76,7 @@ export const addChannel = (name: string, customData: IChannelCustomData): any =>
             });
             dispatch(addChannelSuccess(channel));
         } catch (e) {
-            dispatch(crudFailure('There was an error.'));
+            dispatch(crudFailure('An error occurred while creating the channel.'));
 }
     };
 
@@ -95,7 +95,8 @@ export const deleteChannel = (id: string | null): any =>
                 await ChannelService.deleteEntity(id);
                 dispatch(deleteChannelSuccess(id));
             } catch (e) {
-                dispatch(crudFailure('There was an error.'));
+                console.log(e.message);
+                dispatch(crudFailure('An error occurred while deleting the channel.'));
             }
         }
     };
