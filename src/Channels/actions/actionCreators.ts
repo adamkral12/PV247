@@ -22,6 +22,7 @@ import * as Immutable from 'immutable';
 import {loadingStarted} from './loadChannels';
 import {MessageService} from '../../api/service/MessageService';
 import {IMessage} from '../../Messages/model/IMessage';
+import {Pv247Service} from '../../api/service/Pv247Service';
 
 export const crudFailure = (message: string): Action => ({
     type: CHANNEL_APP_CRUD_FAILURE,
@@ -47,14 +48,34 @@ export const updateChannel = (id: string, name: string, customData: IEditedChann
     dispatch(loadingStarted());
     try {
         const currentChannel = getState().channelList.channels.byId.get(id);
+        let channelWithFile;
+        let file;
+        if (customData.image) {
+            console.log('imgin');
+            file = await Pv247Service.uploadFile(customData.image);
+            if (file) {
+                const getFile = await Pv247Service.getFile(file[0].id);
+                channelWithFile = {
+                    ...currentChannel,
+                    customData: {
+                        ...currentChannel.customData, image: getFile.fileUri,
+                    }
+                };
+            }
+        }
+
+        console.log('with file');
+        console.log(channelWithFile);
         const channelToEdit: IChannel = {
-            id,
+            ...(channelWithFile ? channelWithFile : currentChannel),
             name,
             customData: {
-                ...currentChannel.customData,
-                members: Immutable.Set(currentChannel.customData.members).merge(customData.invitedUsers)
+                ...(channelWithFile ? channelWithFile : currentChannel).customData,
+                members: Immutable.Set((channelWithFile ? channelWithFile : currentChannel).customData.members).merge(customData.invitedUsers)
             }
         };
+
+        console.log(channelToEdit);
         const channel = await ChannelService.editEntity(channelToEdit);
         dispatch(updateChannelSuccess(channel));
     } catch (e) {
