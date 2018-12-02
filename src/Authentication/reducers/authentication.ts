@@ -6,7 +6,7 @@ import {loginApiResponse} from './loginApiResponse';
 import {isLoading} from './isRegistrationLoading';
 import {registrationApiResponse} from './registrationApiResponse';
 
-export const authentication = (prevState: IAuthenticationApp, action: Action): IAuthenticationApp => ({
+export const authentication = (prevState = {} as IAuthenticationApp, action: Action): IAuthenticationApp => ({
     showLoginModal: showLoginModal(prevState.showLoginModal, action),
     showRegistrationModal: showRegistrationModal(prevState.showRegistrationModal, action),
     isLoggedIn: isLoggedIn(prevState.isLoggedIn, action),

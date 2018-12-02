@@ -4,7 +4,7 @@ import {
 } from '../constants/actionTypes';
 
 
-export const showLoginModal = (prevState: boolean, action: Action): boolean => {
+export const showLoginModal = (prevState = false, action: Action): boolean => {
     switch (action.type) {
         case AUTHENTICATION_SHOW_LOGIN_MODAL:
         case AUTHENTICATION_REGISTER_SUCCESS:
