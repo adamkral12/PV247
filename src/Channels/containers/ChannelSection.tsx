@@ -14,12 +14,9 @@ const getVisibleChannelIds = createSelector<IState, IVisibilityFilter, Immutable
         state => state.userApp.user.email
     ],
     (visibilityFilter, allIds, byId, userEmail) => {
-        console.log(userEmail);
-        // return allIds.filter((id: string) => byId.get(id).name.includes(visibilityFilter.text) && userEmail in byId.get(id).customData.members.keys()).toList();
-        // return allIds.filter((id: string) => byId.get(id).name.includes(visibilityFilter.text) && userEmail in byId.get(id).customData.members.has(userEmail)).toList();
-        // return allIds.filter((id: string) => byId.get(id).name.includes(visibilityFilter.text) && byId.get(id).customData.members.toSeq().has(userEmail)).toList();
-        return allIds.filter((id: string) => byId.get(id).name.includes(visibilityFilter.text)).toList();
-
+            return allIds.filter((id: string) => byId.get(id).name.includes(visibilityFilter.text) &&
+                byId.get(id).customData.members.contains(userEmail)
+            ).toList();
     });
 
 const mapStateToProps = (state: IState): IChannelSectionStateProps => {

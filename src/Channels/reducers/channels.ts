@@ -28,7 +28,14 @@ const allIds = (prevState: Immutable.List<string> = Immutable.List(), action: Ac
 const byId = (prevState = Immutable.Map<string, IChannel>(), action: Action): Immutable.Map<string, IChannel> => {
     switch (action.type) {
         case CHANNEL_APP_LOADING_SUCCESS:
-            return Immutable.Map(action.payload.channels.map((channel: IChannel) => [channel.id, channel]));
+            return Immutable.Map(action.payload.channels.map(
+                (channel: IChannel) => [
+                    channel.id,
+                    {...channel, customData: {
+                        members: Immutable.Set(channel.customData.members)
+                    }}
+                ]
+            ));
         case CHANNEL_APP_CHANNEL_CREATE_SUCCESS:
             return prevState.set(action.payload.channel.id, action.payload.channel);
 
