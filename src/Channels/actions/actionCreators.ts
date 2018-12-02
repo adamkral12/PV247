@@ -51,7 +51,6 @@ export const updateChannel = (id: string, name: string, customData: IEditedChann
         let channelWithFile;
         let file;
         if (customData.image) {
-            console.log('imgin');
             file = await Pv247Service.uploadFile(customData.image);
             if (file) {
                 const getFile = await Pv247Service.getFile(file[0].id);
@@ -64,8 +63,6 @@ export const updateChannel = (id: string, name: string, customData: IEditedChann
             }
         }
 
-        console.log('with file');
-        console.log(channelWithFile);
         const channelToEdit: IChannel = {
             ...(channelWithFile ? channelWithFile : currentChannel),
             name,
@@ -75,7 +72,6 @@ export const updateChannel = (id: string, name: string, customData: IEditedChann
             }
         };
 
-        console.log(channelToEdit);
         const channel = await ChannelService.editEntity(channelToEdit);
         dispatch(updateChannelSuccess(channel));
     } catch (e) {
@@ -94,7 +90,6 @@ const addChannelSuccess = (channel: IChannel): Action => ({
 export const addChannel = (name: string, customData: IChannelCustomData): any =>
     async (dispatch: Dispatch): Promise<void> => {
         dispatch(loadingStarted());
-        console.log(customData.image);
         try {
             if (typeof customData.image !== 'string') {
                 const file = await Pv247Service.uploadFile(customData.image);
@@ -114,7 +109,7 @@ export const addChannel = (name: string, customData: IChannelCustomData): any =>
                 throw Error('Please upload channel image');
             }
         } catch (e) {
-            dispatch(crudFailure(e.message));
+            dispatch(crudFailure('Error while creating channel'));
         }
     };
 
