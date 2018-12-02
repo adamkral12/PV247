@@ -11,7 +11,7 @@ import {crudResponse} from './crudResponse';
 export const channelApp = (prevState = {} as IChannelList, action: Action): IChannelList => ({
     channels: channels(prevState.channels, action),
     editedChannelModal: showEditChannelModal(prevState.editedChannelModal, action),
-    users: prevState.users,
+    // users: prevState.users,
     selectedChannelId: selectedChannelId(prevState.selectedChannelId, action),
     visibilityFilter: visibilityFilter(prevState.visibilityFilter, action),
     showChannelList: showChannelList(prevState.showChannelList, action),
