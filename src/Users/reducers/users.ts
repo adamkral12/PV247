@@ -19,16 +19,7 @@ const byId = (prevState = Immutable.Map<string, IUser>(), action: Action): Immut
         case USER_APP_GET_USERS_SUCCESS:
             return Immutable.Map(action.payload.users.map((user: IUser) => [user.email, user]));
         case USER_APP_EDIT_USER_SUCCESS: {
-            const {email, profilePicture, displayName} = action.payload;
-            const user: IUser = {
-                email,
-                customData: {
-                    profilePicture,
-                    displayName
-                }
-            };
-
-            return prevState.set(action.payload.email, { ...user });
+            return prevState.set(action.payload.user.email, action.payload.user);
         }
 
         default:
