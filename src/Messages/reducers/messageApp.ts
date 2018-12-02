@@ -10,5 +10,5 @@ export const messageApp = (prevState = {} as IMessageApp, action: Action): IMess
     editedMessageId: editedMessageId(prevState.editedMessageId, action),
     isLoading: isLoading(prevState.isLoading, action),
     loadingErrorMessage: loadMessagesResponse(prevState.loadingErrorMessage, action),
-    crudErrorMessage: crudResponse(prevState.crudErrorMessage, action)
+    crudErrorMessage: crudResponse(prevState.crudErrorMessage, action),
 });

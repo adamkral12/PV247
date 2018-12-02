@@ -56,6 +56,11 @@ export class LoginModal extends React.PureComponent<ILoginModalStateProps & ILog
                             value={this.state.email}
                             placeholder="Enter email address"
                             onChange={this.handleEmailChange}
+                            onKeyPress={event => {
+                                if (event.key === 'Enter') {
+                                    this.login();
+                                }
+                            }}
                         />
                     </Modal.Body>
                     <Modal.Footer>
