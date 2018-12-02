@@ -66,12 +66,11 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
 
     private addChannel = (event: React.FormEvent) => {
         event.preventDefault();
-        let values = this.state.invitedUsers.map((user) => {
+        const channelMembers = Immutable.Set(this.state.invitedUsers.map((user) => {
             return user.value;
-        });
-        values = values.concat(this.props.user.email);
+        })).add(this.props.user.email);
         this.props.addChannel(this.state.channelName, {
-            members: Immutable.Set(values),
+            members: channelMembers,
             image: this.state.picture ? this.state.picture : '',
         this.props.addChannel(this.state.channelName, {
             members: Immutable.Set(this.state.invitedUsers.map((user) => {

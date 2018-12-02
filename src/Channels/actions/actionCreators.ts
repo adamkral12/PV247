@@ -24,6 +24,14 @@ import {MessageService} from '../../api/service/MessageService';
 import {IMessage} from '../../Messages/model/IMessage';
 import {Pv247Service} from '../../api/service/Pv247Service';
 
+const convertChannelMembersToSet = (channel: IChannel): IChannel => ({
+    ...channel,
+    customData: {
+        ...channel.customData,
+        members: Immutable.Set(channel.customData.members)
+    }
+});
+
 export const crudFailure = (message: string): Action => ({
     type: CHANNEL_APP_CRUD_FAILURE,
     payload: {
@@ -73,7 +81,7 @@ export const updateChannel = (id: string, name: string, customData: IEditedChann
         };
 
         const channel = await ChannelService.editEntity(channelToEdit);
-        dispatch(updateChannelSuccess(channel));
+        dispatch(updateChannelSuccess(convertChannelMembersToSet(channel)));
     } catch (e) {
         dispatch(crudFailure('An error occurred while editing the channel.'));
     }
@@ -103,7 +111,7 @@ export const addChannel = (name: string, customData: IChannelCustomData): any =>
                         customData: dataWithFile,
                         id: '',
                     });
-                    dispatch(addChannelSuccess(channel));
+                    dispatch(addChannelSuccess(convertChannelMembersToSet(channel)));
                 }
             } else {
                 throw Error('Please upload channel image');
@@ -200,3 +208,4 @@ export const showChannelList = (): Action => ({
 export const hideChannelList = (): Action => ({
     type: CHANNEL_LIST_HIDE_LIST,
 });
+
