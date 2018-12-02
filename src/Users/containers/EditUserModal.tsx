@@ -9,13 +9,15 @@ const mapStateToProps = (state: IState): EditUserModalStateProps => {
     return {
         user: state.userApp.user,
         show: state.userApp.showEditUserModal,
+        isLoading: state.userApp.isEditModalLoading,
+        apiResponseErrorMessage: state.userApp.apiErrorResponse,
     };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): EditUserModalDispatchProps => {
     return {
         hideEditUserModal: () => dispatch(hideEditUser()),
-        editUser: (email, profilePicture, displayName) =>  dispatch(editUser(email, profilePicture, displayName)),
+        editUser: (profilePicture, displayName) =>  dispatch(editUser(profilePicture, displayName)),
         loadUsers: () => dispatch(loadUsers()),
     };
 };

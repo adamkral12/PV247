@@ -36,6 +36,7 @@ interface IState {
     readonly channelName: string;
     readonly show: boolean;
     readonly picture: string;
+    readonly pictureFile: File | null;
 }
 
 type IProps = IEditChannelModalStateProps & IEditChannelModalOwnProps & IEditChannelModalDispatchProps;
@@ -48,6 +49,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
             channelName: props.channel ? props.channel.name : '',
             show: props.show,
             picture: props.channel ? props.channel.customData.picture : '',
+            pictureFile: null,
         };
     }
 
@@ -57,7 +59,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
             invitedUsers: Immutable.Set(this.state.invitedUsers.map((user) => {
                 return user.value;
             })),
-            image: this.state.picture ? this.state.picture : this.props.channel && this.props.channel.customData.image,
+            image: this.state.pictureFile ? this.state.pictureFile : null,
         });
     };
 
@@ -67,7 +69,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
             members: Immutable.Set(this.state.invitedUsers.map((user) => {
                 return user.value;
             })),
-            image: this.state.picture ? this.state.picture : '',
+            image: this.state.pictureFile ? this.state.pictureFile : '',
         });
     };
 
@@ -89,7 +91,9 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
         e.preventDefault();
 
         const reader = new FileReader();
-        const file = e.target.files[0];
+        const pictureFile = e.target.files[0];
+
+        this.setState(_ => ({pictureFile}));
 
         reader.onloadend = () => {
             const picture = reader.result;
@@ -98,7 +102,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
             }
         };
 
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(pictureFile);
     };
 
     render() {
