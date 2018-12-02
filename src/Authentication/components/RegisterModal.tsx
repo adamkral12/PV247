@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    Modal, Button, FormControl, Col, Image, Alert, Row
+    Modal, Button, FormControl, Col, Alert, Row
 } from 'react-bootstrap';
 import {ScaleLoader} from 'react-spinners';
 
@@ -12,12 +12,11 @@ export interface RegisterModalStateProps {
 
 export interface RegisterModalDispatchProps {
     readonly hideModal: () => void;
-    readonly addUser: (email, profilePicture, displayName) => void;
+    readonly addUser: (email: string, displayName: string) => void;
 }
 
 interface IState {
     readonly displayName: string;
-    readonly profilePicture: string | null | ArrayBuffer;
     readonly email: string;
 }
 
@@ -26,7 +25,6 @@ export class RegisterModal extends React.PureComponent<RegisterModalStateProps &
         super(props);
         this.state = {
             displayName: '',
-            profilePicture: '',
             email: '',
         };
     }
@@ -41,25 +39,11 @@ export class RegisterModal extends React.PureComponent<RegisterModalStateProps &
     };
 
     private register = () => {
-        this.props.addUser(this.state.email, this.state.profilePicture, this.state.displayName);
-    };
-
-    private handleProfilePictureChange = (e) => {
-        e.preventDefault();
-
-        const reader = new FileReader();
-        const file = e.target.files[0];
-
-        reader.onloadend = () => {
-            const profilePicture = reader.result;
-            this.setState(_ => ({profilePicture}));
-        };
-
-        reader.readAsDataURL(file);
+        this.props.addUser(this.state.email, this.state.displayName);
     };
 
     render() {
-        const {profilePicture, email, displayName} = this.state;
+        const {email, displayName} = this.state;
         const {show, hideModal, apiResponse} = this.props;
 
         return (
@@ -80,17 +64,6 @@ export class RegisterModal extends React.PureComponent<RegisterModalStateProps &
                           </p>
                         </Alert>}
                         <Row>
-                            <Col xs={6}>
-                                {profilePicture && <Image src={profilePicture} circle responsive/>}
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xs={6}>
-                                <FormControl
-                                    type="file"
-                                    onChange={this.handleProfilePictureChange}
-                                />
-                            </Col>
                             <Col xs={6}>
                                 <FormControl
                                     type="text"

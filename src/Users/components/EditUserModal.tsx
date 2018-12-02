@@ -5,7 +5,6 @@ import {
 import {IUser} from '../../Channels/models/IUser';
 import {ScaleLoader} from 'react-spinners';
 
-
 export interface EditUserModalStateProps {
     readonly user: IUser;
     readonly show: boolean;
@@ -15,13 +14,14 @@ export interface EditUserModalStateProps {
 
 export interface EditUserModalDispatchProps {
     readonly hideEditUserModal: () => void;
-    readonly editUser: (email: string, profilePicture, displayName: string) => void;
+    readonly editUser: (profilePicture: File | null, displayName: string) => void;
     readonly loadUsers: () => void;
 }
 
 interface IState {
     readonly displayName: string;
     readonly profilePicture: string | null | ArrayBuffer;
+    readonly profilePictureFile: File | null;
 }
 
 export class EditUserModal extends React.PureComponent<EditUserModalStateProps & EditUserModalDispatchProps, IState> {
@@ -31,11 +31,11 @@ export class EditUserModal extends React.PureComponent<EditUserModalStateProps &
         this.state = {
             displayName,
             profilePicture,
+            profilePictureFile: null,
         };
     }
 
     componentDidMount() {
-        console.log('loading users');
         this.props.loadUsers();
     }
 
@@ -45,29 +45,27 @@ export class EditUserModal extends React.PureComponent<EditUserModalStateProps &
     };
 
     private edit = () => {
-        console.log('calling edit');
-        this.props.editUser(this.props.user.email, this.state.profilePicture, this.state.displayName);
+        this.props.editUser(this.state.profilePictureFile, this.state.displayName);
     };
 
     private handleProfilePictureChange = (e) => {
         e.preventDefault();
 
         const reader = new FileReader();
-        const file = e.target.files[0];
+        const profilePictureFile = e.target.files[0];
+
+        this.setState(_ => ({profilePictureFile}));
 
         reader.onloadend = () => {
             const profilePicture = reader.result;
             this.setState(_ => ({profilePicture}));
         };
 
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(profilePictureFile);
     };
 
     render() {
         const {show, user, hideEditUserModal, isLoading, apiResponseErrorMessage} = this.props;
-        console.log(user);
-        console.log('response');
-        console.log(apiResponseErrorMessage);
         return (
             <div>
                 <Modal show={show}>
@@ -80,7 +78,7 @@ export class EditUserModal extends React.PureComponent<EditUserModalStateProps &
                         <div>
                           <Modal.Body>
                               {apiResponseErrorMessage && <Alert bsStyle="danger">
-                                <h4>Registration failed</h4>
+                                <h4>Editing failed failed</h4>
                                 <p>
                                     {apiResponseErrorMessage}
                                 </p>

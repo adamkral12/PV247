@@ -8,7 +8,8 @@ interface Service {
     create<T>(url: string, data: T): Promise<T>;
     edit<T>(url: string, t: T): Promise<T>;
     delete<T>(url: string): Promise<T>;
-    uploadFile(file: any): Promise<any>;
+    uploadFile(file: File): Promise<any>;
+    getFile(fileId: string): Promise<any>;
 }
 
 export const Pv247Service: Service = {
@@ -47,17 +48,21 @@ export const Pv247Service: Service = {
                 }
             );
     },
-    //TODO: what type is file?
-    uploadFile: async (file: any) => {
+    uploadFile: async (file: File) => {
         const formData  = new FormData();
         formData.append('Files', file);
-        console.log('form data');
-        console.log(formData);
-        return GenericService.post(BASE_API_URL + 'file', formData)
+        return GenericService.post(BASE_API_URL + 'file', formData, null)
             .then(
                 response => {
                     return validateResponse(response);
                 }
-            )
-    }
+            );
+    },
+    getFile: async (fileId: string) => {
+        return GenericService.get(BASE_API_URL + 'file/' + fileId + '/download-link')
+            .then(response => {
+                    return validateResponse(response);
+                }
+            );
+    },
 };

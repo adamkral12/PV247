@@ -24,16 +24,22 @@ export const GenericService = {
             }
         );
     },
-    post: async (url: string, data: any) => {
+    post: async (url: string, data: any, contentType: string | null = CONTENT_TYPE_PATCH_JSON) => {
+        const headers = {
+            Authorization: `bearer ${localStorage.getItem(AUTH_TOKEN_STORAGE_KEY)}`,
+        };
+
+        if (contentType) {
+            headers['Content-Type'] = contentType;
+        }
+
+        const jsonBody = data instanceof FormData ? data : JSON.stringify(data);
         return fetch(
             url,
             {
                 method: HTTP_METHOD_POST,
-                body: JSON.stringify(data),
-                headers: {
-                    Authorization: `bearer ${localStorage.getItem(AUTH_TOKEN_STORAGE_KEY)}`,
-                    'Content-Type': CONTENT_TYPE_PATCH_JSON,
-                }
+                body: jsonBody,
+                headers,
             }
         );
     },

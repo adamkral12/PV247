@@ -21,14 +21,14 @@ const createUser = (user: IUser): Action => ({
     }
 });
 
-export const register = (email: string, profilePicture: string, displayName: string): any =>
+export const register = (email: string, displayName: string): any =>
     async (dispatch: Dispatch): Promise<void> => {
         dispatch(registerStarted());
         try {
             const userToCreate: IUser = {
                 email,
                 customData: {
-                    profilePicture,
+                    profilePicture: '',
                     displayName,
                 }
             };

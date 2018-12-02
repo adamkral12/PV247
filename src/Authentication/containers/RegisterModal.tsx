@@ -16,7 +16,7 @@ const mapStateToProps = (state: IState): RegisterModalStateProps => {
 const mapDispatchToProps = (dispatch: Dispatch): RegisterModalDispatchProps => {
     return {
         hideModal: () => dispatch(hideRegistrationModal()),
-        addUser: (email, profilePicture, displayName) =>  dispatch(register(email, profilePicture, displayName)),
+        addUser: (email, displayName) =>  dispatch(register(email, displayName)),
     };
 };
 export const RegisterModalContainer = connect<RegisterModalStateProps, RegisterModalDispatchProps>(mapStateToProps, mapDispatchToProps)(RegisterModal);

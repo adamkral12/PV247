@@ -3,6 +3,7 @@ import {Dispatch} from 'redux';
 import {IState} from '../../common/IState';
 import {IUser} from '../../Channels/models/IUser';
 import {UserService} from '../../api/service/UserService';
+import {Pv247Service} from '../../api/service/Pv247Service';
 
 export const showEditUser = (): Action => ({
     type: USER_APP_SHOW_EDIT_USER_MODAL,
@@ -30,19 +31,33 @@ const editUserFailure = (message: string): Action => ({
     }
 });
 
-export const editUser = (profilePicture: string, displayName: string): any =>
+export const editUser = (profilePicture: File | null, displayName: string): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
         dispatch(startEditingUser());
         try {
             const currentUser = getState().userApp.user;
+            let userWithFile;
+            let file;
+            if (profilePicture) {
+                file = await Pv247Service.uploadFile(profilePicture);
+                if (file) {
+                    const getFile = await Pv247Service.getFile(file[0].id);
+                    userWithFile = {
+                        ...currentUser,
+                        customData: {
+                            ...currentUser.customData, profilePicture: getFile.fileUri,
+                        }
+                    };
+                }
+            }
+
             const userToEdit: IUser = {
-                ...currentUser,
+                ...(userWithFile ? userWithFile : currentUser),
                 customData: {
-                    ...currentUser.customData, profilePicture, displayName
+                    ...(userWithFile ? userWithFile : currentUser).customData, displayName
                 }
             };
             const user = await UserService.editEntity(userToEdit);
-            console.log(userToEdit);
             dispatch(editUserSuccess(user));
         } catch (e) {
             dispatch(editUserFailure(e.message));
