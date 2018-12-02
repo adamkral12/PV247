@@ -23,7 +23,7 @@ const initialState = {
           editedChannelId: null,
           showEditChannelModal: false
       },
-      selectedChannelId: '1',
+      selectedChannelId: undefined,
       showChannelList: false,
   },
     messageApp: {
