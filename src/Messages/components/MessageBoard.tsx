@@ -16,15 +16,7 @@ export interface IMessageBoardStateProps {
 
 }
 
-export interface IMessageBoardDispatchProps {
-    readonly loadMessages: () => void;
-}
-
-
-export class MessageBoard extends React.PureComponent<IMessageBoardStateProps & IMessageBoardDispatchProps> {
-    componentDidMount() {
-        this.props.loadMessages();
-    }
+export class MessageBoard extends React.PureComponent<IMessageBoardStateProps> {
     render() {
         if (this.props.isLoading) {
             return (
@@ -63,7 +55,7 @@ export class MessageBoard extends React.PureComponent<IMessageBoardStateProps & 
                 </div>
                 <MessageFormContainer/>
             </div>
-    );
-  }
+        );
+    }
 }
 

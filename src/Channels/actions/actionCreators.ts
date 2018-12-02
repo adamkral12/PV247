@@ -3,11 +3,14 @@ import {
     CHANNEL_APP_SHOW_EDIT_CHANNEL,
     CHANNEL_APP_HIDE_EDIT_CHANNEL,
     CHANNEL_APP_SHOW_CREATE_CHANNEL,
-    CHANNEL_APP_SELECT_CHANNEL,
     CHANNEL_APP_SET_VISIBILITY_FILTER,
-    CHANNEL_LIST_SHOW_LIST, CHANNEL_LIST_HIDE_LIST,
+    CHANNEL_LIST_SHOW_LIST,
+    CHANNEL_LIST_HIDE_LIST,
     CHANNEL_APP_CHANNEL_REMOVE_SUCCESS,
-    CHANNEL_APP_CHANNEL_CREATE_SUCCESS, CHANNEL_APP_CRUD_FAILURE,
+    CHANNEL_APP_CHANNEL_CREATE_SUCCESS,
+    CHANNEL_APP_CRUD_FAILURE,
+    CHANNEL_APP_SELECT_CHANNEL_FAILURE,
+    CHANNEL_APP_SELECT_CHANNEL_SUCCESS,
 } from '../constants/actionTypes';
 import {IEditedChannelCustomData} from '../models/IEditedChannelCustomData';
 import {IChannel} from '../models/IChannel';
@@ -17,6 +20,8 @@ import {IChannelCustomData} from '../models/IChannelCustomData';
 import {IState} from '../../common/IState';
 import * as Immutable from 'immutable';
 import {loadingStarted} from './loadChannels';
+import {MessageService} from '../../api/service/MessageService';
+import {IMessage} from '../../Messages/model/IMessage';
 
 export const crudFailure = (message: string): Action => ({
     type: CHANNEL_APP_CRUD_FAILURE,
@@ -95,7 +100,6 @@ export const deleteChannel = (id: string | null): any =>
                 await ChannelService.deleteEntity(id);
                 dispatch(deleteChannelSuccess(id));
             } catch (e) {
-                console.log(e.message);
                 dispatch(crudFailure('An error occurred while deleting the channel.'));
             }
         }
@@ -112,12 +116,35 @@ export const showEditChannel = (id: string): Action => ({
     }
 });
 
-export const selectChannel = (id: string): Action => ({
-    type: CHANNEL_APP_SELECT_CHANNEL,
+
+const selectChannelFailure = (id: string): Action => ({
+    type: CHANNEL_APP_SELECT_CHANNEL_FAILURE,
     payload: {
         id,
     }
 });
+
+const selectChannelSuccess = (id: string, messages: ReadonlyArray<IMessage>): Action => ({
+    type: CHANNEL_APP_SELECT_CHANNEL_SUCCESS,
+    payload: {
+        id,
+        messages
+    }
+});
+
+export const selectChannel = (id: string): any =>
+    async (dispatch: Dispatch): Promise<void> => {
+        if (id) {
+            dispatch(loadingStarted());
+            try {
+                const messages = await MessageService.getAllEntities(id);
+                dispatch(selectChannelSuccess(id, messages));
+            } catch (e) {
+                dispatch(selectChannelFailure('An error occurred.'));
+            }
+        }
+    };
+
 
 export const setVisibilityFilter = (text: string): Action => ({
     type: CHANNEL_APP_SET_VISIBILITY_FILTER,
