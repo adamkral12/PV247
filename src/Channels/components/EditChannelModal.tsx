@@ -69,13 +69,9 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
         const channelMembers = Immutable.Set(this.state.invitedUsers.map((user) => {
             return user.value;
         })).add(this.props.user.email);
+
         this.props.addChannel(this.state.channelName, {
             members: channelMembers,
-            image: this.state.picture ? this.state.picture : '',
-        this.props.addChannel(this.state.channelName, {
-            members: Immutable.Set(this.state.invitedUsers.map((user) => {
-                return user.value;
-            })),
             image: this.state.pictureFile ? this.state.pictureFile : '',
         });
     };
