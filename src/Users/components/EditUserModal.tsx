@@ -1,18 +1,21 @@
 import * as React from 'react';
 import {
-    Modal, Button, FormControl, Col, Image
+    Modal, Button, FormControl, Col, Image, Alert
 } from 'react-bootstrap';
 import {IUser} from '../../Channels/models/IUser';
+import {ScaleLoader} from 'react-spinners';
 
 
 export interface EditUserModalStateProps {
     readonly user: IUser;
     readonly show: boolean;
+    readonly apiResponseErrorMessage?: string;
+    readonly isLoading: boolean;
 }
 
 export interface EditUserModalDispatchProps {
     readonly hideEditUserModal: () => void;
-    readonly editUser: (email, profilePicture, displayName) => void;
+    readonly editUser: (email: string, profilePicture, displayName: string) => void;
     readonly loadUsers: () => void;
 }
 
@@ -32,6 +35,7 @@ export class EditUserModal extends React.PureComponent<EditUserModalStateProps &
     }
 
     componentDidMount() {
+        console.log('loading users');
         this.props.loadUsers();
     }
 
@@ -41,6 +45,7 @@ export class EditUserModal extends React.PureComponent<EditUserModalStateProps &
     };
 
     private edit = () => {
+        console.log('calling edit');
         this.props.editUser(this.props.user.email, this.state.profilePicture, this.state.displayName);
     };
 
@@ -59,37 +64,49 @@ export class EditUserModal extends React.PureComponent<EditUserModalStateProps &
     };
 
     render() {
-        const {show, user, hideEditUserModal} = this.props;
+        const {show, user, hideEditUserModal, isLoading, apiResponseErrorMessage} = this.props;
+        console.log(user);
+        console.log('response');
+        console.log(apiResponseErrorMessage);
         return (
             <div>
                 <Modal show={show}>
                     <Modal.Header onHide={hideEditUserModal}>
                         <Modal.Title>
-                            Edit user
-                            {user.email}
+                            Edit user {user.email}
                         </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
-                        <Col xs={6}>
-                            <FormControl
+                    {isLoading ? <ScaleLoader/> :
+                        <div>
+                          <Modal.Body>
+                              {apiResponseErrorMessage && <Alert bsStyle="danger">
+                                <h4>Registration failed</h4>
+                                <p>
+                                    {apiResponseErrorMessage}
+                                </p>
+                              </Alert>}
+                            <Col xs={6}>
+                              <FormControl
                                 type="file"
                                 onChange={this.handleProfilePictureChange}
+                              />
+                            </Col>
+                            <Col xs={6}>
+                                {this.state.profilePicture && <Image src={this.state.profilePicture} circle responsive/>}
+                            </Col>
+                            <FormControl
+                              type="text"
+                              value={this.state.displayName}
+                              placeholder="Enter displayed name"
+                              onChange={this.handleNameChange}
                             />
-                        </Col>
-                        <Col xs={6}>
-                            {this.state.profilePicture && <Image src={this.state.profilePicture} circle responsive/>}
-                        </Col>
-                        <FormControl
-                            type="text"
-                            value={this.state.displayName}
-                            placeholder="Enter displayed name"
-                            onChange={this.handleNameChange}
-                        />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button onClick={this.edit}>Edit</Button>
-                        <Button onClick={hideEditUserModal}>Close</Button>
-                    </Modal.Footer>
+                          </Modal.Body>
+                          <Modal.Footer>
+                            <Button onClick={this.edit}>Edit</Button>
+                            <Button onClick={hideEditUserModal}>Close</Button>
+                          </Modal.Footer>
+                        </div>
+                    }
                 </Modal>
             </div>
         );

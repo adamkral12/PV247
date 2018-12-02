@@ -1,5 +1,5 @@
 import * as Immutable from 'immutable';
-import {USER_APP_EDIT_USER, USER_APP_GET_USERS_SUCCESS} from '../constants/actionTypes';
+import {USER_APP_EDIT_USER_SUCCESS, USER_APP_GET_USERS_SUCCESS} from '../constants/actionTypes';
 import {combineReducers} from 'redux';
 import {IUsers} from '../model/IUserApp';
 import {IUser} from '../../Channels/models/IUser';
@@ -18,7 +18,7 @@ const byId = (prevState = Immutable.Map<string, IUser>(), action: Action): Immut
     switch (action.type) {
         case USER_APP_GET_USERS_SUCCESS:
             return Immutable.Map(action.payload.users.map((user: IUser) => [user.email, user]));
-        case USER_APP_EDIT_USER: {
+        case USER_APP_EDIT_USER_SUCCESS: {
             const {email, profilePicture, displayName} = action.payload;
             const user: IUser = {
                 email,

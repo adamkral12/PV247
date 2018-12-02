@@ -5,6 +5,8 @@ export interface IUserApp {
     readonly showEditUserModal: boolean;
     readonly users: IUsers;
     readonly user: IUser;
+    readonly isEditModalLoading;
+    readonly apiErrorResponse?: string;
 }
 
 export interface IUsers {
