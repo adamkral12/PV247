@@ -18,6 +18,7 @@ export interface IEditChannelModalStateProps {
     readonly channel: IChannel | null;
     readonly show: EditedChannels;
     readonly users: Immutable.List<IUser>;
+    readonly user: IUser;
     readonly crudErrorMessage?: string;
 }
 
@@ -65,6 +66,13 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
 
     private addChannel = (event: React.FormEvent) => {
         event.preventDefault();
+        let values = this.state.invitedUsers.map((user) => {
+            return user.value;
+        });
+        values = values.concat(this.props.user.email);
+        this.props.addChannel(this.state.channelName, {
+            members: Immutable.Set(values),
+            image: this.state.picture ? this.state.picture : '',
         this.props.addChannel(this.state.channelName, {
             members: Immutable.Set(this.state.invitedUsers.map((user) => {
                 return user.value;
