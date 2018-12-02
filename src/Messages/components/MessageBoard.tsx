@@ -17,6 +17,25 @@ export interface IMessageBoardStateProps {
 }
 
 export class MessageBoard extends React.PureComponent<IMessageBoardStateProps> {
+
+    private messageForm: any;
+
+    private scrollToBottom(): void {
+        this.messageForm.scrollIntoView();
+    }
+    componentDidMount() {
+        console.log('componentDidMount');
+        if (this.messageForm !== null) {
+            this.scrollToBottom();
+        }
+    }
+
+    componentDidUpdate() {
+        if (this.messageForm !== null) {
+            this.scrollToBottom();
+        }
+    }
+
     render() {
         if (this.props.isLoading) {
             return (
@@ -52,10 +71,10 @@ export class MessageBoard extends React.PureComponent<IMessageBoardStateProps> {
                         />
                     ))
                     }
+                    <div ref={(el) => { this.messageForm = el; }}/>
                 </div>
                 <MessageFormContainer/>
             </div>
         );
     }
 }
-
