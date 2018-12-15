@@ -28,9 +28,6 @@ export class MessageForm extends React.PureComponent<IMessageFormDispatchProps, 
     }
 
     private create = () => {
-        if (this.state.message === '') {
-            return;
-        }
         this.props.createMessage(this.state.message);
         this.setState(_ => ({message: ''}));
     };
