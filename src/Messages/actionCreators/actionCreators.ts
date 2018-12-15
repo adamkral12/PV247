@@ -30,29 +30,34 @@ const createMessageSuccess = (message: IMessage): Action => ({
 
 export const createMessage = (text: string): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        const channelId = getState().channelList.selectedChannelId;
-        dispatch(loadingStarted());
+        if (!/\S/.test(text)) {
+            dispatch(crudFailure('Message can not be empty.'));
+        }
+        else {
+            const channelId = getState().channelList.selectedChannelId;
+            dispatch(loadingStarted());
 
-        try {
-            const message = await MessageService.createEntity({
-                id: '',
-                channelId,
-                value: text,
-                createdBy: '',
-                createdAt: '',
-                updatedBy: null,
-                updatedAt: null,
-                customData: {votes: 0}
-            });
+            try {
+                const message = await MessageService.createEntity({
+                    id: '',
+                    channelId,
+                    value: text,
+                    createdBy: '',
+                    createdAt: '',
+                    updatedBy: null,
+                    updatedAt: null,
+                    customData: {votes: 0}
+                });
 
-            const newMessage = {
-                ...message,
-                channelId
-            };
+                const newMessage = {
+                    ...message,
+                    channelId
+                };
 
-            dispatch(createMessageSuccess(newMessage));
-        } catch (e) {
-            dispatch(crudFailure('Message could not be created.'));
+                dispatch(createMessageSuccess(newMessage));
+            } catch (e) {
+                dispatch(crudFailure('Message could not be created.'));
+            }
         }
     };
 
@@ -152,26 +157,32 @@ const updateMessageSuccess = (message: IMessage): Action => ({
 
 export const updateMessage = (id: string, text: string): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        dispatch(loadingStarted());
-        try {
-            const currentMessage = getState().messageApp.messages.byId.get(id);
-            const channelId = getState().channelList.selectedChannelId;
-            const messageToEdit: IMessage = {
-                ...currentMessage,
-                value: text
-            };
-            const message = await MessageService.editEntity(messageToEdit, channelId);
-            // rename?
-            const updatedMessage = {
-                ...message,
-                channelId
-            };
-            dispatch(updateMessageSuccess(updatedMessage));
+        if (!/\S/.test(text)) {
+            dispatch(crudFailure('Message can not be empty.'));
         }
-        catch (e) {
-            dispatch(crudFailure('Message could not be updated.'));
+        else {
+            dispatch(loadingStarted());
+            try {
+                const currentMessage = getState().messageApp.messages.byId.get(id);
+                const channelId = getState().channelList.selectedChannelId;
+                const messageToEdit: IMessage = {
+                    ...currentMessage,
+                    value: text
+                };
+                const message = await MessageService.editEntity(messageToEdit, channelId);
+                // rename?
+                const updatedMessage = {
+                    ...message,
+                    channelId
+                };
+                dispatch(updateMessageSuccess(updatedMessage));
+            }
+            catch (e) {
+                dispatch(crudFailure('Message could not be updated.'));
+            }
         }
     };
+
 
 export const startEditingMessage = (id: Uuid): Action => ({
     type: MESSAGE_APP_START_EDITING_MESSAGE,
