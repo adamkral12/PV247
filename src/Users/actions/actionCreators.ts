@@ -33,33 +33,38 @@ const editUserFailure = (message: string): Action => ({
 
 export const editUser = (profilePicture: File | null, displayName: string): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        dispatch(startEditingUser());
-        try {
-            const currentUser = getState().userApp.user;
-            let userWithFile;
-            let file;
-            if (profilePicture) {
-                file = await Pv247Service.uploadFile(profilePicture);
-                if (file) {
-                    const getFile = await Pv247Service.getFile(file[0].id);
-                    userWithFile = {
-                        ...currentUser,
-                        customData: {
-                            ...currentUser.customData, profilePicture: getFile.fileUri,
-                        }
-                    };
+        if (!/\S/.test(displayName)) {
+            dispatch(editUserFailure('User name can not be empty.'));
+        }
+        else {
+            dispatch(startEditingUser());
+            try {
+                const currentUser = getState().userApp.user;
+                let userWithFile;
+                let file;
+                if (profilePicture) {
+                    file = await Pv247Service.uploadFile(profilePicture);
+                    if (file) {
+                        const getFile = await Pv247Service.getFile(file[0].id);
+                        userWithFile = {
+                            ...currentUser,
+                            customData: {
+                                ...currentUser.customData, profilePicture: getFile.fileUri,
+                            }
+                        };
+                    }
                 }
-            }
 
-            const userToEdit: IUser = {
-                ...(userWithFile ? userWithFile : currentUser),
-                customData: {
-                    ...(userWithFile ? userWithFile : currentUser).customData, displayName
-                }
-            };
-            const user = await UserService.editEntity(userToEdit);
-            dispatch(editUserSuccess(user));
-        } catch (e) {
-            dispatch(editUserFailure(e.message));
+                const userToEdit: IUser = {
+                    ...(userWithFile ? userWithFile : currentUser),
+                    customData: {
+                        ...(userWithFile ? userWithFile : currentUser).customData, displayName
+                    }
+                };
+                const user = await UserService.editEntity(userToEdit);
+                dispatch(editUserSuccess(user));
+            } catch (e) {
+                dispatch(editUserFailure(e.message));
+            }
         }
     };

@@ -78,7 +78,7 @@ export class EditUserModal extends React.PureComponent<EditUserModalStateProps &
                         <div>
                           <Modal.Body>
                               {apiResponseErrorMessage && <Alert bsStyle="danger">
-                                <h4>Editing failed failed</h4>
+                                <h4>Editing failed</h4>
                                 <p>
                                     {apiResponseErrorMessage}
                                 </p>
