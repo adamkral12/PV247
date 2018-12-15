@@ -109,11 +109,11 @@ export const addChannel = (name: string, customData: IChannelCustomData): any =>
                 // string is empty or just whitespace
                 dispatch(crudFailure('Channel name can\'t be empty'));
             }
-            else if (typeof customData.image === 'string') {
+            if (!customData) {
                 dispatch(crudFailure('Please upload channel image'));
             }
             else {
-                const file = await Pv247Service.uploadFile(customData.image);
+                const file = await Pv247Service.uploadFile(customData.image as File);
                 if (file) {
                     const getFile = await Pv247Service.getFile(file[0].id);
                     const dataWithFile: IChannelCustomData = {
