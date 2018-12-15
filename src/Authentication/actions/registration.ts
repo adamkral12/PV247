@@ -29,7 +29,6 @@ export const register = (email: string, displayName: string): any =>
         }
         else if (!/\S/.test(displayName)) {
             // string is empty or just whitespace
-            console.log(displayName);
             dispatch(registerFailed('Name can not be empty'));
         }
         else {
