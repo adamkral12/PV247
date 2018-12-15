@@ -70,12 +70,22 @@ export class RegisterModal extends React.PureComponent<RegisterModalStateProps &
                                     value={displayName}
                                     placeholder="Enter displayed name"
                                     onChange={this.handleNameChange}
+                                    onKeyPress={event => {
+                                        if (event.key === 'Enter') {
+                                            this.register();
+                                        }
+                                    }}
                                 />
                                 <FormControl
                                     type="text"
                                     value={email}
                                     placeholder="Enter email"
                                     onChange={this.handleEmailChange}
+                                    onKeyPress={event => {
+                                        if (event.key === 'Enter') {
+                                            this.register();
+                                        }
+                                    }}
                                 />
                             </Col>
                         </Row>
