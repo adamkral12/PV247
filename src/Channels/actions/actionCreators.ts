@@ -53,38 +53,44 @@ const updateChannelSuccess = (channel: IChannel): Action => ({
 
 export const updateChannel = (id: string, name: string, customData: IEditedChannelCustomData): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-    dispatch(loadingStarted());
-    try {
-        const currentChannel = getState().channelList.channels.byId.get(id);
-        let channelWithFile;
-        let file;
-        if (customData.image) {
-            file = await Pv247Service.uploadFile(customData.image);
-            if (file) {
-                const getFile = await Pv247Service.getFile(file[0].id);
-                channelWithFile = {
-                    ...currentChannel,
+        if (!/\S/.test(name)) {
+            // string is empty or just whitespace
+            dispatch(crudFailure('Channel name can\'t be empty'));
+        }
+        else {
+            try {
+                dispatch(loadingStarted());
+                const currentChannel = getState().channelList.channels.byId.get(id);
+                let channelWithFile;
+                let file;
+                if (customData.image) {
+                    file = await Pv247Service.uploadFile(customData.image);
+                    if (file) {
+                        const getFile = await Pv247Service.getFile(file[0].id);
+                        channelWithFile = {
+                            ...currentChannel,
+                            customData: {
+                                ...currentChannel.customData, image: getFile.fileUri,
+                            }
+                        };
+                    }
+                }
+
+                const channelToEdit: IChannel = {
+                    ...(channelWithFile ? channelWithFile : currentChannel),
+                    name,
                     customData: {
-                        ...currentChannel.customData, image: getFile.fileUri,
+                        ...(channelWithFile ? channelWithFile : currentChannel).customData,
+                        members: Immutable.Set((channelWithFile ? channelWithFile : currentChannel).customData.members).merge(customData.invitedUsers)
                     }
                 };
+
+                const channel = await ChannelService.editEntity(channelToEdit);
+                dispatch(updateChannelSuccess(convertChannelMembersToSet(channel)));
+            } catch (e) {
+                dispatch(crudFailure('An error occurred while editing the channel.'));
             }
         }
-
-        const channelToEdit: IChannel = {
-            ...(channelWithFile ? channelWithFile : currentChannel),
-            name,
-            customData: {
-                ...(channelWithFile ? channelWithFile : currentChannel).customData,
-                members: Immutable.Set((channelWithFile ? channelWithFile : currentChannel).customData.members).merge(customData.invitedUsers)
-            }
-        };
-
-        const channel = await ChannelService.editEntity(channelToEdit);
-        dispatch(updateChannelSuccess(convertChannelMembersToSet(channel)));
-    } catch (e) {
-        dispatch(crudFailure('An error occurred while editing the channel.'));
-    }
     };
 
 
@@ -99,7 +105,14 @@ export const addChannel = (name: string, customData: IChannelCustomData): any =>
     async (dispatch: Dispatch): Promise<void> => {
         dispatch(loadingStarted());
         try {
-            if (typeof customData.image !== 'string') {
+            if (!/\S/.test(name)) {
+                // string is empty or just whitespace
+                dispatch(crudFailure('Channel name can\'t be empty'));
+            }
+            else if (typeof customData.image === 'string') {
+                dispatch(crudFailure('Please upload channel image'));
+            }
+            else {
                 const file = await Pv247Service.uploadFile(customData.image);
                 if (file) {
                     const getFile = await Pv247Service.getFile(file[0].id);
@@ -113,8 +126,6 @@ export const addChannel = (name: string, customData: IChannelCustomData): any =>
                     });
                     dispatch(addChannelSuccess(convertChannelMembersToSet(channel)));
                 }
-            } else {
-                throw Error('Please upload channel image');
             }
         } catch (e) {
             dispatch(crudFailure('Error while creating channel'));
