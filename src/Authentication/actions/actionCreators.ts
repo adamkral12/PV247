@@ -36,15 +36,21 @@ export const logout = (): any =>
 
 export const login = (email: string): any =>
     async (dispatch: Dispatch): Promise<void> => {
-        dispatch(loginStarted());
-        try {
-            const data = await auth(email);
-            localStorage.setItem(AUTH_TOKEN_STORAGE_KEY, data.token);
-            localStorage.setItem(AUTH_EXPIRATION_STORAGE_KEY, data.expiration);
-            localStorage.setItem(EMAIL_STORAGE_KEY, email);
-            dispatch(loadUser(email));
-        } catch (e) {
-            dispatch(loginFailure(e.message));
+        if (!/\S/.test(email)) {
+            // string is empty or just whitespace
+            dispatch(loginFailure('Email field can not be empty'));
+        }
+        else {
+            dispatch(loginStarted());
+            try {
+                const data = await auth(email);
+                localStorage.setItem(AUTH_TOKEN_STORAGE_KEY, data.token);
+                localStorage.setItem(AUTH_EXPIRATION_STORAGE_KEY, data.expiration);
+                localStorage.setItem(EMAIL_STORAGE_KEY, email);
+                dispatch(loadUser(email));
+            } catch (e) {
+                dispatch(loginFailure(e.message));
+            }
         }
     };
 
