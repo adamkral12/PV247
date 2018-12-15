@@ -23,18 +23,29 @@ const createUser = (user: IUser): Action => ({
 
 export const register = (email: string, displayName: string): any =>
     async (dispatch: Dispatch): Promise<void> => {
-        dispatch(registerStarted());
-        try {
-            const userToCreate: IUser = {
-                email,
-                customData: {
-                    profilePicture: '',
-                    displayName,
-                }
-            };
-            const user = await UserService.createEntity(userToCreate);
-            dispatch(createUser(user));
-        } catch (e) {
-            dispatch(registerFailed(e.message));
+        if (!/\S/.test(email)) {
+            // string is empty or just whitespace
+            dispatch(registerFailed('Email can not be empty'));
+        }
+        else if (!/\S/.test(displayName)) {
+            // string is empty or just whitespace
+            console.log(displayName);
+            dispatch(registerFailed('Name can not be empty'));
+        }
+        else {
+            dispatch(registerStarted());
+            try {
+                const userToCreate: IUser = {
+                    email,
+                    customData: {
+                        profilePicture: '',
+                        displayName,
+                    }
+                };
+                const user = await UserService.createEntity(userToCreate);
+                dispatch(createUser(user));
+            } catch (e) {
+                dispatch(registerFailed(e.message));
+            }
         }
     };
