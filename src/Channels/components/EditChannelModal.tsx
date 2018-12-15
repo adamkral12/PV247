@@ -49,7 +49,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
             invitedUsers: [],
             channelName: props.channel ? props.channel.name : '',
             show: props.show,
-            picture: props.channel ? props.channel.customData.picture : '',
+            picture: props.channel ? props.channel.customData.picture : null,
             pictureFile: null,
         };
     }
@@ -60,7 +60,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
             invitedUsers: Immutable.Set(this.state.invitedUsers.map((user) => {
                 return user.value;
             })),
-            image: this.state.pictureFile ? this.state.pictureFile : null,
+            image: this.state.pictureFile,
         });
     };
 
@@ -72,7 +72,7 @@ export class EditChannelModal extends React.PureComponent<IProps, IState> {
 
         this.props.addChannel(this.state.channelName, {
             members: channelMembers,
-            image: this.state.pictureFile ? this.state.pictureFile : '',
+            image: this.state.pictureFile,
         });
     };
 
