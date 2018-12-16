@@ -6,7 +6,8 @@ import {
     MESSAGE_APP_UPVOTE_MESSAGE_SUCCESS,
     MESSAGE_APP_DELETE_MESSAGE_SUCCESS
 } from '../constants/actionTypes';
-import {CHANNEL_APP_SELECT_CHANNEL_SUCCESS} from "../../Channels/constants/actionTypes";
+
+import {CHANNEL_APP_SELECT_CHANNEL_SUCCESS} from '../../Channels/constants/actionTypes';
 
 export const crudResponse = (prevState: string | undefined, action: Action): string | undefined => {
     switch (action.type) {
