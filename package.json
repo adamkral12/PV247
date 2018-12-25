@@ -23,11 +23,12 @@
   "scripts": {
     "start": "webpack-dev-server --mode=development",
     "build": "webpack --mode=development",
+    "test": "jest --config=jest.config.json",
     "production": "webpack -p",
     "eject": "react-scripts eject",
     "lint": "tslint --config tslint.json --project tsconfig.json",
     "fix-lint": "tslint --config tslint.json --project tsconfig.json --fix",
-    "all": "npm run build && npm run lint"
+    "all": "npm run test && npm run build && npm run lint"
   },
   "browserslist": [
     ">0.2%",
