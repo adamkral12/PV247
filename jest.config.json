@@ -10,5 +10,6 @@
   },
   "testRegex": "/tests/.+\\.test\\.(j|t)sx?$",
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
-  "setupFiles": ["raf/polyfill"]
+  "automock": false,
+  "setupFiles": ["raf/polyfill", "<rootDir>/src/tests/utils/fetchMock.ts"]
 }
