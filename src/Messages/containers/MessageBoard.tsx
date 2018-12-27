@@ -2,8 +2,6 @@ import {IState} from '../../common/IState';
 import {IMessageBoardStateProps, MessageBoard} from '../components/MessageBoard';
 import {connect} from 'react-redux';
 
-
-
 const mapStateToProps = (state: IState): IMessageBoardStateProps => {
     return {
         messageIds: state.messageApp.messages.allIds,

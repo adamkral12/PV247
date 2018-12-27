@@ -51,7 +51,8 @@ export class Message extends React.PureComponent<IProps> {
                                 {this.props.author.customData.displayName}
                             </Panel.Heading>
                             {isBeingEdited ? <MessageEdit message={message} onSave={edit} onCancel={cancelEditing}/> :
-                                <MessageDisplay message={message} delete={this.props.delete} upvote={upvote} downvote={downvote} startEditing={startEditing} user={user}/>}
+                                <MessageDisplay message={message} delete={this.props.delete} upvote={upvote}
+                                                downvote={downvote} startEditing={startEditing} user={user}/>}
                         </Panel>
                     </Col>
                 </Row>

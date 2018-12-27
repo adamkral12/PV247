@@ -28,9 +28,9 @@ const createMessageSuccess = (message: IMessage): Action => ({
     }
 });
 
-export const createMessage = (text: string): any =>
+export const createMessage = (messageContent: any): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        if (!/\S/.test(text)) {
+        if (!/\S/.test(messageContent.blocks[0].text)) {
             dispatch(crudFailure('Message can not be empty.'));
         }
         else {
@@ -41,7 +41,7 @@ export const createMessage = (text: string): any =>
                 const message = await MessageService.createEntity({
                     id: '',
                     channelId,
-                    value: text,
+                    value: JSON.stringify(messageContent),
                     createdBy: '',
                     createdAt: '',
                     updatedBy: null,
@@ -155,9 +155,9 @@ const updateMessageSuccess = (message: IMessage): Action => ({
     }
 });
 
-export const updateMessage = (id: string, text: string): any =>
+export const updateMessage = (id: string, messageContent: any): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        if (!/\S/.test(text)) {
+        if (!/\S/.test(messageContent.blocks[0].text)) {
             dispatch(crudFailure('Message can not be empty.'));
         }
         else {
@@ -167,7 +167,7 @@ export const updateMessage = (id: string, text: string): any =>
                 const channelId = getState().channelList.selectedChannelId;
                 const messageToEdit: IMessage = {
                     ...currentMessage,
-                    value: text
+                    value: JSON.stringify(messageContent)
                 };
                 const message = await MessageService.editEntity(messageToEdit, channelId);
                 // rename?

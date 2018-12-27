@@ -3,9 +3,9 @@ import './MessageBoard.css';
 import {IUser} from '../../Channels/models/IUser';
 import * as Immutable from 'immutable';
 import {MessageContainer} from '../containers/Message';
-import {MessageFormContainer} from '../containers/MessageForm';
 import { Panel, Alert } from 'react-bootstrap';
 import {ScaleLoader} from 'react-spinners';
+import {RichTextEditorContainer1} from '../containers/CreateMessageRichTextEditor';
 
 export interface IMessageBoardStateProps {
     readonly messageIds: Immutable.List<Uuid>;
@@ -72,7 +72,7 @@ export class MessageBoard extends React.PureComponent<IMessageBoardStateProps> {
                     }
                     <div ref={(el) => { this.messageForm = el; }}/>
                 </div>
-                <MessageFormContainer/>
+                <RichTextEditorContainer1/>
             </div>
         );
     }

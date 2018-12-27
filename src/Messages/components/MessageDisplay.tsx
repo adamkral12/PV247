@@ -4,6 +4,8 @@ import {
 } from 'react-bootstrap';
 import {IMessage} from '../model/IMessage';
 import {IUser} from '../../Channels/models/IUser';
+import {EditorState, convertFromRaw} from 'draft-js';
+import {Editor} from 'react-draft-wysiwyg';
 
 export interface IMessageDispatchProps {
     readonly delete: () => void;
@@ -16,7 +18,6 @@ export interface IMessageDispatchProps {
 export interface IMessageStateProps {
     readonly message: IMessage;
     readonly user: IUser;
-
 }
 
 type IProps = IMessageDispatchProps & IMessageStateProps;
@@ -26,7 +27,10 @@ export class MessageDisplay extends React.PureComponent<IProps> {
         return (
             <Panel.Body>
                 <Col xs={8}>
-                    <p>{this.props.message.value}</p>
+                    <Editor
+                        editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.message.value)))}
+                        toolbarHidden
+                    />
                 </Col>
                 <Col xs={1}>
                     <Badge>{this.props.message.customData.votes}</Badge>
