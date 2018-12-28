@@ -16,9 +16,13 @@ const defaultPrevState: EditedChannels = {
 export const showEditChannelModal = (prevState: EditedChannels = defaultPrevState, action: Action): EditedChannels => {
     switch (action.type) {
         case CHANNEL_APP_SHOW_EDIT_CHANNEL:
-        case CHANNEL_APP_SHOW_CREATE_CHANNEL:
             return {
                 editedChannelId: action.payload.id,
+                showEditChannelModal: true,
+            };
+        case CHANNEL_APP_SHOW_CREATE_CHANNEL:
+            return {
+                editedChannelId: null,
                 showEditChannelModal: true,
             };
         case CHANNEL_APP_CHANNEL_CREATE_SUCCESS:
