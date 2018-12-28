@@ -70,7 +70,6 @@
     "fetch-mock": "^7.2.7",
     "file-loader": "^2.0.0",
     "jest": "^23.6.0",
-    "jest-fetch-mock": "^2.1.0",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "react-set-state-usage": "^2.0.1",

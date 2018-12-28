@@ -7,8 +7,11 @@ import {
 } from '../components/EditChannelModal';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import {addChannel, deleteChannel, hideEditChannel, updateChannel} from '../actions/actionCreators';
 import * as Immutable from 'immutable';
+import {updateChannel} from '../actions/updateChannel';
+import {addChannel} from '../actions/addChannel';
+import {deleteChannel} from '../actions/deleteChannel';
+import {hideEditChannel} from '../actions/visibility';
 
 const mapStateToProps = (state: IState, ownProps: IEditChannelModalOwnProps): IEditChannelModalStateProps => {
     return {

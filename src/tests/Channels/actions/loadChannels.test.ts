@@ -5,28 +5,28 @@ import * as fetchMock from 'fetch-mock';
 import {extendedUrl} from '../../../api/service/ChannelService';
 import {BASE_API_URL} from '../../../api/constants/api';
 
-describe("loading channels action", () => {
+describe('loading channels action', () => {
     afterEach(() => {
         fetchMock.restore();
     });
 
-    it("should return error message when failed", async () => {
+    it('should return error message when failed', async () => {
         fetchMock.mock(BASE_API_URL + extendedUrl, 400);
         console.log(extendedUrl);
         const store = mockStore();
         await store.dispatch(loadChannels());
         const actions = store.getActions();
         expect(actions[0]).toEqual({type: CHANNEL_APP_LOADING_STARTED});
-        expect(actions[1]).toEqual({type: CHANNEL_APP_LOADING_FAILURE, payload: {message: "Bad Request"}});
+        expect(actions[1]).toEqual({type: CHANNEL_APP_LOADING_FAILURE, payload: {message: 'Bad Request'}});
     });
 
-    it("should dispatch channels on success", async () => {
+    it('should dispatch channels on success', async () => {
         fetchMock.mock(
             BASE_API_URL + extendedUrl,
             {
                 status: 200,
                 body: [
-                        { id: 1, name: "new channel" },
+                        { id: 1, name: 'new channel' },
                     ],
             });
 
@@ -36,7 +36,7 @@ describe("loading channels action", () => {
         expect(actions[0]).toEqual({type: CHANNEL_APP_LOADING_STARTED});
         expect(actions[1]).toEqual({type: CHANNEL_APP_LOADING_SUCCESS, payload: {
             channels: [
-                { id: 1, name: "new channel" },
+                { id: 1, name: 'new channel' },
             ]}});
 
     });

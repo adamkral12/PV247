@@ -1,8 +1,8 @@
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {setVisibilityFilter} from '../actions/actionCreators';
 import {ChannelFilter, IChannelFilterDispatchProps, IChannelFilterStateProps} from '../components/ChannelFilter';
 import {IState} from '../../common/IState';
+import {setVisibilityFilter} from '../actions/visibility';
 
 const mapDispatchToProps = (dispatch: Dispatch): IChannelFilterDispatchProps => {
     return {

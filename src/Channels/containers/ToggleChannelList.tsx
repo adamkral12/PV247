@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {IToggleChannelListDispatchProps, ToggleChannelList} from '../components/ToggleChannelList';
 import {Dispatch} from 'redux';
-import {showChannelList} from '../actions/actionCreators';
+import {showChannelList} from '../actions/visibility';
 
 const mapDispatchToProps = (dispatch: Dispatch): IToggleChannelListDispatchProps => {
     return {
