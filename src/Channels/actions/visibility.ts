@@ -2,7 +2,6 @@ import {CHANNEL_APP_HIDE_EDIT_CHANNEL, CHANNEL_APP_SET_VISIBILITY_FILTER, CHANNE
 
 export const showCreateChannel = (): Action => ({
     type: CHANNEL_APP_SHOW_CREATE_CHANNEL,
-    payload: {},
 });
 
 export const hideEditChannel = (): Action => ({

@@ -18,13 +18,13 @@ const updateChannelSuccess = (channel: IChannel): Action => ({
 
 export const updateChannel = (id: string, name: string, customData: IEditedChannelCustomData): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
+        dispatch(loadingStarted());
         if (!/\S/.test(name)) {
             // string is empty or just whitespace
             dispatch(crudFailure('Channel name can\'t be empty'));
         }
         else {
             try {
-                dispatch(loadingStarted());
                 const currentChannel = getState().channelList.channels.byId.get(id);
                 let channelWithFile;
                 let file;
