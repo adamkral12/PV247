@@ -22,7 +22,7 @@ export const addChannel = (name: string, customData: IChannelCustomData): any =>
                 // string is empty or just whitespace
                 dispatch(crudFailure('Channel name can\'t be empty'));
             }
-            if (!customData) {
+            if (!customData.image) {
                 dispatch(crudFailure('Please upload channel image'));
             }
             else {

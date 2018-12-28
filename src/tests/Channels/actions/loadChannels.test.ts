@@ -10,9 +10,8 @@ describe('loading channels action', () => {
         fetchMock.restore();
     });
 
-    it('should return error message when failed', async () => {
+    it('should dispatch failure - error message when API failed', async () => {
         fetchMock.mock(BASE_API_URL + extendedUrl, 400);
-        console.log(extendedUrl);
         const store = mockStore();
         await store.dispatch(loadChannels());
         const actions = store.getActions();
