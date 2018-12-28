@@ -15,7 +15,7 @@ export const ChannelService: IApiService<IChannel> = {
     },
     deleteEntity: async (channelId: string) => {
         const url = extendedUrl + channelId;
-        Pv247Service.delete(url);
+        return Pv247Service.delete(url) as Promise<void>;
     },
     createEntity: async (data: IChannel) => {
         return Pv247Service.create(extendedUrl, data);
