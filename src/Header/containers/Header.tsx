@@ -9,7 +9,7 @@ import {IState} from '../../common/IState';
 const mapStateToProps = (state: IState): HeaderStateProps => {
     const channelId = state.channelList.selectedChannelId;
     return {
-        numberOfMembers: channelId === undefined ? undefined : state.channelList.channels.byId.get(channelId).customData.members.count(),
+        numberOfMembers: channelId ? state.channelList.channels.byId.get(channelId).customData.members.count() : undefined,
     };
 };
 

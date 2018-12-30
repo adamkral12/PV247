@@ -22,7 +22,7 @@ export const showEditChannelModal = (prevState: EditedChannels = defaultPrevStat
             };
         case CHANNEL_APP_SHOW_CREATE_CHANNEL:
             return {
-                editedChannelId: action.payload.id,
+                editedChannelId: null,
                 showEditChannelModal: true,
             };
         case CHANNEL_APP_CHANNEL_CREATE_SUCCESS:

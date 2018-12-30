@@ -3,7 +3,7 @@ import {APP_ID} from '../constants/api';
 import {IChannel} from '../../Channels/models/IChannel';
 import {IApiService} from '../model/IApiService';
 
-const extendedUrl: string = 'app/' + APP_ID + '/channel/';
+export const extendedUrl: string = 'app/' + APP_ID + '/channel/';
 
 export const ChannelService: IApiService<IChannel> = {
     getEntity: async (channelId: string) => {
@@ -15,7 +15,7 @@ export const ChannelService: IApiService<IChannel> = {
     },
     deleteEntity: async (channelId: string) => {
         const url = extendedUrl + channelId;
-        Pv247Service.delete(url);
+        return Pv247Service.delete(url) as Promise<void>;
     },
     createEntity: async (data: IChannel) => {
         return Pv247Service.create(extendedUrl, data);

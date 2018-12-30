@@ -2,7 +2,8 @@ import {IState} from '../../common/IState';
 import {Channel, IChannelDispatchProps, IChannelOwnProps, IChannelStateProps} from '../components/Channel';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import {hideChannelList, selectChannel, showEditChannel} from '../actions/actionCreators';
+import {selectChannel} from '../actions/selectChannel';
+import {hideChannelList, showEditChannel} from '../actions/visibility';
 
 const mapStateToProps = (state: IState, ownProps: IChannelOwnProps): IChannelStateProps => {
     return {
