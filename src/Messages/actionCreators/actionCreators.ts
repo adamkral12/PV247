@@ -30,7 +30,9 @@ const createMessageSuccess = (message: IMessage): Action => ({
 
 export const createMessage = (messageContent: any): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        if (!/\S/.test(messageContent.blocks[0].text)) {
+        console.log(messageContent);
+        // message contains some text or pictures
+        if (!(messageContent.blocks.some(block => /\S/.test(block.text) || block.type === 'atomic'))) {
             dispatch(crudFailure('Message can not be empty.'));
         }
         else {
@@ -157,7 +159,8 @@ const updateMessageSuccess = (message: IMessage): Action => ({
 
 export const updateMessage = (id: string, messageContent: any): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        if (!/\S/.test(messageContent.blocks[0].text)) {
+        // message contains some text or pictures
+        if (!(messageContent.blocks.some(block => /\S/.test(block.text) || block.type === 'atomic'))) {
             dispatch(crudFailure('Message can not be empty.'));
         }
         else {
