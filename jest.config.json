@@ -10,5 +10,6 @@
   },
   "testRegex": "/tests/.+\\.test\\.(j|t)sx?$",
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "automock": false,
   "setupFiles": ["raf/polyfill"]
 }

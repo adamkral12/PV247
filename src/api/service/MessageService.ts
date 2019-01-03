@@ -2,7 +2,7 @@ import {Pv247Service} from './Pv247Service';
 import {APP_ID} from '../constants/api';
 import {IMessage} from '../../Messages/model/IMessage';
 
-const extendedUrl: string = 'app/' + APP_ID + '/channel/';
+export const extendedUrl: string = 'app/' + APP_ID + '/channel/';
 
 export const MessageService = {
     getAllEntities: async (channelId: string) => {
