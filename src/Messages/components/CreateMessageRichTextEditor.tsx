@@ -75,7 +75,14 @@ export class CreateMessageRichTextEditor extends React.PureComponent<IRichTextEd
                     suggestions: this.props.channelMembers,
                 }}
                 toolbar={{
-                    image: { uploadCallback: this.uploadImageCallBack,  previewImage: true },
+                    image: {
+                        uploadCallback: this.uploadImageCallBack,
+                        previewImage: true,
+                        defaultSize: {
+                            height: '200px',
+                            width: 'auto',
+                        }
+                    }
                 }}
             />
             <Button
