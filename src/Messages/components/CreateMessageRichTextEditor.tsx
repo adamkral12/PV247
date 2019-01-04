@@ -65,7 +65,7 @@ export class CreateMessageRichTextEditor extends React.PureComponent<IRichTextEd
 
   render() {
     return (
-        <div className="back">
+        <div>
             <Editor
                 editorState={this.state.editorState}
                 onEditorStateChange={this.onEditorStateChange}
