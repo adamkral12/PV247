@@ -1,24 +1,27 @@
 import * as React from 'react';
-import { EditorState } from 'draft-js';
+import {convertFromRaw, EditorState} from 'draft-js';
 import { convertToRaw } from 'draft-js';
 import { Button } from 'react-bootstrap';
-import { Editor } from 'react-draft-wysiwyg';
-// won't load - https://github.com/jpuri/react-draft-wysiwyg/issues/432
-// import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-// import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import {Editor, RawDraftContentState} from 'react-draft-wysiwyg';
 import './react-draft-wysiwyg.css';
 import {Pv247Service} from '../../api/service/Pv247Service';
+import {IMessage} from '../model/IMessage';
 
 export interface IChannelMember {
     text: string;
     value: string;
 }
 
-export interface IRichTextEditorProps {
-    readonly createMessage: (message: any) => void;
+export interface IRichTextEditorOwnProps {
+    readonly message: IMessage;
+}
+
+export interface IRichTextEditorDispatchProps {
+    readonly submit: (message: RawDraftContentState, id?: string) => void;
 }
 
 export interface IRichTextEditorStateProps {
+    readonly message?: IMessage;
     readonly channelMembers: Array<IChannelMember>;
 }
 
@@ -26,18 +29,19 @@ export interface IState {
     readonly editorState: EditorState;
 }
 
-export class CreateMessageRichTextEditor extends React.PureComponent<IRichTextEditorProps & IRichTextEditorStateProps, IState> {
-  constructor(props) {
-    super(props);
-    this.state  = {
-        editorState: EditorState.createEmpty()
-};
-}
-    private _createMessage = () => {
-      this.props.createMessage((convertToRaw(this.state.editorState.getCurrentContent())));
-  };
+export class RichTextEditor extends React.PureComponent<IRichTextEditorOwnProps & IRichTextEditorDispatchProps & IRichTextEditorStateProps, IState> {
+    constructor(props) {
+        super(props);
+        this.state = {
+            editorState: this.props.message ? EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.message.value))) : EditorState.createEmpty()
+        };
+    }
 
-    private onEditorStateChange = (editorState) => {
+    private createMessage = (): void => {
+      this.props.submit((convertToRaw(this.state.editorState.getCurrentContent())), this.props.message.id);
+    };
+
+    private onEditorStateChange = (editorState): void => {
     this.setState(() => ({
       editorState,
     }));
@@ -53,7 +57,7 @@ export class CreateMessageRichTextEditor extends React.PureComponent<IRichTextEd
 
   render() {
     return (
-        <div>
+        <div className="back">
             <Editor
                 editorState={this.state.editorState}
                 onEditorStateChange={this.onEditorStateChange}
@@ -75,7 +79,7 @@ export class CreateMessageRichTextEditor extends React.PureComponent<IRichTextEd
             />
             <Button
                 bsStyle="success"
-                onClick={this._createMessage}
+                onClick={this.createMessage}
             >Submit
             </Button>
         </div>

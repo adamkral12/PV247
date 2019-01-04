@@ -1,15 +1,11 @@
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import {updateMessage} from '../actionCreators/actionCreators';
-import {
-    IRichTextEditorProps,
-    UpdateMessageRichTextEditor
-} from '../components/UpdateMessageRichTextEditor';
 import {IState} from '../../common/IState';
-import {IChannelMember, IRichTextEditorStateProps} from '../components/CreateMessageRichTextEditor';
+import {RichTextEditor, IChannelMember, IRichTextEditorOwnProps, IRichTextEditorDispatchProps, IRichTextEditorStateProps} from '../components/RichTextEditor';
 import {RawDraftContentState} from 'react-draft-wysiwyg';
 
-const mapStateToProps = (state: IState): IRichTextEditorStateProps => {
+const mapStateToProps = (state: IState, ownProps: IRichTextEditorOwnProps): IRichTextEditorStateProps => {
     if (state.channelList.selectedChannelId !== null && state.channelList.selectedChannelId !== undefined) {
         const channelMembers = state.channelList.channels.byId.get(state.channelList.selectedChannelId).customData.members.toArray();
         const channelMemberForAnnotations = new Array<IChannelMember>();
@@ -17,18 +13,22 @@ const mapStateToProps = (state: IState): IRichTextEditorStateProps => {
             channelMemberForAnnotations.push({text: member, value: member});
         });
         return {
+            message: ownProps.message,
             channelMembers: channelMemberForAnnotations
         };
     }
-    return {channelMembers: []};
+    return {
+        message: ownProps.message,
+        channelMembers: []
+    };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): IRichTextEditorProps => {
+const mapDispatchToProps = (dispatch: Dispatch): IRichTextEditorDispatchProps => {
     return {
-        updateMessage: (messageId: string, message: RawDraftContentState) => {
+        submit: (message: RawDraftContentState, messageId: string) => {
             dispatch(updateMessage(messageId, message));
         }
     };
 };
 
-export const UpdateMessageRichTextEditorContainer = connect<IRichTextEditorStateProps, IRichTextEditorProps>(mapStateToProps, mapDispatchToProps)(UpdateMessageRichTextEditor);
+export const UpdateMessageRichTextEditorContainer = connect<IRichTextEditorStateProps, IRichTextEditorDispatchProps>(mapStateToProps, mapDispatchToProps)(RichTextEditor);

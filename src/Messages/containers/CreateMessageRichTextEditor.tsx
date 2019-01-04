@@ -2,11 +2,12 @@ import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import {createMessage} from '../actionCreators/actionCreators';
 import {
-    IRichTextEditorProps,
-    CreateMessageRichTextEditor, IRichTextEditorStateProps
-} from '../components/CreateMessageRichTextEditor';
+    IRichTextEditorDispatchProps,
+    RichTextEditor, IRichTextEditorStateProps
+} from '../components/RichTextEditor';
 import {IState} from '../../common/IState';
-import {IChannelMember} from '../components/CreateMessageRichTextEditor';
+import {IChannelMember} from '../components/RichTextEditor';
+import {RawDraftContentState} from 'react-draft-wysiwyg';
 
 const mapStateToProps = (state: IState): IRichTextEditorStateProps => {
     if (state.channelList.selectedChannelId !== null && state.channelList.selectedChannelId !== undefined) {
@@ -21,13 +22,12 @@ const mapStateToProps = (state: IState): IRichTextEditorStateProps => {
     }
     return {channelMembers: []};
 };
-const mapDispatchToProps = (dispatch: Dispatch): IRichTextEditorProps => {
+const mapDispatchToProps = (dispatch: Dispatch): IRichTextEditorDispatchProps => {
     return {
-        createMessage: (message: any) => {
+        submit: (message: RawDraftContentState) => {
             dispatch(createMessage(message));
         },
-        // channelMembers: state.channelList.channels.byId.get(state.channelList.selectedChannelId).customData.members.toArray()
     };
 };
 
-export const RichTextEditorContainer1 = connect<IRichTextEditorStateProps, IRichTextEditorProps>(mapStateToProps, mapDispatchToProps)(CreateMessageRichTextEditor);
+export const CreateRichTextEditorContainer = connect<IRichTextEditorStateProps, IRichTextEditorDispatchProps>(mapStateToProps, mapDispatchToProps)(RichTextEditor);

@@ -5,7 +5,7 @@ import * as Immutable from 'immutable';
 import {MessageContainer} from '../containers/Message';
 import { Panel, Alert } from 'react-bootstrap';
 import {ScaleLoader} from 'react-spinners';
-import {RichTextEditorContainer1} from '../containers/CreateMessageRichTextEditor';
+import {CreateRichTextEditorContainer} from '../containers/CreateMessageRichTextEditor';
 
 export interface IMessageBoardStateProps {
     readonly messageIds: Immutable.List<Uuid>;
@@ -72,7 +72,7 @@ export class MessageBoard extends React.PureComponent<IMessageBoardStateProps> {
                     }
                     <div ref={(el) => { this.messageForm = el; }}/>
                 </div>
-                <RichTextEditorContainer1/>
+                <CreateRichTextEditorContainer/>
             </div>
         );
     }
