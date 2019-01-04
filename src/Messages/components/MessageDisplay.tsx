@@ -30,6 +30,7 @@ export class MessageDisplay extends React.PureComponent<IProps> {
                     <Editor
                         editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.message.value)))}
                         toolbarHidden
+                        readonly
                     />
                 </Col>
                 <Col xs={1}>

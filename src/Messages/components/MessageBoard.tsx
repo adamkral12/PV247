@@ -3,17 +3,17 @@ import './MessageBoard.css';
 import {IUser} from '../../Channels/models/IUser';
 import * as Immutable from 'immutable';
 import {MessageContainer} from '../containers/Message';
-import { Panel, Alert } from 'react-bootstrap';
+import { Panel, Alert, Row } from 'react-bootstrap';
 import {ScaleLoader} from 'react-spinners';
 import {CreateRichTextEditorContainer} from '../containers/CreateMessageRichTextEditor';
 
 export interface IMessageBoardStateProps {
+    readonly selectedChannelId?: string;
     readonly messageIds: Immutable.List<Uuid>;
     readonly user: IUser;
     readonly loadingErrorMessage?: string;
     readonly crudErrorMessage?: string;
     readonly isLoading: boolean;
-
 }
 
 export class MessageBoard extends React.PureComponent<IMessageBoardStateProps> {
@@ -72,7 +72,10 @@ export class MessageBoard extends React.PureComponent<IMessageBoardStateProps> {
                     }
                     <div ref={(el) => { this.messageForm = el; }}/>
                 </div>
-                <CreateRichTextEditorContainer/>
+                {this.props.selectedChannelId ?
+                <CreateRichTextEditorContainer/> : <Row>
+                        <h1 style={{textAlign:"center"}}>No channel selected, proceed by selecting channel or create a new one</h1>
+                    </Row>}
             </div>
         );
     }
