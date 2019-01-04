@@ -6,6 +6,7 @@ import {Editor, RawDraftContentState} from 'react-draft-wysiwyg';
 import './react-draft-wysiwyg.css';
 import {Pv247Service} from '../../api/service/Pv247Service';
 import {IMessage} from '../model/IMessage';
+import * as classNames from 'classnames';
 
 export interface IChannelMember {
     text: string;
@@ -56,8 +57,11 @@ export class RichTextEditor extends React.PureComponent<IRichTextEditorOwnProps 
     };
 
   render() {
+      const wrapperClass = classNames({
+          back: !this.props.message
+      });
     return (
-        <div className="back">
+        <div className={wrapperClass}>
             <Editor
                 editorState={this.state.editorState}
                 onEditorStateChange={this.onEditorStateChange}
