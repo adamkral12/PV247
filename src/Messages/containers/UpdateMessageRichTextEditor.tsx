@@ -7,6 +7,7 @@ import {
 } from '../components/UpdateMessageRichTextEditor';
 import {IState} from '../../common/IState';
 import {IChannelMember, IRichTextEditorStateProps} from '../components/CreateMessageRichTextEditor';
+import {RawDraftContentState} from 'react-draft-wysiwyg';
 
 const mapStateToProps = (state: IState): IRichTextEditorStateProps => {
     if (state.channelList.selectedChannelId !== null && state.channelList.selectedChannelId !== undefined) {
@@ -24,7 +25,7 @@ const mapStateToProps = (state: IState): IRichTextEditorStateProps => {
 
 const mapDispatchToProps = (dispatch: Dispatch): IRichTextEditorProps => {
     return {
-        updateMessage: (messageId: string, message: string) => {
+        updateMessage: (messageId: string, message: RawDraftContentState) => {
             dispatch(updateMessage(messageId, message));
         }
     };

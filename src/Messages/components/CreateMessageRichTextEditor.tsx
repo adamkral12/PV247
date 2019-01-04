@@ -7,6 +7,7 @@ import { Editor } from 'react-draft-wysiwyg';
 // import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 // import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './react-draft-wysiwyg.css';
+import {Pv247Service} from '../../api/service/Pv247Service';
 
 export interface IChannelMember {
     text: string;
@@ -42,26 +43,13 @@ export class CreateMessageRichTextEditor extends React.PureComponent<IRichTextEd
     }));
   };
 
-    private uploadImageCallBack(file): Promise<any> {
-        return new Promise(
-            (resolve, reject) => {
-                const xhr = new XMLHttpRequest();
-                xhr.open('POST', 'https://api.imgur.com/3/image');
-                xhr.setRequestHeader('Authorization', 'Client-ID 12d1bc24acaccd9');
-                const data = new FormData();
-                data.append('image', file);
-                xhr.send(data);
-                xhr.addEventListener('load', () => {
-                    const response = JSON.parse(xhr.responseText);
-                    resolve(response);
-                });
-                xhr.addEventListener('error', () => {
-                    const error = JSON.parse(xhr.responseText);
-                    reject(error);
-                });
-            }
-        );
-    }
+    private uploadImageCallBack = async (file: File): Promise<any> => {
+        const uploadedFile = await Pv247Service.uploadFile(file);
+        if (uploadedFile) {
+            const getFile = await Pv247Service.getFile(uploadedFile[0].id);
+            return { data: { link: getFile.fileUri } };
+        }
+    };
 
   render() {
     return (

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
+import {EditorState, convertFromRaw, convertToRaw} from 'draft-js';
 import { Button } from 'react-bootstrap';
-import { Editor } from 'react-draft-wysiwyg';
+import {Editor, RawDraftContentState} from 'react-draft-wysiwyg';
 import {IChannelMember} from './CreateMessageRichTextEditor';
 
 
@@ -15,7 +15,7 @@ export interface IRichTextEditorStateProps {
 }
 
 export interface IRichTextEditorProps {
-    readonly updateMessage: (id: string, message: string) => void;
+    readonly updateMessage: (id: string, message: RawDraftContentState) => void;
 }
 export interface IState {
     readonly editorState: EditorState;
