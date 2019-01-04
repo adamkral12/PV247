@@ -1,4 +1,13 @@
 .postWrapper {
-    height: 70vh;
+    height: calc(90vh - 250px);
     overflow-y: scroll;
+    position: absolute;
+}
+
+.back {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    z-index: 20;
+    background: white;
 }
