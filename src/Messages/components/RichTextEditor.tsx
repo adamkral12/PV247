@@ -38,7 +38,7 @@ export class RichTextEditor extends React.PureComponent<IRichTextEditorOwnProps 
     }
 
     private createMessage = (): void => {
-      this.props.submit((convertToRaw(this.state.editorState.getCurrentContent())), this.props.message.id);
+      this.props.submit((convertToRaw(this.state.editorState.getCurrentContent())), this.props. message ? this.props.message.id : undefined);
     };
 
     private onEditorStateChange = (editorState): void => {
