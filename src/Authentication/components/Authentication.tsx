@@ -6,7 +6,7 @@ import { Screen } from '../../Screen/Screen';
 import {LoginModalContainer} from '../containers/LoginModal';
 import {RegisterModalContainer} from '../containers/RegisterModal';
 import {ScaleLoader} from 'react-spinners';
-
+import './Authentication.css';
 
 export interface IAuthenticationStateProps {
     readonly isLoggedIn: boolean;
@@ -41,7 +41,7 @@ export class Authentication extends React.PureComponent<IProps> {
                 <div>
                     <ChannelAppContainer/>
                     <HeaderContainer/>
-                    <Col md={9} sm={9} xs={12}>
+                    <Col md={9} sm={9} xs={12} className={'screen-wrapper'}>
                         <Screen/>
                     </Col>
                 </div>

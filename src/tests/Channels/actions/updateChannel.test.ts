@@ -15,6 +15,16 @@ const channel: IChannel = {
         image: null
     }
 };
+
+const updatedChannel: IChannel = {
+    id: '123',
+    name: 'updated channel',
+    customData: {
+        members: Immutable.Set(['added', 'author']),
+        image: null
+    }
+};
+
 const initialState = {
     channelList: {
         channels: {
@@ -42,10 +52,10 @@ describe('update channel action', () => {
     });
 
     it('should dispatch success when API call is successful', async () => {
-        fetchMock.mock(BASE_API_URL + extendedUrl + '123', {status: 200, body: channel});
+        fetchMock.mock(BASE_API_URL + extendedUrl + '123', {status: 200, body: updatedChannel});
         const store = mockStore(initialState);
         await store.dispatch(updateChannel('123', 'updated channel', {
-            invitedUsers: Immutable.Set([]),
+            invitedUsers: Immutable.Set(['added']),
             image: null,
         }));
 
@@ -53,7 +63,7 @@ describe('update channel action', () => {
 
         expect(actions[0]).toEqual({type: CHANNEL_APP_LOADING_STARTED});
         expect(actions[1]).toEqual({type: CHANNEL_APP_CHANNEL_UPDATE_SUCCESS,
-            payload: {channel: {customData: {image: null, members: Immutable.Set(['author'])}, id: '123', name: 'not yet updated'}}
+            payload: {channel: updatedChannel}
         });
     });
 });

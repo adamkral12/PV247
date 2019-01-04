@@ -13,6 +13,7 @@ import {MESSAGE_APP_UPVOTE_MESSAGE_SUCCESS} from '../constants/actionTypes';
 import {MESSAGE_APP_DOWNVOTE_MESSAGE_SUCCESS} from '../constants/actionTypes';
 import {MESSAGE_APP_UPDATE_MESSAGE_SUCCESS} from '../constants/actionTypes';
 import {loadingStarted} from './loadMessages';
+import {RawDraftContentState} from 'react-draft-wysiwyg';
 
 
 export const crudFailure = (message: string): Action => ({
@@ -28,9 +29,11 @@ const createMessageSuccess = (message: IMessage): Action => ({
     }
 });
 
-export const createMessage = (text: string): any =>
+export const createMessage = (messageContent: RawDraftContentState): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        if (!/\S/.test(text)) {
+        console.log(messageContent);
+        // message contains some text or pictures
+        if (!(messageContent.blocks.some(block => /\S/.test(block.text) || block.type === 'atomic'))) {
             dispatch(crudFailure('Message can not be empty.'));
         }
         else {
@@ -41,7 +44,7 @@ export const createMessage = (text: string): any =>
                 const message = await MessageService.createEntity({
                     id: '',
                     channelId,
-                    value: text,
+                    value: JSON.stringify(messageContent),
                     createdBy: '',
                     createdAt: '',
                     updatedBy: null,
@@ -155,9 +158,10 @@ const updateMessageSuccess = (message: IMessage): Action => ({
     }
 });
 
-export const updateMessage = (id: string, text: string): any =>
+export const updateMessage = (id: string, messageContent: RawDraftContentState): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        if (!/\S/.test(text)) {
+        // message contains some text or pictures
+        if (!(messageContent.blocks.some(block => /\S/.test(block.text) || block.type === 'atomic'))) {
             dispatch(crudFailure('Message can not be empty.'));
         }
         else {
@@ -167,7 +171,7 @@ export const updateMessage = (id: string, text: string): any =>
                 const channelId = getState().channelList.selectedChannelId;
                 const messageToEdit: IMessage = {
                     ...currentMessage,
-                    value: text
+                    value: JSON.stringify(messageContent)
                 };
                 const message = await MessageService.editEntity(messageToEdit, channelId);
                 // rename?

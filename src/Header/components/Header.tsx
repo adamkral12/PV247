@@ -33,9 +33,9 @@ export class Header extends PureComponent<HeaderDispatchProps & HeaderStateProps
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav>
-                            <NavItem eventKey={2} href="#">
+                            {this.props.numberOfMembers && <NavItem eventKey={2} href="#">
                                 Members <Badge>{this.props.numberOfMembers}</Badge>
-                            </NavItem>
+                            </NavItem>}
                         </Nav>
                         <Nav pullRight>
                             <NavDropdown eventKey={1} title={<Glyphicon glyph="user"/>} id="dropdown">
