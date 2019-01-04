@@ -18,7 +18,6 @@ export interface IPostDispatchProps {
     readonly delete: () => void;
     readonly upvote: () => void;
     readonly downvote: () => void;
-    readonly edit: (text: string) => void;
     readonly cancelEditing: () => void;
     readonly startEditing: () => void;
 }
@@ -34,7 +33,7 @@ type IProps = IPostOwnProps & IPostDispatchProps & IPostStateProps;
 
 export class Message extends React.PureComponent<IProps> {
     render() {
-        const {isBeingEdited, message, edit, cancelEditing, upvote, downvote, startEditing, user} = this.props;
+        const {isBeingEdited, message, cancelEditing, upvote, downvote, startEditing, user} = this.props;
         return (
             <div>
                 <Row className="row">
@@ -50,7 +49,7 @@ export class Message extends React.PureComponent<IProps> {
                             <Panel.Heading>
                                 {this.props.author.customData.displayName}
                             </Panel.Heading>
-                            {isBeingEdited ? <MessageEdit message={message} onSave={edit} onCancel={cancelEditing}/> :
+                            {isBeingEdited ? <MessageEdit message={message} onCancel={cancelEditing}/> :
                                 <MessageDisplay message={message} delete={this.props.delete} upvote={upvote}
                                                 downvote={downvote} startEditing={startEditing} user={user}/>}
                         </Panel>

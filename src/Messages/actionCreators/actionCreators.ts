@@ -13,6 +13,7 @@ import {MESSAGE_APP_UPVOTE_MESSAGE_SUCCESS} from '../constants/actionTypes';
 import {MESSAGE_APP_DOWNVOTE_MESSAGE_SUCCESS} from '../constants/actionTypes';
 import {MESSAGE_APP_UPDATE_MESSAGE_SUCCESS} from '../constants/actionTypes';
 import {loadingStarted} from './loadMessages';
+import {RawDraftContentState} from 'react-draft-wysiwyg';
 
 
 export const crudFailure = (message: string): Action => ({
@@ -28,7 +29,7 @@ const createMessageSuccess = (message: IMessage): Action => ({
     }
 });
 
-export const createMessage = (messageContent: any): any =>
+export const createMessage = (messageContent: RawDraftContentState): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
         console.log(messageContent);
         // message contains some text or pictures
@@ -157,7 +158,7 @@ const updateMessageSuccess = (message: IMessage): Action => ({
     }
 });
 
-export const updateMessage = (id: string, messageContent: any): any =>
+export const updateMessage = (id: string, messageContent: RawDraftContentState): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
         // message contains some text or pictures
         if (!(messageContent.blocks.some(block => /\S/.test(block.text) || block.type === 'atomic'))) {

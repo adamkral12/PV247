@@ -9,7 +9,7 @@ import {IState} from '../../common/IState';
 import {IChannelMember} from '../components/RichTextEditor';
 import {RawDraftContentState} from 'react-draft-wysiwyg';
 
-export const mapStateToProps = (state: IState): IRichTextEditorStateProps => {
+const mapStateToProps = (state: IState): IRichTextEditorStateProps => {
     if (state.channelList.selectedChannelId !== null && state.channelList.selectedChannelId !== undefined) {
         const channelMembers = state.channelList.channels.byId.get(state.channelList.selectedChannelId).customData.members.toArray();
         const channelMemberForAnnotations = new Array<IChannelMember>();

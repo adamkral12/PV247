@@ -6,7 +6,6 @@ import {UpdateMessageRichTextEditorContainer} from '../containers/UpdateMessageR
 
 interface IProps {
     readonly message: IMessage;
-    readonly onSave: (text: string) => void;
     readonly onCancel: () => void;
 }
 
