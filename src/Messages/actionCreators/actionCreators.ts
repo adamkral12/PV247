@@ -2,7 +2,7 @@ import {
     MESSAGE_APP_CANCEL_EDITING_MESSAGE,
     MESSAGE_APP_START_EDITING_MESSAGE,
     MESSAGE_APP_DELETE_MESSAGE_SUCCESS,
-    MESSAGE_APP_CREATE_MESSAGE_SUCCESS, MESSAGE_APP_CRUD_FAILURE
+    MESSAGE_APP_CREATE_MESSAGE_SUCCESS, MESSAGE_APP_CRUD_FAILURE, MESSAGE_APP_LOADING_STARTED
 } from '../constants/actionTypes';
 import {IMessage} from '../model/IMessage';
 import {Dispatch} from 'redux';
@@ -12,9 +12,11 @@ import {MessageService} from '../../api/service/MessageService';
 import {MESSAGE_APP_UPVOTE_MESSAGE_SUCCESS} from '../constants/actionTypes';
 import {MESSAGE_APP_DOWNVOTE_MESSAGE_SUCCESS} from '../constants/actionTypes';
 import {MESSAGE_APP_UPDATE_MESSAGE_SUCCESS} from '../constants/actionTypes';
-import {loadingStarted} from './loadMessages';
 import {RawDraftContentState} from 'react-draft-wysiwyg';
 
+const loadingStarted = (): Action => ({
+    type: MESSAGE_APP_LOADING_STARTED,
+});
 
 export const crudFailure = (message: string): Action => ({
     type: MESSAGE_APP_CRUD_FAILURE,
@@ -31,7 +33,6 @@ const createMessageSuccess = (message: IMessage): Action => ({
 
 export const createMessage = (messageContent: RawDraftContentState): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        console.log(messageContent);
         // message contains some text or pictures
         if (!(messageContent.blocks.some(block => /\S/.test(block.text) || block.type === 'atomic'))) {
             dispatch(crudFailure('Message can not be empty.'));
@@ -147,7 +148,7 @@ export const downvoteMessage = (id: string): any =>
             dispatch(downvoteMessageSuccess(updatedMessage));
         }
         catch (e) {
-            dispatch(crudFailure('Message could not be upvoted.'));
+            dispatch(crudFailure('Message could not be downvoted.'));
         }
     };
 
