@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {Header, HeaderDispatchProps, HeaderStateProps} from '../components/Header';
 import {Dispatch} from 'redux';
-import {showEditUser} from '../../Users/actions/editUser';
+import {showEditUser} from '../../Users/actions/visibility';
 import {logout} from '../../Authentication/actions/actionCreators';
 import {IState} from '../../common/IState';
 

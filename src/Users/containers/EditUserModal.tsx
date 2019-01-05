@@ -2,8 +2,9 @@ import {connect} from 'react-redux';
 import {EditUserModal, EditUserModalDispatchProps, EditUserModalStateProps} from '../components/EditUserModal';
 import {IState} from '../../common/IState';
 import {Dispatch} from 'redux';
-import {hideEditUser, editUser} from '../actions/editUser';
+import {hideEditUser} from '../actions/visibility';
 import {loadUsers} from '../actions/loadUsers';
+import {editUser} from '../actions/editUser';
 
 const mapStateToProps = (state: IState): EditUserModalStateProps => {
     return {
