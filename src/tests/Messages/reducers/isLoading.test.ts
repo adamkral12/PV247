@@ -8,13 +8,22 @@ import {
     MESSAGE_APP_UPDATE_MESSAGE_SUCCESS,
     MESSAGE_APP_UPVOTE_MESSAGE_SUCCESS
 } from '../../../Messages/constants/actionTypes';
+import {USER_APP_GET_USERS_STARTED} from '../../../Users/constants/actionTypes';
 
 describe('is message loading reducer', () => {
-    it('action loading started', () => {
-        expect(isLoading(false, {
-            type: MESSAGE_APP_LOADING_STARTED,
-        })).toEqual(true);
+    const loadingActions = [
+        MESSAGE_APP_LOADING_STARTED,
+        USER_APP_GET_USERS_STARTED
+    ];
+
+    loadingActions.map((action: string) => {
+        it('loading action: ' + action, () => {
+            expect(isLoading(false, {
+                type: action
+            })).toEqual(true);
+        });
     });
+
 
     const notLoadingActions = [
         MESSAGE_APP_LOADING_SUCCESS,
