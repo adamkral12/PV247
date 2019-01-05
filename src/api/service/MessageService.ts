@@ -19,7 +19,7 @@ export const MessageService = {
     },
     deleteEntity: async (messageId: string, channelId: string) => {
         const url = extendedUrl + channelId + '/' + 'message' + '/' + messageId;
-        Pv247Service.delete(url);
+        return Pv247Service.delete(url);
     },
 
 };

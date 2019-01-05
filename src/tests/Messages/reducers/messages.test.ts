@@ -7,10 +7,10 @@ import {CHANNEL_APP_SELECT_CHANNEL_SUCCESS} from '../../../Channels/constants/ac
 const testMessages: IMessage[] = [
     {
         id: '12',
-        channelId: "1234",
-        value: "message value",
-        createdAt: "2017",
-        createdBy: "adam",
+        channelId: '1234',
+        value: 'message value',
+        createdAt: '2017',
+        createdBy: 'adam',
         updatedAt: null,
         updatedBy: null,
         customData: {
@@ -19,12 +19,12 @@ const testMessages: IMessage[] = [
     },
     {
         id: '123',
-        channelId: "123",
-        value: "message value",
-        createdAt: "2017",
-        createdBy: "adam",
-        updatedAt: "2018",
-        updatedBy: "jozef",
+        channelId: '123',
+        value: 'message value',
+        createdAt: '2017',
+        createdBy: 'adam',
+        updatedAt: '2018',
+        updatedBy: 'jozef',
         customData: {
             votes: 0,
         }
@@ -34,10 +34,10 @@ const testMessages: IMessage[] = [
 const testMap = Immutable.Map({
     12: {
         id: '12',
-        channelId: "1234",
-        value: "message value",
-        createdAt: "2017",
-        createdBy: "adam",
+        channelId: '1234',
+        value: 'message value',
+        createdAt: '2017',
+        createdBy: 'adam',
         updatedAt: null,
         updatedBy: null,
         customData: {
@@ -46,12 +46,12 @@ const testMap = Immutable.Map({
     },
     123: {
         id: '123',
-        channelId: "123",
-        value: "message value",
-        createdAt: "2017",
-        createdBy: "adam",
-        updatedAt: "2018",
-        updatedBy: "jozef",
+        channelId: '123',
+        value: 'message value',
+        createdAt: '2017',
+        createdBy: 'adam',
+        updatedAt: '2018',
+        updatedBy: 'jozef',
         customData: {
             votes: 0,
         }

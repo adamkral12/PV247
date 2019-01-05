@@ -74,7 +74,7 @@ export class MessageBoard extends React.PureComponent<IMessageBoardStateProps> {
                 </div>
                 {this.props.selectedChannelId ?
                 <CreateRichTextEditorContainer/> : <Row>
-                        <h1 style={{textAlign:"center"}}>No channel selected, proceed by selecting channel or create a new one</h1>
+                        <h1 style={{textAlign: 'center'}}>No channel selected, proceed by selecting channel or create a new one</h1>
                     </Row>}
             </div>
         );

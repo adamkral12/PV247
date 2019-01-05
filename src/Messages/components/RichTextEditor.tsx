@@ -60,7 +60,7 @@ export class RichTextEditor extends React.PureComponent<IRichTextEditorOwnProps 
       const wrapperClass = classNames({
           back: !this.props.message
       });
-    return (
+      return (
         <div className={wrapperClass}>
             <Editor
                 editorState={this.state.editorState}

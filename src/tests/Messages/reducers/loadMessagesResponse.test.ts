@@ -3,7 +3,7 @@ import {loadMessagesResponse} from '../../../Messages/reducers/loadMessagesRespo
 
 describe('load message response reducer test', () => {
     it('select channel success should return undefined', () => {
-        expect(loadMessagesResponse("Could not load", {
+        expect(loadMessagesResponse('Could not load', {
             type: CHANNEL_APP_SELECT_CHANNEL_SUCCESS,
         })).toEqual(undefined);
     });
@@ -11,7 +11,7 @@ describe('load message response reducer test', () => {
     it('select channel failure should return message', () => {
         expect(loadMessagesResponse(undefined, {
             type: CHANNEL_APP_SELECT_CHANNEL_FAILURE,
-            payload: { message: "channel could not be selected"}
-        })).toEqual("channel could not be selected");
+            payload: { message: 'channel could not be selected'}
+        })).toEqual('channel could not be selected');
     });
 });
