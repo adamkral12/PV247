@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = (state: IState): IMessageBoardStateProps => {
     return {
+        selectedChannelId: state.channelList.selectedChannelId,
         messageIds: state.messageApp.messages.allIds,
         user: state.userApp.user,
         loadingErrorMessage: state.messageApp.loadingErrorMessage,

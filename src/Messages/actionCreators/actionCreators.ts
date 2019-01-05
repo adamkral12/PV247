@@ -14,7 +14,8 @@ import {MESSAGE_APP_DOWNVOTE_MESSAGE_SUCCESS} from '../constants/actionTypes';
 import {MESSAGE_APP_UPDATE_MESSAGE_SUCCESS} from '../constants/actionTypes';
 import {RawDraftContentState} from 'react-draft-wysiwyg';
 
-export const loadingStarted = (): Action => ({
+
+const loadingStarted = (): Action => ({
     type: MESSAGE_APP_LOADING_STARTED,
 });
 
@@ -33,7 +34,6 @@ const createMessageSuccess = (message: IMessage): Action => ({
 
 export const createMessage = (messageContent: RawDraftContentState): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
-        console.log(messageContent);
         // message contains some text or pictures
         if (!(messageContent.blocks.some(block => /\S/.test(block.text) || block.type === 'atomic'))) {
             dispatch(crudFailure('Message can not be empty.'));
@@ -149,7 +149,7 @@ export const downvoteMessage = (id: string): any =>
             dispatch(downvoteMessageSuccess(updatedMessage));
         }
         catch (e) {
-            dispatch(crudFailure('Message could not be upvoted.'));
+            dispatch(crudFailure('Message could not be downvoted.'));
         }
     };
 

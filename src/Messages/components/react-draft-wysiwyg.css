@@ -817,9 +817,11 @@
   right: 0;
 }
 .rdw-editor-main {
-  height: 170px;
   overflow: auto;
   box-sizing: border-box;
+}
+.back .rdw-editor-main {
+  height: 170px;
 }
 .rdw-editor-toolbar {
   padding: 6px 5px 0;

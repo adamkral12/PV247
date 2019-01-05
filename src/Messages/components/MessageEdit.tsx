@@ -3,6 +3,7 @@ import {IMessage} from '../model/IMessage';
 import {Button} from 'react-bootstrap';
 import {EditorState} from 'draft-js';
 import {UpdateMessageRichTextEditorContainer} from '../containers/UpdateMessageRichTextEditor';
+import {Panel} from 'react-bootstrap';
 
 interface IProps {
     readonly message: IMessage;
@@ -16,12 +17,12 @@ interface IState {
 export class MessageEdit extends React.PureComponent<IProps, IState> {
     render() {
         return (
-            <div>
+            <Panel.Body>
                 <UpdateMessageRichTextEditorContainer
                     message={this.props.message}
                 />
                 <Button type="button" bsStyle="default" onClick={this.props.onCancel}>Cancel</Button>
-            </div>
+            </Panel.Body>
                 );
     }
 }
