@@ -4,7 +4,7 @@ import {USER_APP_EDIT_USER_SUCCESS, USER_APP_SHOW_EDIT_USER_MODAL} from '../../.
 describe('show edit user modal reducer', () => {
     it('show edit user modal should return true', () => {
         expect(showEditUserModal(undefined, {
-            type: USER_APP_SHOW_EDIT_USER_MODAL // is this ok
+            type: USER_APP_SHOW_EDIT_USER_MODAL
         })).toEqual(true);
     });
 
