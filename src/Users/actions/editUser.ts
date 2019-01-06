@@ -1,6 +1,6 @@
 import {
     USER_APP_EDIT_USER_SUCCESS,
-    USER_APP_EDIT_USER_START,
+    USER_APP_EDIT_USER_STARTED,
     USER_APP_EDIT_USER_FAILURE
 } from '../constants/actionTypes';
 import {Dispatch} from 'redux';
@@ -10,7 +10,7 @@ import {UserService} from '../../api/service/UserService';
 import {Pv247Service} from '../../api/service/Pv247Service';
 
 const startEditingUser = (): Action => ({
-    type: USER_APP_EDIT_USER_START,
+    type: USER_APP_EDIT_USER_STARTED,
 });
 
 const editUserSuccess = (user: IUser): Action => ({

@@ -32,6 +32,6 @@ export const loadUsers = (): any =>
             const users = await UserService.getAllEntities();
             dispatch(loadingSuccess(users));
         } catch (e) {
-            dispatch(loadingFailure('An error occurred.'));
+            dispatch(loadingFailure(e.message));
         }
     };

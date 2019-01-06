@@ -1,6 +1,6 @@
 import {mockStore} from '../../utils/mockStore';
 import * as fetchMock from 'fetch-mock';
-import {extendedUrl} from '../../../api/service/ChannelService';
+import {extendedUrl} from '../../../api/service/UserService';
 import {BASE_API_URL} from '../../../api/constants/api';
 import {loadUsers} from '../../../Users/actions/loadUsers';
 import {
@@ -23,7 +23,7 @@ describe('loading users action', () => {
         expect(actions[1]).toEqual({type: USER_APP_GET_USERS_FAILURE, payload: {message: 'Bad Request'}});
     });
 
-    it('should dispatch channels on success', async () => {
+    it('should dispatch users on success', async () => {
         fetchMock.mock(
             BASE_API_URL + extendedUrl,
             {

@@ -1,4 +1,3 @@
-import {channels} from '../../../Channels/reducers/channels';
 import * as Immutable from 'immutable';
 import {IUser} from '../../../Channels/models/IUser';
 import {users} from '../../../Users/reducers/users';
@@ -59,7 +58,7 @@ describe(
       });
 
       it('loading success on empty previous state', () => {
-          expect(channels(
+          expect(users(
               {
                   allIds: Immutable.List<string>(),
                   byId: Immutable.Map(),
