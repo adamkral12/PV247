@@ -40,13 +40,13 @@ describe('load user action', () => {
     });
 
     it('should dispatch failure when email is wrong', async () => {
-        fetchMock.mock(BASE_API_URL + extendedUrl, {status: 400});
+        fetchMock.mock(BASE_API_URL + extendedUrl + '/bla', {status: 400});
         const store = mockStore();
         await store.dispatch(loadUser('bla'));
 
         const actions = store.getActions();
         expect(actions[0]).toEqual({type: USER_APP_GET_USER_STARTED});
-        expect(actions[1]).toEqual({type: USER_APP_GET_USER_FAILURE, payload: {message: 'Bad Request.'}});
+        expect(actions[1]).toEqual({type: USER_APP_GET_USER_FAILURE, payload: {message: 'Bad Request'}});
     });
 
     it('should dispatch success when API call is successful', async () => {
