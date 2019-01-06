@@ -14,6 +14,7 @@ import {MESSAGE_APP_DOWNVOTE_MESSAGE_SUCCESS} from '../constants/actionTypes';
 import {MESSAGE_APP_UPDATE_MESSAGE_SUCCESS} from '../constants/actionTypes';
 import {RawDraftContentState} from 'react-draft-wysiwyg';
 
+
 const loadingStarted = (): Action => ({
     type: MESSAGE_APP_LOADING_STARTED,
 });

@@ -3,7 +3,7 @@ import {APP_ID} from '../constants/api';
 import {IUser} from '../../Channels/models/IUser';
 import {IApiService} from '../model/IApiService';
 
-const extendedUrl: string = APP_ID + '/user';
+export const extendedUrl: string = APP_ID + '/user';
 
 export const UserService: IApiService<IUser> = {
     getEntity: async (userId: string) => {

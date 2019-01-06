@@ -1,20 +1,16 @@
-import {USER_APP_HIDE_EDIT_USER_MODAL, USER_APP_SHOW_EDIT_USER_MODAL, USER_APP_EDIT_USER_SUCCESS, USER_APP_EDIT_USER_START, USER_APP_EDIT_USER_FAILURE} from '../constants/actionTypes';
+import {
+    USER_APP_EDIT_USER_SUCCESS,
+    USER_APP_EDIT_USER_STARTED,
+    USER_APP_EDIT_USER_FAILURE
+} from '../constants/actionTypes';
 import {Dispatch} from 'redux';
 import {IState} from '../../common/IState';
 import {IUser} from '../../Channels/models/IUser';
 import {UserService} from '../../api/service/UserService';
 import {Pv247Service} from '../../api/service/Pv247Service';
 
-export const showEditUser = (): Action => ({
-    type: USER_APP_SHOW_EDIT_USER_MODAL,
-});
-
-export const hideEditUser = (): Action => ({
-    type: USER_APP_HIDE_EDIT_USER_MODAL,
-});
-
 const startEditingUser = (): Action => ({
-    type: USER_APP_EDIT_USER_START,
+    type: USER_APP_EDIT_USER_STARTED,
 });
 
 const editUserSuccess = (user: IUser): Action => ({
@@ -34,7 +30,7 @@ const editUserFailure = (message: string): Action => ({
 export const editUser = (profilePicture: File | null, displayName: string): any =>
     async (dispatch: Dispatch, getState: () => IState): Promise<void> => {
         if (!/\S/.test(displayName)) {
-            dispatch(editUserFailure('User name can not be empty.'));
+            dispatch(editUserFailure('User name can\'t be empty.'));
         }
         else {
             dispatch(startEditingUser());

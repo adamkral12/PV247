@@ -9,7 +9,7 @@ import {
 import {Dispatch} from 'redux';
 import {auth} from '../../api/service/AuthService';
 import {AUTH_EXPIRATION_STORAGE_KEY, AUTH_TOKEN_STORAGE_KEY, EMAIL_STORAGE_KEY} from '../../api/constants/api';
-import {loadUser} from '../../Users/actions/user';
+import {loadUser} from '../../Users/actions/loadUser';
 
 const loginStarted = (): Action => ({
     type: AUTHENTICATION_LOGIN_STARTED,
