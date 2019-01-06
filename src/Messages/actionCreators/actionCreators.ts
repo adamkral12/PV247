@@ -176,7 +176,6 @@ export const updateMessage = (id: string, messageContent: RawDraftContentState):
                     value: JSON.stringify(messageContent)
                 };
                 const message = await MessageService.editEntity(messageToEdit, channelId);
-                // rename?
                 const updatedMessage = {
                     ...message,
                     channelId
